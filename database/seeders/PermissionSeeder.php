@@ -26,95 +26,92 @@ class PermissionSeeder extends Seeder
         $worker = Role::firstOrCreate(['name' => 'worker']);
 
 
-        Permission::firstOrCreate(['name' => 'view booked rooms count'])->syncRoles([$owner,$manager]);
-        Permission::firstOrCreate(['name' => 'view income'])->assignRoles($owner);
-        Permission::firstOrCreate(['name' => 'view expenses'])->assignRoles($owner);
-        Permission::firstOrCreate(['name' => 'view balance'])->assignRoles($owner);
-        Permission::firstOrCreate(['name' => 'view all reviews count'])->syncRoles([$owner,$manager]);
-        Permission::firstOrCreate(['name' => 'view visitors count'])->syncRoles([$owner,$manager]);
-        Permission::firstOrCreate(['name' => 'view all room'])->syncRoles([$owner,$manager]);
-        Permission::firstOrCreate(['name' => 'create room'])->syncRoles([$owner,$manager]);
-        Permission::firstOrCreate(['name' => 'edit room'])->syncRoles([$owner,$manager]);
-        Permission::firstOrCreate(['name' => 'show room'])->syncRoles([$owner,$manager]);
-        Permission::firstOrCreate(['name' => 'edit status room'])->syncRoles([$owner,$manager,$reception]);
-        Permission::firstOrCreate(['name' => 'show status room'])->syncRoles([$owner,$manager,$reception]);
-        Permission::firstOrCreate(['name' => 'edit price room'])->assignRoles($owner);
-        Permission::firstOrCreate(['name' => 'view all reservations'])->syncRoles([$owner,$manager,$reception]);
-        Permission::firstOrCreate(['name' => 'create reservations'])->syncRoles([$owner,$manager,$reception]);
-        Permission::firstOrCreate(['name' => 'edit reservations'])->syncRoles([$owner,$manager,$reception]);
-        Permission::firstOrCreate(['name' => 'delete reservations'])->syncRoles([$owner,$manager,$reception]);
-        Permission::firstOrCreate(['name' => 'view all room services'])->syncRoles([$owner,$manager,$reception,$worker]);
-        Permission::firstOrCreate(['name' => 'create room services'])->syncRoles([$owner,$manager]);
-        Permission::firstOrCreate(['name' => 'edit room services'])->syncRoles([$owner,$manager]);
-        Permission::firstOrCreate(['name' => 'delete room services'])->syncRoles([$owner,$manager]);
-        Permission::firstOrCreate(['name' => 'show room services'])->syncRoles([$owner,$manager,$reception,$worker]);
-        Permission::firstOrCreate(['name' => 'view room services requests'])->syncRoles([$owner,$manager,$reception,$worker]);
-        Permission::firstOrCreate(['name' => 'create room services requests'])->syncRoles([$owner,$manager,$reception]);
-        Permission::firstOrCreate(['name' => 'edit room services requests'])->syncRoles([$owner,$manager,$reception]);
-        Permission::firstOrCreate(['name' => 'delete room services requests'])->syncRoles([$owner,$manager,$reception]);
-        Permission::firstOrCreate(['name' => 'view all employee'])->syncRoles([$owner,$manager]);
-        Permission::firstOrCreate(['name' => 'create employee'])->assignRoles($owner);
-        Permission::firstOrCreate(['name' => 'edit employee'])->assignRoles($owner);
-        Permission::firstOrCreate(['name' => 'delete employee'])->assignRoles($owner);
-        Permission::firstOrCreate(['name' => 'show employee'])->assignRoles($owner);
-        Permission::firstOrCreate(['name' => 'view all customer'])->syncRoles([$owner,$manager,$reception]);
-        Permission::firstOrCreate(['name' => 'create customer'])->syncRoles([$owner,$manager,$reception]);
-        Permission::firstOrCreate(['name' => 'edit customer'])->syncRoles([$owner,$manager,$reception]);
-        Permission::firstOrCreate(['name' => 'show customer'])->syncRoles([$owner,$manager,$reception]);
-        Permission::firstOrCreate(['name' => 'view all offers'])->syncRoles([$owner,$manager,$reception]);
-        Permission::firstOrCreate(['name' => 'create offers'])->assignRoles($owner);
-        Permission::firstOrCreate(['name' => 'edit offers'])->assignRoles($owner);
-        Permission::firstOrCreate(['name' => 'delete offers'])->assignRoles($owner);
-        Permission::firstOrCreate(['name' => 'show offers'])->syncRoles([$owner,$manager,$reception]);
-        Permission::firstOrCreate(['name' => 'view message'])->syncRoles([$owner,$manager]);
-        Permission::firstOrCreate(['name' => 'show message'])->syncRoles([$owner,$manager]);
-        Permission::firstOrCreate(['name' => 'replay message'])->syncRoles([$owner,$manager]);
-        Permission::firstOrCreate(['name' => 'delete message'])->syncRoles([$owner]);
+        Permission::firstOrCreate(['name' => 'view booked rooms count'])->assignRole([$owner, $manager]);
+        Permission::firstOrCreate(['name' => 'view income'])->assignRole($owner);
+        Permission::firstOrCreate(['name' => 'view expenses'])->assignRole($owner);
+        Permission::firstOrCreate(['name' => 'view balance'])->assignRole($owner);
+        Permission::firstOrCreate(['name' => 'view all reviews count'])->assignRole([$owner, $manager]);
+        Permission::firstOrCreate(['name' => 'view visitors count'])->assignRole([$owner, $manager]);
+        Permission::firstOrCreate(['name' => 'view all room'])->assignRole([$owner, $manager]);
+        Permission::firstOrCreate(['name' => 'create room'])->assignRole([$owner, $manager]);
+        Permission::firstOrCreate(['name' => 'edit room'])->assignRole([$owner, $manager]);
+        Permission::firstOrCreate(['name' => 'show room'])->assignRole([$owner, $manager]);
+        Permission::firstOrCreate(['name' => 'edit status room'])->assignRole([$owner, $manager, $reception]);
+        Permission::firstOrCreate(['name' => 'show status room'])->assignRole([$owner, $manager, $reception]);
+        Permission::firstOrCreate(['name' => 'edit price room'])->assignRole($owner);
+        Permission::firstOrCreate(['name' => 'view all reservations'])->assignRole([$owner, $manager, $reception]);
+        Permission::firstOrCreate(['name' => 'create reservations'])->assignRole([$owner, $manager, $reception]);
+        Permission::firstOrCreate(['name' => 'edit reservations'])->assignRole([$owner, $manager, $reception]);
+        Permission::firstOrCreate(['name' => 'delete reservations'])->assignRole([$owner, $manager, $reception]);
+        Permission::firstOrCreate(['name' => 'view all room services'])->assignRole([$owner, $manager, $reception, $worker]);
+        Permission::firstOrCreate(['name' => 'create room services'])->assignRole([$owner, $manager]);
+        Permission::firstOrCreate(['name' => 'edit room services'])->assignRole([$owner, $manager]);
+        Permission::firstOrCreate(['name' => 'delete room services'])->assignRole([$owner, $manager]);
+        Permission::firstOrCreate(['name' => 'show room services'])->assignRole([$owner, $manager, $reception, $worker]);
+        Permission::firstOrCreate(['name' => 'view room services requests'])->assignRole([$owner, $manager, $reception, $worker]);
+        Permission::firstOrCreate(['name' => 'create room services requests'])->assignRole([$owner, $manager, $reception]);
+        Permission::firstOrCreate(['name' => 'edit room services requests'])->assignRole([$owner, $manager, $reception]);
+        Permission::firstOrCreate(['name' => 'delete room services requests'])->assignRole([$owner, $manager, $reception]);
+        Permission::firstOrCreate(['name' => 'view all employee'])->assignRole([$owner, $manager]);
+        Permission::firstOrCreate(['name' => 'create employee'])->assignRole($owner);
+        Permission::firstOrCreate(['name' => 'edit employee'])->assignRole($owner);
+        Permission::firstOrCreate(['name' => 'delete employee'])->assignRole($owner);
+        Permission::firstOrCreate(['name' => 'show employee'])->assignRole($owner);
+        Permission::firstOrCreate(['name' => 'view all customer'])->assignRole([$owner, $manager, $reception]);
+        Permission::firstOrCreate(['name' => 'create customer'])->assignRole([$owner, $manager, $reception]);
+        Permission::firstOrCreate(['name' => 'edit customer'])->assignRole([$owner, $manager, $reception]);
+        Permission::firstOrCreate(['name' => 'show customer'])->assignRole([$owner, $manager, $reception]);
+        Permission::firstOrCreate(['name' => 'view all offers'])->assignRole([$owner, $manager, $reception]);
+        Permission::firstOrCreate(['name' => 'create offers'])->assignRole($owner);
+        Permission::firstOrCreate(['name' => 'edit offers'])->assignRole($owner);
+        Permission::firstOrCreate(['name' => 'delete offers'])->assignRole($owner);
+        Permission::firstOrCreate(['name' => 'show offers'])->assignRole([$owner, $manager, $reception]);
+        Permission::firstOrCreate(['name' => 'view message'])->assignRole([$owner, $manager]);
+        Permission::firstOrCreate(['name' => 'show message'])->assignRole([$owner, $manager]);
+        Permission::firstOrCreate(['name' => 'replay message'])->assignRole([$owner, $manager]);
+        Permission::firstOrCreate(['name' => 'delete message'])->assignRole([$owner]);
 
 
         User::firstOrCreate([
-            'email' => 'admin@material.com',
+            'email' => 'admin@hotel.com',
         ], [
             'name' => 'Owner',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
             'created_at' => now(),
-            'updated_at' => now()
+            'updated_at' => now(),
         ])->assignRole($owner);
 
 
         User::firstOrCreate([
-            'email' => 'Manager@material.com',
+            'email' => 'manager@hotel.com',
         ], [
             'name' => 'Manager',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
             'created_at' => now(),
-            'updated_at' => now()
+            'updated_at' => now(),
         ])->assignRole($manager);
 
         User::firstOrCreate([
-            'email' => 'Reception@material.com',
+            'email' => 'reception@hotel.com',
         ], [
             'name' => 'Reception',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
             'created_at' => now(),
-            'updated_at' => now()
+            'updated_at' => now(),
         ])->assignRole($reception);
 
 
         User::firstOrCreate([
-            'email' => 'Worker@material.com',
+            'email' => 'worker@hotel.com',
         ], [
             'name' => 'Worker',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
             'created_at' => now(),
-            'updated_at' => now()
+            'updated_at' => now(),
         ])->assignRole($worker);
-
-
-
     }
 }
