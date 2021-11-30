@@ -46,11 +46,11 @@
                     <i class="material-icons">email</i>
                   </span>
                 </div>
-                <input type="email" name="email" class="form-control" placeholder="{{ __('Email...') }}" value="{{ old('email') }}" required>
+                <input type="tel" name="phone_number" class="form-control" value="{{ old('phone_number') }}" required>
               </div>
-              @if ($errors->has('email'))
-                <div id="email-error" class="error text-danger pl-3" for="email" style="display: block;">
-                  <strong>{{ $errors->first('email') }}</strong>
+              @if ($errors->has('phone_number'))
+                <div id="phone_number-error" class="error text-danger pl-3" for="phone_number" style="display: block;">
+                  <strong>{{ $errors->first('phone_number') }}</strong>
                 </div>
               @endif
             </div>
