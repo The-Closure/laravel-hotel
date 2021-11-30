@@ -29,13 +29,13 @@
                     <ul class="nav">
                         <li class="nav-item {{ $activePage == 'my-profile' ? ' active' : '' }} ">
                             <a class="nav-link" href="{{ route('admin.profile') }}">
-                                <i class="material-icons"> profile </i>
+                                <i class="material-icons"> account_circle</i>
                                 <span class="sidebar-normal">my profile </span>
                             </a>
                         </li>
                         <li class="nav-item {{ $activePage == 'All-staffs' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('admin.users.index') }}">
-                                <i class="material-icons"> settings </i>
+                                <i class="material-icons"> manage_accounts </i>
                                 <span class="sidebar-normal"> Staffs Management </span>
                             </a>
                         </li>
