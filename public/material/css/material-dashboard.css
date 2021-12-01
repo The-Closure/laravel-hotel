@@ -19782,3 +19782,35 @@ Copyright (c) 2015 Daniel Eden
 
 
 /*# sourceMappingURL=dashboard-free.css.map */
+
+
+.file-upload .file-upload-select {
+	display: block;
+	color: #dbdbdb;
+	cursor: pointer;
+	text-align: left;
+	background: #1a242f;
+	overflow: hidden;
+	position: relative;
+	border-radius: 6px;
+}
+.file-upload .file-upload-select .file-select-button {
+	background: #161f27;
+	padding: 10px;
+	display: inline-block;
+}
+.file-upload .file-upload-select .file-select-name {
+	display: inline-block;
+	padding: 10px;
+}
+.file-upload .file-upload-select:hover .file-select-button {
+	background: #324759;
+	color: #ffffff;
+	transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-webkit-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+}
+.file-upload .file-upload-select input[type="file"] {
+	display: none;
+}
