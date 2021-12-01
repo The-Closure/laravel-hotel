@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\SettingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 
@@ -13,6 +14,7 @@ use App\Http\Controllers\Admin\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('auth');
 
 Auth::routes();
 
@@ -69,6 +71,8 @@ Route::group(
         Route::put('users.password/{user}', [UserController::class,'password'])->name('users.password');
 
         Route::resource('users', UserController::class);
+
+        Route::resource('setting', SettingController::class);
 
     }
 );

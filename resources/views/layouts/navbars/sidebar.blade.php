@@ -78,10 +78,10 @@
                     <p>{{ __('RTL Support') }}</p>
                 </a>
             </li>
-            <li class="nav-item active-pro{{ $activePage == 'upgrade' ? ' active' : '' }}">
-                <a class="nav-link text-white bg-danger" href="{{ route('upgrade') }}">
-                    <i class="material-icons text-white">unarchive</i>
-                    <p>{{ __('Upgrade to PRO') }}</p>
+            <li class="nav-item{{ $activePage == 'setting' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.setting.index') }}">
+                    <i class="material-icons">settings</i>
+                    <p>{{ __('settings') }}</p>
                 </a>
             </li>
         </ul>
