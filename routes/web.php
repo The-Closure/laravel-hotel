@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,25 +22,21 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Auth::routes();
-
-Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('auth');
-
+// to be deleted
 Route::group(['middleware' => 'auth'], function () {
-	Route::view('table-list', 'pages.table_list')->name('table');
-	Route::view('typography', 'pages.typography')->name('typography');
-	Route::view('icons', 'pages.icons')->name('icons');
-	Route::view('map', 'pages.map')->name('map');
-	Route::view('notifications', 'pages.notifications')->name('notifications');
-	Route::view('rtl-support', 'pages.language')->name('language');
-	Route::view('upgrade', 'pages.upgrade')->name('upgrade');
+    Route::view('table-list', 'pages.table_list')->name('table');
+    Route::view('typography', 'pages.typography')->name('typography');
+    Route::view('icons', 'pages.icons')->name('icons');
+    Route::view('map', 'pages.map')->name('map');
+    Route::view('notifications', 'pages.notifications')->name('notifications');
+    Route::view('rtl-support', 'pages.language')->name('language');
+    Route::view('upgrade', 'pages.upgrade')->name('upgrade');
 });
 
-Route::group(['middleware' => 'auth'], function () {
-	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
-	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
-	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
-	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
+Route::group(['middleware' => 'auth', 'perfix' => '/admin', 'as' => 'admin.'], function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::resource('users', UserController::class)->except('show');
+    Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('profile/password', [ProfileController::class, 'password'])->name('profile.password');
 });
-
