@@ -70,6 +70,7 @@ class PermissionSeeder extends Seeder
         Permission::firstOrCreate(['name' => 'edit transaction'])->assignRole([$owner, $manager, $reception]);
         Permission::firstOrCreate(['name' => 'ubdate transaction'])->assignRole([$owner, $manager, $reception]);
         Permission::firstOrCreate(['name' => 'view all reviews'])->assignRole([$owner, $manager]);
+        Permission::firstOrCreate(['name' => 'view  reviews'])->assignRole([$owner, $manager]);
         Permission::firstOrCreate(['name' => 'view all newsletters'])->assignRole([$owner, $manager, $reception]);
         Permission::firstOrCreate(['name' => 'view newsletter info'])->assignRole([$owner, $manager, $reception]);
         Permission::firstOrCreate(['name' => 'create newsletter'])->assignRole([$owner, $manager, $reception]);
