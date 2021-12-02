@@ -23,7 +23,7 @@
             </form>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}">
+                    <a class="nav-link" href="{{ route('admin.home') }}">
                         <i class="material-icons">dashboard</i>
                         <p class="d-lg-none d-md-block">
                             {{ __('Stats') }}
@@ -56,7 +56,7 @@
                         </p>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                        <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profile') }}</a>
+                        <a class="dropdown-item" href="{{ route('admin.profile.edit') }}">{{ __('Profile') }}</a>
                         <a class="dropdown-item" href="#">{{ __('Settings') }}</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}"
