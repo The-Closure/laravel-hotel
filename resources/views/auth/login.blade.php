@@ -26,19 +26,19 @@
             </div>
           </div>
           <div class="card-body">
-            <p class="card-description text-center">{{ __('Or Sign in with ') }} <strong>admin@material.com</strong> {{ __(' and the password ') }}<strong>secret</strong> </p>
-            <div class="bmd-form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
+            <p class="card-description text-center">{{ __('Or Sign in with ') }} <strong>09....</strong> {{ __(' and the password ') }}<strong>secret</strong> </p>
+            <div class="bmd-form-group{{ $errors->has('phone_number') ? ' has-danger' : '' }}">
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text">
-                    <i class="material-icons">email</i>
+                    <i class="material-icons">Phone_Number</i>
                   </span>
                 </div>
-                <input type="email" name="email" class="form-control" placeholder="{{ __('Email...') }}" value="{{ old('email', 'admin@material.com') }}" required>
+                <input type="tel" name="phone_number" class="form-control" placeholder="{{ __('phone_nubmer') }}" value="{{ old('phone_number', '0999186741') }}" required>
               </div>
-              @if ($errors->has('email'))
-                <div id="email-error" class="error text-danger pl-3" for="email" style="display: block;">
-                  <strong>{{ $errors->first('email') }}</strong>
+              @if ($errors->has('phone_number'))
+                <div id="phone_number-error" class="error text-danger pl-3" for="phone_number" style="display: block;">
+                  <strong>{{ $errors->first('phone_number') }}</strong>
                 </div>
               @endif
             </div>

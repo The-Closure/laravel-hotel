@@ -15,11 +15,16 @@ class CreateReservationsTable extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->double("price");
+            $table->foreignId('user_id');
+            $table->foreignId('room_id');
+            $table->foreignId('offer_id');
             $table->double("paid");
-            
-
+            $table->timestamp("started_at");
+            $table->timestamp("ended_at");
+            $table->timestamp("paid_at");
+            $table->timestamp("canceled_at");
+            $table->timestamps();
         });
     }
 
