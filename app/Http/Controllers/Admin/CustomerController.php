@@ -15,7 +15,7 @@ class CustomerController extends Controller
     public function index()
     {
 
-        $customers=User::paginate(10);
+        $customers=User::paginate(10)->sort();
         return view ('admin.customers.index',['customers'=>$customers]);
     }
 
@@ -114,5 +114,17 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function search()
+    {
+        $search = $_GET['query'];
+        $customers = User::latest();
+
+        if ($search->filled('query')) {
+            $customers->where('fname', 'like', "%$search%")->get();
+            $customers->orWhere('lname', 'like', "%$search%")->get();
+            $customers->orWhere('national_id', 'like', "%$search%")->get();
+        }
+        return view ('admin.customers.index' , ['customers' => $customers]) ;
     }
 }

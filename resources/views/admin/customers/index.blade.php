@@ -15,6 +15,19 @@
                                         Customer</a>
                                 </div>
                             </div>
+                            <div class="column is-2">
+                                <form action="{{ url('/search') }}" method="GET">
+                                    <div class="field">
+                                        <label class="label">{{ __('Search') }}</label>
+                                        <div class="control is-expanded has-icons-left">
+                                            <input class="input" type="text" placeholder="Search ..." name="query"
+                                                value="{{ request()->query('query', '') }}">
+                                            <span class="icon is-small is-left">
+                                                <i class="fas fa-search"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </form>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead class=" text-primary">
