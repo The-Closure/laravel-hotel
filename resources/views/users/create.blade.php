@@ -72,15 +72,15 @@
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">{{ __('Password') }}</label>
                                     <div class="col-sm-7">
-                                        <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
+                                        <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
                                             <input  type="password"
                                                     name="password"
                                                     class="form-control @error('password') is-invalid @enderror"
                                                     placeholder="Enter Password"
                                                     value="{{ old('password') }}">
-                                            @if ($errors->has('email'))
+                                            @if ($errors->has('password'))
                                                 <span id="title-ar-error" class="error text-danger"
-                                                    for="input-title-ar">{{ $errors->first('email') }}</span>
+                                                    for="input-title-ar">{{ $errors->first('password') }}</span>
                                             @endif
                                         </div>
                                     </div>

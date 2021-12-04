@@ -78,6 +78,30 @@
                     <p>{{ __('RTL Support') }}</p>
                 </a>
             </li>
+            <li class="nav-item active {{ $activePage == 'room-services' ? ' active' : '' }}">
+                <a class="nav-link collapsed" data-toggle="collapse" href="#room-services" aria-expanded="false">
+                    <i class="material-icons">live_help</i>
+                    <p>Room Services
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="room-services" style="">
+                    <ul class="nav">
+                        <li class="nav-item {{ $activePage == 'room-services' ? ' active' : '' }} ">
+                            <a class="nav-link" href="{{ route('admin.room-services.index') }}">
+                                <i class="material-icons"> live_help</i>
+                                <span class="sidebar-normal">all services</span>
+                            </a>
+                        </li>
+                        <li class="nav-item {{ $activePage == 'create-room-service' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('admin.room-services.create') }}">
+                                <i class="material-icons"> add </i>
+                                <span class="sidebar-normal"> new service </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
             <li class="nav-item{{ $activePage == 'setting' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.setting.index') }}">
                     <i class="material-icons">settings</i>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\RoomServicesController;
 use App\Http\Controllers\Admin\SettingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
@@ -74,5 +75,6 @@ Route::group(
 
         Route::resource('setting', SettingController::class);
 
+        Route::resource('room-services', RoomServicesController::class);
     }
 );

@@ -23,6 +23,7 @@
 *::before,
 *::after {
     box-sizing: border-box;
+    text-transform: capitalize;
 }
 
 html {
@@ -11318,7 +11319,7 @@ fieldset[disabled][disabled] .btn-group-raised .btn,
 .btn.btn-sm,
 .btn-group-sm>.btn,
 .btn-group-sm .btn {
-    padding: 0.40625rem 1.25rem;
+    padding: 0.40625rem .5rem;
     font-size: 0.6875rem;
     line-height: 1.5;
     border-radius: 0.2rem;
@@ -19785,32 +19786,57 @@ Copyright (c) 2015 Daniel Eden
 
 
 .file-upload .file-upload-select {
-	display: block;
-	color: #dbdbdb;
-	cursor: pointer;
-	text-align: left;
-	background: #1a242f;
-	overflow: hidden;
-	position: relative;
-	border-radius: 6px;
+    display: block;
+    color: #dbdbdb;
+    cursor: pointer;
+    text-align: left;
+    background: #1a242f;
+    overflow: hidden;
+    position: relative;
+    border-radius: 6px;
 }
+
 .file-upload .file-upload-select .file-select-button {
-	background: #161f27;
-	padding: 10px;
-	display: inline-block;
+    background: #161f27;
+    padding: 10px;
+    display: inline-block;
 }
+
 .file-upload .file-upload-select .file-select-name {
-	display: inline-block;
-	padding: 10px;
+    display: inline-block;
+    padding: 10px;
 }
+
 .file-upload .file-upload-select:hover .file-select-button {
-	background: #324759;
-	color: #ffffff;
-	transition: all 0.2s ease-in-out;
-	-moz-transition: all 0.2s ease-in-out;
-	-webkit-transition: all 0.2s ease-in-out;
-	-o-transition: all 0.2s ease-in-out;
+    background: #324759;
+    color: #ffffff;
+    transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
 }
+
 .file-upload .file-upload-select input[type="file"] {
-	display: none;
+    display: none;
+}
+
+.active-status,
+.disactive-status {
+    background: #f44336;
+    padding: 0.25rem;
+    border-radius: 0.3rem;
+    color: white;
+}
+
+.active-status {
+    background: #4caf50
+}
+
+@media (min-width: 576px){
+    .modal-dialog {
+        max-width: 700px;
+    }
+}
+.bmd-form-group .form-control{
+    padding-left:1rem
 }
