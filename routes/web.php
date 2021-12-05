@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('auth');
 
 Auth::routes();
@@ -58,23 +59,52 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 });
 
+// Route::group(
+//     [
+//         'middleware' => 'auth',
+//         'prefix' => 'admin',
+//         'as' => 'admin.'
+//     ],
+//     function () {
+//         Route::get('profile', [UserController::class, 'profile'])->name('profile');
+
+//         Route::get('users.password/{user}', [UserController::class, 'password'])->name('users.password');
+
+//         Route::put('users.password/{user}', [UserController::class, 'password'])->name('users.password');
+
+//         Route::resource('users', UserController::class);
+
+//         Route::resource('setting', SettingController::class);
+
+//         Route::resource('room-services', RoomServicesController::class);
+//     }
+// );
+
 Route::group(
     [
-        'middleware' => 'auth',
-        'prefix' => 'admin',
-        'as' => 'admin.'
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
     ],
     function () {
-        Route::get('profile', [UserController::class,'profile'])->name('profile');
+        Route::group(
+            [
+                'middleware' => 'auth',
+                'prefix' => 'admin',
+                'as' => 'admin.'
+            ],
+            function () {
+                Route::get('profile', [UserController::class, 'profile'])->name('profile');
 
-        Route::get('users.password/{user}', [UserController::class,'password'])->name('users.password');
+                Route::get('users.password/{user}', [UserController::class, 'password'])->name('users.password');
 
-        Route::put('users.password/{user}', [UserController::class,'password'])->name('users.password');
+                Route::put('users.password/{user}', [UserController::class, 'password'])->name('users.password');
 
-        Route::resource('users', UserController::class);
+                Route::resource('users', UserController::class);
 
-        Route::resource('setting', SettingController::class);
+                Route::resource('setting', SettingController::class);
 
-        Route::resource('room-services', RoomServicesController::class);
+                Route::resource('room-services', RoomServicesController::class);
+            }
+        );
     }
 );

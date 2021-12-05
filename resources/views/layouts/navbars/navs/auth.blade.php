@@ -13,6 +13,18 @@
     <div class="collapse navbar-collapse justify-content-end">
       <form class="navbar-form">
         <div class="input-group no-border">
+        <div class="dropdown mr-3">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              languages
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                    <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                        {{ $properties['native'] }}
+                    </a>
+            @endforeach
+            </div>
+          </div>
         <input type="text" value="" class="form-control" placeholder="Search...">
         <button type="submit" class="btn btn-white btn-round btn-just-icon">
           <i class="material-icons">search</i>
