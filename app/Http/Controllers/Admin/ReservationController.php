@@ -36,7 +36,19 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $validated = $request->validate([
+            'price'  => 'required|numeric',
+            'user_id' => 'required',
+            'room_id' => 'required',
+            'offer_id' => 'required',
+            'paid' => 'required|numeric',
+            'started_at' => 'required|date',
+            'ended_at' => 'required|date' ,
+            'paid_at' => 'required|date' ,
+            'canceled_at' => 'required|date' ,
+        ]);
+        $reservation = Reservation::create($validated);
+        return redirect()->route('reservations.index');       
     }
 
     /**

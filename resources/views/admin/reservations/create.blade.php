@@ -8,8 +8,8 @@
             @csrf
             <div class="card ">
               <div class="card-header card-header-primary">
-                <h4 class="card-title">{{ __('Edit Profile') }}</h4>
-                <p class="card-category">{{ __('User information') }}</p>
+                <h4 class="card-title">{{ __('Create Reservation') }}</h4>
+                <p class="card-category">{{ __('this is the Reservation that you want to add') }}</p>
               </div>
               <div class="card-body ">
                 @if (session('status'))
@@ -28,14 +28,14 @@
                   <label class="col-sm-2 col-form-label">{{ __('Customer_Name') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('user_id') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('user_id') ? ' is-invalid' : '' }}" name="name" id="input-name" type="text" placeholder="{{ __('Name') }}" value="{{ old('name', auth()->user()->name) }}" required="true" aria-required="true"/>
+                      <input class="form-control{{ $errors->has('user_id') ? ' is-invalid' : '' }}" name="name" id="input-name" type="text" placeholder="{{ __('Name') }}" />
                       @if ($errors->has('user_id'))
                         <span id="user_id-error" class="error text-danger" for="input-name">{{ $errors->first('user_id') }}</span>
                       @endif
                     </div>
                   </div>
                 </div>
-                <div class="row">
+                {{-- <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
@@ -45,13 +45,13 @@
                       @endif
                     </div>
                   </div>
-                </div
+                </div --}}
                 <div class="row">
-                  <label class="col-sm-2 col-form-label">{{ __('Email') }}</label>
+                  <label class="col-sm-2 col-form-label">{{ __('Room Identifier') }}</label>
                   <div class="col-sm-7">
-                    <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="input-email" type="email" placeholder="{{ __('Email') }}" value="{{ old('email', auth()->user()->email) }}" required />
-                      @if ($errors->has('email'))
+                    <div class="form-group{{ $errors->has('room_id') ? ' has-danger' : '' }}">
+                      <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="room_id" id="input-room_id" type="string" placeholder="{{ __('Enter Number Idemtifier') }}" required />
+                      @if ($errors->has('room_id'))
                         <span id="email-error" class="error text-danger" for="input-email">{{ $errors->first('email') }}</span>
                       @endif
                     </div>

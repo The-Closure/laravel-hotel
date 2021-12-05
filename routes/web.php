@@ -51,6 +51,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 });
-Route::get('/admin/reservations', [ReservationController::class , 'index']);
-Route::get('/admin/reservations/create', [ReservationController::class , 'create']);
-
+//Reservations Routes 
+Route::get('/admin/reservations', [ReservationController::class , 'index'])->name('admin.reservations.index');
+Route::get('/admin/reservations/create', [ReservationController::class , 'create'])->name('admin.reservations.create');
+Route::post('/admin/reservations', [ReservationController::class , 'store'])->name('admin.reservations.store');
