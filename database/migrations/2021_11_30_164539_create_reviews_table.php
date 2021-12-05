@@ -16,7 +16,7 @@ class CreateReviewsTable extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->text('name');
-            $table->text('job-title');
+            $table->text('job_title');
             $table->integer('customer_id');
             $table->integer('rate');
             $table->text('message');
