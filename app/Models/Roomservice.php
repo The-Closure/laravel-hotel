@@ -5,18 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use spatie\Translatable;
+use Spatie\Translatable\HasTranslations;
 
 class Roomservice extends Model
 {
-    use HasFactory ,SoftDeletes;
+    use HasFactory ,SoftDeletes,HasTranslations;
     protected $fillable = [
-        'name_en'
-        ,'name_ar'
-        ,'description_en'
-        ,'description_ar'
-        ,'status_en'
-        ,'status_ar'
-        ,'price'
+        'name',
+        'description',
+        'status',
+        'price',
     ];
+
+    public $translatable = ['name', 'description'];
 
 }

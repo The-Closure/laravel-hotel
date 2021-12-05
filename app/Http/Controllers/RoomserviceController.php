@@ -14,7 +14,7 @@ class RoomserviceController extends Controller
      */
     public function index()
     {
-        //
+        return view ('roomservice.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class RoomserviceController extends Controller
      */
     public function create()
     {
-        //
+        return view ('roomservice.create');
     }
 
     /**
@@ -35,7 +35,32 @@ class RoomserviceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize('create room services',Roomservice::class);
+
+        $validated = $request->validate([
+            'name_en' => 'required',
+            'name_ar' => 'required',
+            'description_en' => 'required',
+            'description_ar' => 'required',
+            'price' => 'required',
+            'status' => 'required'
+        ]);
+
+        // $roomservice = new Roomservice();
+        // $roomservice->name=['en' => $request->name_en,'ar' => $request->name_ar];
+        // $roomservice->description=['en' => $request->description_en,'ar' => $request->description_ar];
+        // $roomservice->status=$request->status;
+        // $roomservice->price=$request->price;
+        // $roomservice->save();
+
+        $data = [
+            'name' => ['en' => $request->name_en, 'ar' => $request->name_ar],
+            'description' => ['en' => $request->description_en , 'ar' => $request->description_ar],
+            'status' => $request->status,
+            'price' => $request->price
+        ];
+       Roomservice::create($data);
+        return redirect()->back();
     }
 
     /**

@@ -15,12 +15,12 @@ class CreateRoomservicesTable extends Migration
     {
         Schema::create('roomservices', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description');
+            $table->json('name');
+            $table->json('description');
             $table->double('price');
             $table->string('status');
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -15,11 +15,12 @@ class RoomserviceSeeder extends Seeder
      */
     public function run()
     {
-        Roomservice::firstOrCreate(['name'=>'room cleaning',
-        'description'=>'clean room',
-        'price'=>500,
-        'status'=>'available']
-    );
+        Roomservice::firstOrCreate([
+            'name'=>['en' => 'room cleaning' , 'ar' => 'تنضيف غرف'],
+            'description'=>['en' => 'cleaning room','ar' => 'تنضيق غرف'],
+            'price'=>500,
+            'status'=>'available'
+        ]);
 
     }
 }
