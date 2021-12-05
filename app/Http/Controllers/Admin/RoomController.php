@@ -17,7 +17,7 @@ class RoomController extends Controller
      */
     public function index(Request $request)
     {
-        $this->authorize('viewAny', Room::class);
+        // $this->authorize('view all room', Room::class);
 
         $request->validate([
             'room_type_id'  => 'numeric'
@@ -50,7 +50,7 @@ class RoomController extends Controller
      */
     public function create()
     {
-        $this->authorize('create', Room::class);
+        // $this->authorize('create room', Room::class);
         $roomTypes = RoomType::all();
         return view('admin.rooms.create',['roomTypes' => $roomTypes]);
     }
@@ -63,7 +63,7 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('create', Room::class);
+        // $this->authorize('create room', Room::class);
         $validation = $request->validate([
             'number'     => 'required|numeric',
             'beds'     => 'required|numeric',
@@ -94,6 +94,7 @@ class RoomController extends Controller
      */
     public function show(Room $room)
     {
+        // $this->authorize('show room', Room::class);
         return view('admin.rooms.show', ['room' => $room]);
 
     }
@@ -106,8 +107,9 @@ class RoomController extends Controller
      */
     public function edit(Room $room)
     {
-        $this->authorize('update', $room);
-        $this->authorize('update-room', $room);
+        // $this->authorize('edit room', $room);
+        // $this->authorize('edit status room', $room);
+        // $this->authorize('edit price room', $room);
         return view('admin.rooms.edit', ['room' => $room]);
     }
 
@@ -156,8 +158,6 @@ class RoomController extends Controller
      */
     public function destroy(Room $room)
     {
-        $this->authorize('delete', $room);
-        $room->delete();
-        return redirect()->route('admin.rooms.index');
+
     }
 }

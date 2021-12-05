@@ -19,8 +19,8 @@ class CreateRoomsTable extends Migration
             $table->integer('beds');
             $table->double('price');
             $table->string('story');
-            $table->text('description');
             $table->text('status');
+            $table->text('description');
             $table->foreignId('room_type_id');
             $table->timestamps();
         });

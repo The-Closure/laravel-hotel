@@ -17,7 +17,7 @@ class RoomTypeController extends Controller
      */
     public function index(Request $request)
     {
-        $this->authorize('viewAny', RoomType::class);
+        // $this->authorize('view all roomType', RoomType::class);
 
         $roomTypes = RoomType::latest();
 
@@ -38,7 +38,7 @@ class RoomTypeController extends Controller
      */
     public function create()
     {
-        $this->authorize('create', RoomType::class);
+        // $this->authorize('create roomType', RoomType::class);
         return view('admin.roomTypes.create');
 
     }
@@ -51,9 +51,11 @@ class RoomTypeController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('create', RoomType::class);
+
+        // $request->dd();
+        // $this->authorize('create roomType', RoomType::class);
         $validation = $request->validate([
-            'name'     => 'required|min:3',
+            'name'     => 'required',
             'name*'     => 'required|min:3',
             'price'   => 'required|numeric',
             'description'    => 'required',
@@ -75,6 +77,7 @@ class RoomTypeController extends Controller
      */
     public function show(RoomType $roomType)
     {
+        // $this->authorize('show roomType', RoomType::class);
         return view('admin.roomTypes.show', ['roomType' => $roomType]);
     }
 
@@ -86,8 +89,7 @@ class RoomTypeController extends Controller
      */
     public function edit(RoomType $roomType)
     {
-        $this->authorize('update', $roomType);
-        $this->authorize('update-roomType', $roomType);
+        // $this->authorize('edit roomType', $roomType);
         return view('admin.roomTypes.edit', ['roomType' => $roomType]);
 
     }
@@ -102,7 +104,7 @@ class RoomTypeController extends Controller
     public function update(Request $request, RoomType $roomType)
     {
         $validation = $request->validate([
-            'name'     => 'required|min:3',
+            'name'     => 'required',
             'name*'     => 'required|min:3',
             'price'   => 'required|numeric',
             'description'   => 'required',
@@ -127,7 +129,7 @@ class RoomTypeController extends Controller
      */
     public function destroy(RoomType $roomType)
     {
-        $this->authorize('delete', $roomType);
+        // $this->authorize('delete roomType', $roomType);
         $roomType->delete();
         return redirect()->route('admin.roomTypes.index');
     }

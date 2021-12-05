@@ -32,10 +32,10 @@ class PermissionSeeder extends Seeder
         Permission::firstOrCreate(['name' => 'view balance'])->assignRole($owner);
         Permission::firstOrCreate(['name' => 'view all reviews count'])->assignRole([$owner, $manager]);
         Permission::firstOrCreate(['name' => 'view visitors count'])->assignRole([$owner, $manager]);
-        Permission::firstOrCreate(['name' => 'view all room'])->assignRole([$owner, $manager]);
+        Permission::firstOrCreate(['name' => 'view all room'])->assignRole([$owner, $manager, $reception]);
         Permission::firstOrCreate(['name' => 'create room'])->assignRole([$owner, $manager]);
         Permission::firstOrCreate(['name' => 'edit room'])->assignRole([$owner, $manager]);
-        Permission::firstOrCreate(['name' => 'show room'])->assignRole([$owner, $manager]);
+        Permission::firstOrCreate(['name' => 'show room'])->assignRole([$owner, $manager, $reception]);
         Permission::firstOrCreate(['name' => 'edit status room'])->assignRole([$owner, $manager, $reception]);
         Permission::firstOrCreate(['name' => 'show status room'])->assignRole([$owner, $manager, $reception]);
         Permission::firstOrCreate(['name' => 'edit price room'])->assignRole($owner);
@@ -70,6 +70,12 @@ class PermissionSeeder extends Seeder
         Permission::firstOrCreate(['name' => 'show message'])->assignRole([$owner, $manager]);
         Permission::firstOrCreate(['name' => 'replay message'])->assignRole([$owner, $manager]);
         Permission::firstOrCreate(['name' => 'delete message'])->assignRole([$owner]);
+        Permission::firstOrCreate(['name' => 'view all roomType'])->assignRole([$owner, $manager, $reception]);
+        Permission::firstOrCreate(['name' => 'create roomType'])->assignRole([$owner, $manager]);
+        Permission::firstOrCreate(['name' => 'edit roomType'])->assignRole([$owner, $manager]);
+        Permission::firstOrCreate(['name' => 'show roomType'])->assignRole([$owner, $manager, $reception]);
+        Permission::firstOrCreate(['name' => 'delete roomType'])->assignRole([$owner, $manager]);
+
 
 
         User::firstOrCreate([
