@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -16,20 +17,16 @@ class UserController extends Controller
         return view('users.index', ['users' => $model->paginate(15)]);
     }
 
-    public function store(User $request)
+    public function store(Request $request)
     {
         $validated = $request->validate([
-            'fname' => 'required',
-            'lnanme' => 'required',
+            'name' => 'required',
             'national_id' => 'required',
             'country' => 'required',
             'phone_number' => 'required|numeric',
-            // 'started_at' => 'required|date',
-            // 'ended_at' => 'required|date' ,
-            // 'paid_at' => 'required|date' ,
-            // 'canceled_at' => 'required|date' ,
         ]);
 
-        $reservation = User::create($validated);
+        $user = User::create($validated);
+        return redirect()->route('admin.reservations.index');
     }
 }

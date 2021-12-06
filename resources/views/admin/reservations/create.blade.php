@@ -4,7 +4,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <form method="post" action="{{ route('admin.reservations.store') }}" autocomplete="off" class="form-horizontal">
+          <form method="POST" action="{{ route('user.store') }}" autocomplete="off" class="form-horizontal">
             @csrf
             <div class="card ">
               <div class="card-header card-header-primary">
@@ -25,23 +25,12 @@
                   </div>
                 @endif
                 <div class="row">
-                  <label class="col-sm-2 col-form-label">{{ __('Customer_First_Name') }}</label>
+                  <label class="col-sm-2 col-form-label">{{ __('Customer Name') }}</label>
                   <div class="col-sm-7">
-                    <div class="form-group{{ $errors->has('fname') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('fname') ? ' is-invalid' : '' }}" name="fname" id="input-fname" type="text" placeholder="{{ __('First_Name') }}" />
-                      @if ($errors->has('fname'))
-                        <span id="fname-error" class="error text-danger" for="input-name">{{ $errors->first('fname') }}</span>
-                      @endif
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <label class="col-sm-2 col-form-label">{{ __('Customer_Last_Name') }}</label>
-                  <div class="col-sm-7">
-                    <div class="form-group{{ $errors->has('lname') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('lname') ? ' is-invalid' : '' }}" name="lname" id="input-lname" type="string" placeholder="{{ __('Last_name') }}" required />
-                      @if ($errors->has('lname'))
-                        <span id="lname-error" class="error text-danger" for="input-lname">{{ $errors->first('lname') }}</span>
+                    <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
+                      <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="text" placeholder="{{ __('First_Name') }}" />
+                      @if ($errors->has('name'))
+                        <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('name') }}</span>
                       @endif
                     </div>
                   </div>
@@ -71,10 +60,10 @@
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('phone') }}</label>
                   <div class="col-sm-7">
-                    <div class="form-group{{ $errors->has('phone') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" id="input-phone" type="tel" placeholder="{{ __('Customer Phone') }}" required />
-                      @if ($errors->has('phone'))
-                        <span id="phone-error" class="error text-danger" for="input-phone">{{ $errors->first('phone') }}</span>
+                    <div class="form-group{{ $errors->has('phone_number') ? ' has-danger' : '' }}">
+                      <input class="form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}" name="phone_number" id="input-phone_number" type="tel" placeholder="{{ __('Customer phone_number') }}" required />
+                      @if ($errors->has('phone_number'))
+                        <span id="phone_number-error" class="error text-danger" for="input-phone_number">{{ $errors->first('phone_number') }}</span>
                       @endif
                     </div>
                   </div>
