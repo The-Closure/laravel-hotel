@@ -42,7 +42,7 @@
                     Rate
                   </th>
                   <th>
-                    Customer ID
+                    Customer Name
                   </th>
                   <th>
                     Message
@@ -76,9 +76,9 @@
                     </a>
                 </tr>
                 @endforeach
-                {{ $review->links() }}
-                </tbody>
-              </table>
+            </tbody>
+        </table>
+        {{ $reviews->links("pagination::bootstrap-4") }}
             </div>
           </div>
         </div>
