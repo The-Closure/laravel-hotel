@@ -24,6 +24,8 @@ class RoomController extends Controller
         ]);
 
         $rooms = Room::latest();
+        $items = Room::all();
+
 
         if ($request->filled('q')) {
             $rooms->where('number', 'like', "%$request->q%");
@@ -36,11 +38,20 @@ class RoomController extends Controller
         if ($request->filled('roomTypes')) {
             $rooms->whereIn('room_type_id', $request->roomTypes);
         }
+        if ($request->filled('room_status')) {
+            $rooms->whereIn('status', $request->room_status);
+        }
+        if ($request->filled('room_beds')) {
+            $rooms->whereIn('beds', $request->room_beds);
+        }
+        if ($request->filled('room_story')) {
+            $rooms->whereIn('story', $request->room_story);
+        }
 
         $rooms = $rooms->paginate(10);
         $roomTypes = RoomType::all();
 
-        return view('admin.rooms.index', ['rooms' => $rooms,'roomTypes' => $roomTypes]);
+        return view('admin.rooms.index', ['rooms' => $rooms,'roomTypes' => $roomTypes, 'items' => $items]);
     }
 
     /**
@@ -73,7 +84,7 @@ class RoomController extends Controller
             'description*'   => 'required',
             'status'    => 'required',
             'status*'    => 'required',
-            'room_type_id'    => 'required|numeric|exists:roomTypes,id',
+            'room_type_id'    => 'required|numeric|exists:room_types,id',
         ]);
 
         foreach ($validation['description'] as $description) {
@@ -110,7 +121,9 @@ class RoomController extends Controller
         // $this->authorize('edit room', $room);
         // $this->authorize('edit status room', $room);
         // $this->authorize('edit price room', $room);
-        return view('admin.rooms.edit', ['room' => $room]);
+        $roomTypes = RoomType::all();
+
+        return view('admin.rooms.edit', ['room' => $room,'roomTypes' => $roomTypes]);
     }
 
     /**
@@ -131,20 +144,22 @@ class RoomController extends Controller
             'description*'   => 'required',
             'status'    => 'required',
             'status*'    => 'required',
-            'room_type_id'    => 'required|numeric|exists:roomTypes,id',
+            'room_type_id'    => 'required|numeric|exists:room_types,id',
         ]);
 
         $room->number = $request->number;
         $room->beds = $request->beds;
         $room->price = $request->price;
         $room->story = $request->story;
-        foreach ($validation['description'] as $description) {
-            $room->description[$description] = Purify::clean($request->$description);
+        foreach ($validation['description'] as $lang => $description) {
+            $room->setTranslation('description', $lang, Purify::clean($description));
         }
-        foreach ($validation['status'] as $status) {
-            $room->status[$status] = Purify::clean($request->$status);
-        }
+        foreach ($validation['status'] as $lang => $status) {
+            $room->setTranslation('status', $lang, Purify::clean($status));        }
+
         $room->room_type_id = $request->room_type_id;
+
+        $room->save();
 
         return redirect()->route('admin.rooms.index');
 

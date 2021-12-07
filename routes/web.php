@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\RoomController;
+use App\Http\Controllers\Admin\RoomTypeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -39,4 +41,7 @@ Route::group(['middleware' => 'auth', 'perfix' => '/admin', 'as' => 'admin.'], f
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('profile/password', [ProfileController::class, 'password'])->name('profile.password');
+    Route::resource('roomTypes', RoomTypeController::class);
+    Route::resource('rooms', RoomController::class);
+
 });

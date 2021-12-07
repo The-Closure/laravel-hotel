@@ -19,16 +19,24 @@ class RoomTypeController extends Controller
     {
         // $this->authorize('view all roomType', RoomType::class);
 
+        $request->validate([
+            'price'    => 'numeric',
+        ]);
         $roomTypes = RoomType::latest();
+        $items = RoomType::all();
 
+        if ($request->filled('price_filter')) {
+            $roomTypes->whereIn('price', $request->price_filter);
+        }
         if ($request->filled('q')) {
             $roomTypes->where('name', 'like', "%$request->q%");
             $roomTypes->orWhere('price', 'like', "%$request->q%");
             $roomTypes->orWhere('description', 'like', "%$request->q%");
         }
 
-        $roomTypes = $roomTypes->paginate(10);
-        return view('admin.roomTypes.index', ['roomTypes' => $roomTypes]);
+
+        $roomTypes  = $roomTypes->paginate(10);
+        return view('admin.roomTypes.index', ['roomTypes' => $roomTypes, 'items' => $items]);
     }
 
     /**
@@ -113,8 +121,8 @@ class RoomTypeController extends Controller
 
         $roomType->name = $request->name;
         $roomType->price = $request->price;
-        foreach ($validation['description'] as $description) {
-            $roomType->description[$description] = Purify::clean($request->$description);
+        foreach ($validation['description'] as $lang => $description) {
+            $roomType->setTranslation('description', $lang, Purify::clean($description));
         }
         $roomType->save();
 

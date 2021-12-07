@@ -42,16 +42,16 @@
                     </ul>
                 </div>
             </li>
-            <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('table') }}">
-                    <i class="material-icons">content_paste</i>
-                    <p>{{ __('Table List') }}</p>
+            <li class="nav-item{{ $activePage == 'roomType' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.roomTypes.index') }}">
+                    <i class="material-icons">maps_home_work</i>
+                    <p>{{ __('Room Types') }}</p>
                 </a>
             </li>
-            <li class="nav-item{{ $activePage == 'typography' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('typography') }}">
-                    <i class="material-icons">library_books</i>
-                    <p>{{ __('Typography') }}</p>
+            <li class="nav-item{{ $activePage == 'room' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.rooms.index') }}">
+                    <i class="material-icons">bedroom_parent</i>
+                    <p>{{ __('Rooms') }}</p>
                 </a>
             </li>
             <li class="nav-item{{ $activePage == 'icons' ? ' active' : '' }}">
@@ -76,12 +76,6 @@
                 <a class="nav-link" href="{{ route('language') }}">
                     <i class="material-icons">language</i>
                     <p>{{ __('RTL Support') }}</p>
-                </a>
-            </li>
-            <li class="nav-item active-pro{{ $activePage == 'upgrade' ? ' active' : '' }}">
-                <a class="nav-link text-white bg-danger" href="{{ route('upgrade') }}">
-                    <i class="material-icons text-white">unarchive</i>
-                    <p>{{ __('Upgrade to PRO') }}</p>
                 </a>
             </li>
         </ul>
