@@ -24,7 +24,7 @@ class PermissionSeeder extends Seeder
         $manager = Role::firstOrCreate(['name' => 'manager']);
         $reception = Role::firstOrCreate(['name' => 'reception']);
         $worker = Role::firstOrCreate(['name' => 'worker']);
-
+        $customer = Role::firstOrCreate(['name' => 'customer']);
 
         Permission::firstOrCreate(['name' => 'view booked rooms count'])->assignRole([$owner, $manager]);
         Permission::firstOrCreate(['name' => 'view income'])->assignRole($owner);
