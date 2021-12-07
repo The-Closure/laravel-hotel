@@ -40,7 +40,7 @@ class ReviewController extends Controller
         $stars_3 = Review::where('rate', 3)->count();
         $stars_2 = Review::where('rate', 2)->count();
         $stars_1 = Review::where('rate', 1)->count();
-        $avg = $reviews->avg('rate');
+        $avg = number_format((float)$reviews->avg('rate'), 2, '.', '');
         $rates_count = $reviews->count();
         return [
             'One Star' => $stars_1,
