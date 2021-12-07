@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -39,4 +40,5 @@ Route::group(['middleware' => 'auth', 'prefix' => '/admin', 'as' => 'admin.'], f
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('profile/password', [ProfileController::class, 'password'])->name('profile.password');
+    Route::resource('reviews', ReviewController::class);
 });
