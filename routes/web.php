@@ -34,7 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::view('upgrade', 'pages.upgrade')->name('upgrade');
 });
 
-Route::group(['middleware' => 'auth', 'perfix' => '/admin', 'as' => 'admin.'], function () {
+Route::group(['middleware' => 'auth', 'prefix' => '/admin', 'as' => 'admin.'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::resource('users', UserController::class)->except('show');
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
