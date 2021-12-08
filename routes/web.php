@@ -43,5 +43,6 @@ Route::group(['middleware' => 'auth', 'perfix' => '/admin', 'as' => 'admin.'], f
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('profile/password', [ProfileController::class, 'password'])->name('profile.password');
     route::resource('customers' , AdminCustomerController::class );
-    route::get('/search' , AdminCustomerController::class , 'search' );
 });
+route::get('/search' , [AdminCustomerController::class , 'search'] );
+
