@@ -15,7 +15,7 @@ class CustomerController extends Controller
     public function index()
     {
 
-        $customers=User::paginate(10)->sort();
+        $customers=User::paginate(10);
         return view ('admin.customers.index',['customers'=>$customers]);
     }
 

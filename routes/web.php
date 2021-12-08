@@ -43,11 +43,8 @@ Route::group(['middleware' => 'auth', 'prefix' => '/admin', 'as' => 'admin.'], f
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('profile/password', [ProfileController::class, 'password'])->name('profile.password');
-<<<<<<< HEAD
-    route::resource('customers' , AdminCustomerController::class );
-=======
+    Route::resource('customers' , AdminCustomerController::class );
     Route::resource('reviews', ReviewController::class);
->>>>>>> origin/master
 });
 route::get('/search' , [AdminCustomerController::class , 'search'] );
 

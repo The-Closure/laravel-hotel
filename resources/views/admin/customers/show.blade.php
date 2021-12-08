@@ -1,4 +1,5 @@
 
+@extends('layouts.app', ['activePage' => 'customer', 'titlePage' => __('customers')])
 
     <div class="content">
         <div class="container-fluid">

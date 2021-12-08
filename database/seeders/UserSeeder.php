@@ -1,12 +1,8 @@
 <?php
 
 namespace Database\Seeders;
-
-<<<<<<< HEAD
-=======
 use App\Models\Review;
 use App\Models\User;
->>>>>>> origin/master
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -18,9 +14,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-<<<<<<< HEAD
-        //
-=======
         $users = User::factory()
             ->has(Review::factory()->count(3))
             ->count(10)
@@ -29,6 +22,5 @@ class UserSeeder extends Seeder
         $users->each(function ($user) {
             $user->assignRole('customer');
         });
->>>>>>> origin/master
     }
 }
