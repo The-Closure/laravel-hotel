@@ -17,7 +17,12 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             PermissionSeeder::class,
+<<<<<<< HEAD
             UserFactory::class,
+=======
+            // ReviewSeeder::class,
+            UserSeeder::class,
+>>>>>>> origin/master
         ]);
     }
 }
