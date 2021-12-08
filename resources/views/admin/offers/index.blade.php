@@ -20,7 +20,7 @@
                                 <table class="table">
                                     <thead class=" text-primary">
                                         <tr>
-                                            @if (app()->getLocale() == 'en')
+
                                                 <th>
                                                     Name
                                                 </th>
@@ -36,34 +36,10 @@
                                                 <th>
                                                     End date
                                                 </th>
-                                                <th>
-                                                    delete date
-                                                </th>
 
-
-                                            @elseif (app()->getLocale() == 'ar')
-
-                                                <th>
-                                                    Name
-                                                </th>
-
-                                                <th>
-                                                    Discount
-                                                </th>
-                                                <th>
-                                                    Type
-                                                </th>
-                                                <th>
-                                                    Start date
-                                                </th>
-                                                <th>
-                                                    End date
-                                                </th>
-                                                <th>
-                                                    delete date
-                                                </th>
-
-                                            @endif
+                                            <th class="text-right">
+                                                Actions
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -77,15 +53,22 @@
                                                         </a>
                                                     </td>
                                                     <td>
+                                                        @if ($offer->type=="const")
                                                         {{ $offer->discount }}
+                                                        @elseif($offer->type=="percentage")
+                                                        {{ $offer->discount }}
+                                                        {{'%'}}
+                                                        @endif
+
+
                                                     </td>
 
                                                     <td>
 
-                                                        @if ($offer->type==1)
-                                                        {{__('main_trans.Available')}}
-                                                        @elseif($offer->type==0)
-                                                        {{__('main_trans.UnAvailable')}}
+                                                        @if ($offer->type=="const")
+                                                        {{__('main_trans.Const')}}
+                                                        @elseif($offer->type=="percentage")
+                                                        {{__('main_trans.Percentage')}}
                                                         @endif
 
                                                     </td>
@@ -95,9 +78,7 @@
                                                     <td>
                                                         {{ $offer->ended_at }}
                                                     </td>
-                                                    <td>
-                                                        {{ $offer->deleted_at }}
-                                                    </td>
+
 
 
                                                     <td class="td-actions text-right">

@@ -2,7 +2,7 @@
 
 return [
 
-    'Available' => 'متاح',
-    'UnAvailable' => 'غير متاح',
+    'Const' => 'نسبة ثابتة',
+    'Percentage' => 'نسبة مئوية',
 
 ];

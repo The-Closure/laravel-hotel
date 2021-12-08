@@ -108,8 +108,8 @@
 
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
-                                            <label> <input type="radio" name="type"  value="1">{{__('main_trans.Available')}}</label>
-                                            <label> <input type="radio" name="type"  value="0">{{__('main_trans.UnAvailable')}}</label>
+                                            <label> <input type="radio" name="type"  value="const">{{__('main_trans.Const')}}</label>
+                                            <label> <input type="radio" name="type"  value="percentage">{{__('main_trans.Percentage')}}</label>
                                         </div>
                                     </div>
 

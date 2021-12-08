@@ -96,8 +96,8 @@
 
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
-                                            <label> <input type="radio" name="type"  value="1" {{$offer->type == '1' ? 'checked' : ''}}>{{__('main_trans.Available')}}</label>
-                                            <label> <input type="radio" name="type"  value="0" {{$offer->type == '0' ? 'checked' : ''}}>{{__('main_trans.UnAvailable')}}</label>
+                                            <label> <input type="radio" name="type"  value="const" {{$offer->type == "const" ? 'checked' : ''}}>{{__('main_trans.Const')}}</label>
+                                            <label> <input type="radio" name="type"  value="percentage" {{$offer->type == 'percentage' ? 'checked' : ''}}>{{__('main_trans.Percentage')}}</label>
                                         </div>
                                     </div>
 
