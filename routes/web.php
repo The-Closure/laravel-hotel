@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\Admin\MessageController as AdminMessageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -38,5 +38,6 @@ Route::group(['middleware' => 'auth', 'perfix' => '/admin', 'as' => 'admin.'], f
     Route::resource('users', UserController::class)->except('show');
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::resource('messages', AdminMessageController::class);
     Route::put('profile/password', [ProfileController::class, 'password'])->name('profile.password');
 });
