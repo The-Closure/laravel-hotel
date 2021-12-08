@@ -27,6 +27,12 @@
                 </a>
                 <div class="collapse show" id="laravelExample">
                     <ul class="nav">
+                        <li class="nav-item{{ $activePage == 'Employees' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('admin.employees.index') }}">
+                                <span class="sidebar-mini"> E </span>
+                                <span class="sidebar-normal">{{ __('Employees') }} </span>
+                            </a>
+                        </li>
                         <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('admin.profile.edit') }}">
                                 <span class="sidebar-mini"> UP </span>
