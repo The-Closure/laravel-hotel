@@ -188,6 +188,22 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label">{{ __('Number of rooms') }}</label>
+                                    <div class="col-sm-7">
+                                        <div class="form-group{{ $errors->has('NumRooms') ? ' has-danger' : '' }}">
+                                            <input
+                                                class="form-control{{ $errors->has('NumRooms') ? ' is-invalid' : '' }}"
+                                                name="NumRooms" id="input-NumRooms" type="text"
+                                                placeholder="{{ __('Number of rooms') }}"
+                                                value="{{ old('NumRooms') }}" required="true" aria-required="true" />
+                                            @if ($errors->has('NumRooms'))
+                                                <span id="NumRooms-error" class="error text-danger"
+                                                    for="input-NumRooms">{{ $errors->first('NumRooms') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-footer ml-auto mr-auto">
                                 <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>

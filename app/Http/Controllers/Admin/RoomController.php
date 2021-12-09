@@ -39,7 +39,7 @@ class RoomController extends Controller
             $rooms->whereIn('room_type_id', $request->roomTypes);
         }
         if ($request->filled('room_status')) {
-            $rooms->whereIn('status', $request->room_status);
+            $rooms->whereIn('status->en', $request->room_status);
         }
         if ($request->filled('room_beds')) {
             $rooms->whereIn('beds', $request->room_beds);
@@ -85,6 +85,7 @@ class RoomController extends Controller
             'status'    => 'required',
             'status*'    => 'required',
             'room_type_id'    => 'required|numeric|exists:room_types,id',
+            'NumRooms' => 'required|numeric'
         ]);
 
         foreach ($validation['description'] as $description) {
@@ -93,7 +94,9 @@ class RoomController extends Controller
         foreach ($validation['status'] as $status) {
             $status = Purify::clean($request->$status);
         }
-        $room = Room::create($validation);
+        for ($i=1; $i<=$request['NumRooms']; $i++){
+            $room = Room::create($validation);
+        }
         return redirect()->route('admin.rooms.index');
     }
 
