@@ -35,17 +35,80 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    Number : {{ $room->number }} <br>
-                                    Beds : {{ $room->beds }} <br>
-                                    Price : {{ $room->price }}$ <br>
-                                    Story : {{ $room->story }} <br>
-                                    Arabic Room Type : {{ $room->roomType->getTranslation('name', 'ar') }} <br>
-                                    English Room Type : {{ $room->roomType->name }} <br>
-                                    Arabic Status : {{ $room->getTranslation('status', 'ar') }} <br>
-                                    English Status : {{ $room->status }} <br>
-                                    Arabic description : <br> {{ $room->getTranslation('description', 'ar') }} <br>
-                                    English description : <br> {{ $room->description }} <br>
-                                    Created at : {{ $room->created_at }}
+                                    <div class="col-md-6">
+                                        <div class="alert alert-info">
+                                            <span><strong>Number</strong> : <br>
+                                                {{ $room->number }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="alert alert-info">
+                                            <span><strong>Beds</strong> : <br>
+                                                {{ $room->beds }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="alert alert-info">
+                                            <span><strong>Price</strong> : <br>
+                                                {{ $room->price }}$ </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="alert alert-info">
+                                            <span><strong>Story</strong> : <br>
+                                                {{ $room->story }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="alert alert-info">
+                                            <span><strong>Arabic Room Type</strong> : <br>
+                                                {{ $room->roomType->getTranslation('name', 'ar') }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="alert alert-info">
+                                            <span><strong>English Room Type</strong> : <br>
+                                                {{ $room->roomType->name }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="alert alert-info">
+                                            <span><strong>Arabic Status</strong> : <br>
+                                                {{ $room->getTranslation('status', 'ar') }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="alert alert-info">
+                                            <span><strong>English Status</strong> : <br>
+                                                {{ $room->status }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="alert alert-info">
+                                            <span><strong>Arabic description</strong> : <br>
+                                                {{ $room->getTranslation('description', 'ar') }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="alert alert-info">
+                                            <span><strong>English description</strong> : <br>
+                                                {{ $room->description }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="alert alert-info">
+                                        <span><strong>Created at</strong> : <br>
+                                            {{ $room->created_at }}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
