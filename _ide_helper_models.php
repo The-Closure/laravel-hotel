@@ -12,6 +12,50 @@
 
 namespace App\Models{
 /**
+ * App\Models\RoomService
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $description
+ * @property float $price
+ * @property string $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
+ * @property-read int|null $media_count
+ * @method static \Illuminate\Database\Eloquent\Builder|RoomService newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|RoomService newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|RoomService query()
+ * @method static \Illuminate\Database\Eloquent\Builder|RoomService whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RoomService whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RoomService whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RoomService whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RoomService wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RoomService whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RoomService whereUpdatedAt($value)
+ */
+	class RoomService extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Setting
+ *
+ * @property int $id
+ * @property string $key
+ * @property string $value
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Setting whereValue($value)
+ */
+	class Setting extends \Eloquent {}
  * App\Models\Review
  *
  * @property-read \App\Models\User $user
@@ -35,6 +79,8 @@ namespace App\Models{
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
+ * @property-read int|null $media_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Permission[] $permissions
@@ -60,6 +106,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  */
+	class User extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
 	class User extends \Eloquent {}
 }
 

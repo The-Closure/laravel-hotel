@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\RoomServicesController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('auth');
 
 Auth::routes();
 
@@ -34,5 +34,11 @@ Route::group(['middleware' => 'auth', 'prefix' => '/admin', 'as' => 'admin.'], f
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('profile/password', [ProfileController::class, 'password'])->name('profile.password');
+
+    Route::get('users/{user}/password', [UserController::class, 'password'])->name('users.password');
+    Route::put('users/{user}/password', [UserController::class, 'password'])->name('users.password');
+    Route::resource('users', UserController::class);
+    Route::resource('settings', SettingController::class);
+    Route::resource('room-services', RoomServicesController::class);
     Route::resource('reviews', ReviewController::class);
 });

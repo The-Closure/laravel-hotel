@@ -12,25 +12,31 @@
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
-            <li class="nav-item {{ $activePage == 'profile' || $activePage == 'user-management' ? ' active' : '' }}">
-                <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
-                    <i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>
-                    <p>{{ __('Laravel Examples') }}
+            <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('home') }}">
+                    <i class="material-icons">dashboard</i>
+                    <p>{{ __('Dashboard') }}</p>
+                </a>
+            </li>
+            <li class="nav-item active {{ $activePage == 'users' ? ' active' : '' }}">
+                <a class="nav-link collapsed" data-toggle="collapse" href="#users" aria-expanded="false">
+                    <i class="material-icons">persons</i>
+                    <p>Staffs
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse show" id="laravelExample">
+                <div class="collapse" id="users">
                     <ul class="nav">
-                        <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
+                        <li class="nav-item {{ $activePage == 'my-profile' ? ' active' : '' }} ">
                             <a class="nav-link" href="{{ route('admin.profile.edit') }}">
-                                <span class="sidebar-mini"> UP </span>
-                                <span class="sidebar-normal">{{ __('User profile') }} </span>
+                                <i class="material-icons"> account_circle</i>
+                                <span class="sidebar-normal">my profile </span>
                             </a>
                         </li>
-                        <li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">
+                        <li class="nav-item {{ $activePage == 'All-staffs' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('admin.users.index') }}">
-                                <span class="sidebar-mini"> UM </span>
-                                <span class="sidebar-normal"> {{ __('User Management') }} </span>
+                                <i class="material-icons"> manage_accounts </i>
+                                <span class="sidebar-normal"> Staffs Management </span>
                             </a>
                         </li>
                     </ul>
@@ -46,6 +52,36 @@
                 <a class="nav-link" href="{{ route('language') }}">
                     <i class="material-icons">language</i>
                     <p>{{ __('RTL Support') }}</p>
+                </a>
+            </li>
+            <li class="nav-item active {{ $activePage == 'room-services' ? ' active' : '' }}">
+                <a class="nav-link collapsed" data-toggle="collapse" href="#room-services" aria-expanded="false">
+                    <i class="material-icons">live_help</i>
+                    <p>Room Services
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="room-services">
+                    <ul class="nav">
+                        <li class="nav-item {{ $activePage == 'room-services' ? ' active' : '' }} ">
+                            <a class="nav-link" href="{{ route('admin.room-services.index') }}">
+                                <i class="material-icons"> live_help</i>
+                                <span class="sidebar-normal">all services</span>
+                            </a>
+                        </li>
+                        <li class="nav-item {{ $activePage == 'create-room-service' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('admin.room-services.create') }}">
+                                <i class="material-icons"> add </i>
+                                <span class="sidebar-normal"> new service </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item{{ $activePage == 'setting' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.settings.index') }}">
+                    <i class="material-icons">settings</i>
+                    <p>{{ __('settings') }}</p>
                 </a>
             </li>
         </ul>
