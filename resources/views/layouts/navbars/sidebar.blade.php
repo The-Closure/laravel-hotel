@@ -25,10 +25,10 @@
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse" id="users" style="">
+                <div class="collapse" id="users">
                     <ul class="nav">
                         <li class="nav-item {{ $activePage == 'my-profile' ? ' active' : '' }} ">
-                            <a class="nav-link" href="{{ route('admin.profile') }}">
+                            <a class="nav-link" href="{{ route('admin.profile.edit') }}">
                                 <i class="material-icons"> account_circle</i>
                                 <span class="sidebar-normal">my profile </span>
                             </a>
@@ -37,30 +37,6 @@
                             <a class="nav-link" href="{{ route('admin.users.index') }}">
                                 <i class="material-icons"> manage_accounts </i>
                                 <span class="sidebar-normal"> Staffs Management </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item {{ $activePage == 'profile' || $activePage == 'user-management' ? ' active' : '' }}">
-                <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
-                    <i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>
-                    <p>{{ __('Laravel Examples') }}
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse show" id="laravelExample">
-                    <ul class="nav">
-                        <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
-                            <a class="nav-link" href="{{ route('admin.profile.edit') }}">
-                                <span class="sidebar-mini"> UP </span>
-                                <span class="sidebar-normal">{{ __('User profile') }} </span>
-                            </a>
-                        </li>
-                        <li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">
-                            <a class="nav-link" href="{{ route('admin.users.index') }}">
-                                <span class="sidebar-mini"> UM </span>
-                                <span class="sidebar-normal"> {{ __('User Management') }} </span>
                             </a>
                         </li>
                     </ul>
@@ -85,7 +61,7 @@
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse" id="room-services" style="">
+                <div class="collapse" id="room-services">
                     <ul class="nav">
                         <li class="nav-item {{ $activePage == 'room-services' ? ' active' : '' }} ">
                             <a class="nav-link" href="{{ route('admin.room-services.index') }}">
@@ -103,7 +79,7 @@
                 </div>
             </li>
             <li class="nav-item{{ $activePage == 'setting' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.setting.index') }}">
+                <a class="nav-link" href="{{ route('admin.settings.index') }}">
                     <i class="material-icons">settings</i>
                     <p>{{ __('settings') }}</p>
                 </a>

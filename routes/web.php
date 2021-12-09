@@ -35,11 +35,10 @@ Route::group(['middleware' => 'auth', 'prefix' => '/admin', 'as' => 'admin.'], f
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('profile/password', [ProfileController::class, 'password'])->name('profile.password');
 
-    Route::get('profile', [UserController::class, 'profile'])->name('profile');
-    Route::get('users.password/{user}', [UserController::class, 'password'])->name('users.password');
-    Route::put('users.password/{user}', [UserController::class, 'password'])->name('users.password');
+    Route::get('users/{user}/password', [UserController::class, 'password'])->name('users.password');
+    Route::put('users/{user}/password', [UserController::class, 'password'])->name('users.password');
     Route::resource('users', UserController::class);
-    Route::resource('setting', SettingController::class);
+    Route::resource('settings', SettingController::class);
     Route::resource('room-services', RoomServicesController::class);
     Route::resource('reviews', ReviewController::class);
 });

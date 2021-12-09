@@ -34,7 +34,7 @@ class SettingController extends Controller
                 $this->uploadFile($request, 'logo', 'setting');
             }
 
-            return redirect()->route('admin.setting.index')->withStatus(__('Setting is successfully added.'));
+            return redirect()->route('admin.settings.index')->withStatus(__('Setting is successfully added.'));
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }
