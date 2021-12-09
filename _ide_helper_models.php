@@ -56,6 +56,15 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereValue($value)
  */
 	class Setting extends \Eloquent {}
+ * App\Models\Review
+ *
+ * @property-read \App\Models\User $user
+ * @method static \Database\Factories\ReviewFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Review newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Review newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Review query()
+ */
+	class Review extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -76,6 +85,8 @@ namespace App\Models{
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Permission[] $permissions
  * @property-read int|null $permissions_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Review[] $reviews
+ * @property-read int|null $reviews_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Role[] $roles
  * @property-read int|null $roles_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
@@ -96,5 +107,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  */
 	class User extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
+	class User extends \Eloquent {}
 }
 
