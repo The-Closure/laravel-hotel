@@ -1,7 +1,11 @@
 <?php
 
+<<<<<<< HEAD
 use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\Admin\RoomTypeController;
+=======
+use App\Http\Controllers\Admin\ReviewController;
+>>>>>>> master
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -35,7 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::view('upgrade', 'pages.upgrade')->name('upgrade');
 });
 
-Route::group(['middleware' => 'auth', 'perfix' => '/admin', 'as' => 'admin.'], function () {
+Route::group(['middleware' => 'auth', 'prefix' => '/admin', 'as' => 'admin.'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::resource('users', UserController::class)->except('show');
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -44,4 +48,5 @@ Route::group(['middleware' => 'auth', 'perfix' => '/admin', 'as' => 'admin.'], f
     Route::resource('roomTypes', RoomTypeController::class);
     Route::resource('rooms', RoomController::class);
 
+    Route::resource('reviews', ReviewController::class);
 });
