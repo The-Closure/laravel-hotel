@@ -70,6 +70,21 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <label class="col-sm-2 col-form-label">{{ __('Password') }}</label>
+                                    <div class="col-sm-7">
+                                        <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
+                                            <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                                name="password" id="input-password" type="text"
+                                                placeholder="{{ __('password') }}" value="{{ old('password') }}"
+                                                required="true" aria-required="true" />
+                                            @if ($errors->has('password'))
+                                                <span id="title-ar-error" class="error text-danger"
+                                                    for="input-password">{{ $errors->first('password') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <label class="col-sm-2 col-form-label">{{ __('Country') }}</label>
                                     <div class="col-sm-7">
                                         <div class="form-group{{ $errors->has('country') ? ' has-danger' : '' }}">
@@ -127,18 +142,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                                <br>
                                 <div class="card-footer ml-auto mr-auto">
+                                    <a href="{{ route('admin.employees.index') }}"class="btn btn-primary">{{ __('Go Back') }}</a>
+                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                     <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
                                 </div>
                             </div>
                         </div>
                             </div>
                         </div>
-
                             </div>
-
                         </div>
                     </form>
                 </div>

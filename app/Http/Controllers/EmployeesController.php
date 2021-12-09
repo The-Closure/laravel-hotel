@@ -43,9 +43,14 @@ class EmployeesController extends Controller
             'national_id'   => 'required',
             'country'   => 'required',
             'phone'    => 'required',
+            'password'    => 'required',
             'salary'   => 'required',
+            'featured_image'    => 'required|file|image',
         ]);
-        return redirect()->route('employees.index');
+        $validation['featured_image'] = $request->featured_image->store('public/images');
+        $employee = User::create($validation);
+
+        return redirect()->route('admin.employees.index');
     }
 
     /**
@@ -54,9 +59,9 @@ class EmployeesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $employee)
     {
-        return view('employees.show');
+        return view('employees.show', ['employee' => $employee]);
     }
 
     /**
@@ -65,8 +70,9 @@ class EmployeesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $employee)
+    public function edit($id)
     {
+        $employee = User::findOrFail($id);
         return view('employees.edit',['employee' => $employee]);
     }
 
@@ -94,7 +100,7 @@ class EmployeesController extends Controller
         $employee->salary = $request->salary;
         $employee->save();
 
-        return redirect()->route('employees.index');
+        return redirect()->route('admin.employees.index');
     }
 
     /**
@@ -103,8 +109,10 @@ class EmployeesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $employee)
     {
-        //
+        $employee->delete();
+
+        return redirect()->route('admin.employees.index');
     }
 }

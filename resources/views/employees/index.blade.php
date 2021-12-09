@@ -45,7 +45,8 @@
                                         @foreach ($employees as $employee)
                                             <tr>
                                                 <td>
-                                                    {{ $employee->name }}
+                                                    <a
+                                                    href="{{ route('admin.employees.show', $employee) }}">{{ $employee->name }}</a>
                                                 </td>
                                                 <td>
                                                     {{ $employee->phone }}

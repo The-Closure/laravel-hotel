@@ -34,7 +34,7 @@
                                         <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                             <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                                 name="name" id="input-name" type="text" placeholder="{{ __('Name') }}"
-                                                value="{{ old('name', auth()->user()->name) }}" required="true"
+                                                value="{{ old('name', $employee->name) }}" required="true"
                                                 aria-required="true" />
                                             @if ($errors->has('name'))
                                                 <span id="name-error" class="error text-danger"
@@ -50,7 +50,7 @@
                                             <input class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}"
                                                 name="phone" id="input-phone" type="phone"
                                                 placeholder="{{ __('Phone') }}"
-                                                value="{{ old('phone', auth()->user()->phone) }}" required />
+                                                value="{{ old('phone', $employee->phone) }}" required />
                                             @if ($errors->has('phone'))
                                                 <span id="phone-error" class="error text-danger"
                                                     for="input-phone">{{ $errors->first('phone') }}</span>
@@ -65,7 +65,7 @@
                                             <input class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}"
                                                 name="country" id="input-country" type="country"
                                                 placeholder="{{ __('country') }}"
-                                                value="{{ old('country', auth()->user()->country) }}" required />
+                                                value="{{ old('country', $employee->country) }}" required />
                                             @if ($errors->has('country'))
                                                 <span id="country-error" class="error text-danger"
                                                     for="input-country">{{ $errors->first('country') }}</span>
@@ -80,7 +80,7 @@
                                             <input class="form-control{{ $errors->has('national_id') ? ' is-invalid' : '' }}"
                                                 name="national_id" id="input-national_id" type="national_id"
                                                 placeholder="{{ __('national_id') }}"
-                                                value="{{ old('national_id', auth()->user()->national_id) }}" required />
+                                                value="{{ old('national_id', $employee->national_id) }}" required />
                                             @if ($errors->has('national_id'))
                                                 <span id="national_id-error" class="error text-danger"
                                                     for="input-national_id">{{ $errors->first('national_id') }}</span>
@@ -95,7 +95,7 @@
                                             <input class="form-control{{ $errors->has('salary') ? ' is-invalid' : '' }}"
                                                 name="salary" id="input-salary" type="salary"
                                                 placeholder="{{ __('salary') }}"
-                                                value="{{ old('salary', auth()->user()->salary) }}" required />
+                                                value="{{ old('salary', $employee->salary) }}" required />
                                             @if ($errors->has('salary'))
                                                 <span id="salary-error" class="error text-danger"
                                                     for="input-salary">{{ $errors->first('salary') }}</span>
@@ -105,6 +105,7 @@
                                 </div>
                             </div>
                             <div class="card-footer ml-auto mr-auto">
+                                <a href="{{ route('admin.employees.index') }}"class="btn btn-primary">{{ __('Go Back') }}</a>
                                 <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
                             </div>
                         </div>
