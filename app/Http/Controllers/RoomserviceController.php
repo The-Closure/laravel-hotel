@@ -14,7 +14,9 @@ class RoomserviceController extends Controller
      */
     public function index()
     {
-        return view ('roomservice.index');
+        //$this->authorize('view all room services', Roomservice::class);
+         $services=Roomservice::paginate(6);
+        return view ('roomservice.index',['services' => $services]);
     }
 
     /**
@@ -60,8 +62,9 @@ class RoomserviceController extends Controller
             'price' => $request->price
         ];
        Roomservice::create($data);
-        return redirect()->back();
-    }
+        $services=Roomservice::paginate(4);
+        return view ('roomservice.index',['services' => $services]);
+       }
 
     /**
      * Display the specified resource.
@@ -71,7 +74,7 @@ class RoomserviceController extends Controller
      */
     public function show(Roomservice $roomservice)
     {
-        //
+        return view('roomservice.show',['service' => $roomservice]);
     }
 
     /**
@@ -82,7 +85,9 @@ class RoomserviceController extends Controller
      */
     public function edit(Roomservice $roomservice)
     {
-        //
+        $this->authorize('edit room services',Roomservice::class);
+         return view('roomservice.edit',['service' => $roomservice]);
+
     }
 
     /**
@@ -94,8 +99,26 @@ class RoomserviceController extends Controller
      */
     public function update(Request $request, Roomservice $roomservice)
     {
-        //
-    }
+        $this->authorize('edit room services',Roomservice::class);
+
+        $validated = $request->validate([
+            'name_en' => 'required',
+            'name_ar' => 'required',
+            'description_en' => 'required',
+            'description_ar' => 'required',
+            'price' => 'required',
+            'status' => 'required'
+        ]);
+
+        $roomservice->name=['en' => $request->name_en, 'ar' => $request->name_ar];
+        $roomservice->description=['en' => $request->description_en , 'ar' => $request->description_ar];
+        $roomservice->status=$request->status;
+        $roomservice->price=$request->price;
+        $roomservice->save();
+
+
+        $services=Roomservice::paginate(4);
+        return view ('roomservice.index',['services' => $services]);     }
 
     /**
      * Remove the specified resource from storage.
@@ -105,6 +128,18 @@ class RoomserviceController extends Controller
      */
     public function destroy(Roomservice $roomservice)
     {
-        //
-    }
+         $this->authorize('delete room services', Roomservice::class);
+        $roomservice->delete();
+
+         $services=Roomservice::paginate(6);
+        return view ('roomservice.index',['services' => $services]);
+       }
+       public function search(Request $request)
+       {
+           $lookfor=$request->validate([
+                'search' => 'required'
+           ]);
+           $services=Roomservice::where('name','like',"%$request->search%")->paginate(6);
+           return view("roomservice.index",['services' => $services]);
+       }
 }

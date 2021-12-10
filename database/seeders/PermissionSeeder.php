@@ -47,6 +47,7 @@ class PermissionSeeder extends Seeder
         Permission::firstOrCreate(['name' => 'create room services'])->assignRole([$owner, $manager]);
         Permission::firstOrCreate(['name' => 'edit room services'])->assignRole([$owner, $manager]);
         Permission::firstOrCreate(['name' => 'delete room services'])->assignRole([$owner, $manager]);
+        Permission::firstOrCreate(['name' => 'show room service price'])->assignRole([$owner, $manager,$reception]);
         Permission::firstOrCreate(['name' => 'show room services'])->assignRole([$owner, $manager, $reception, $worker]);
         Permission::firstOrCreate(['name' => 'view room services requests'])->assignRole([$owner, $manager, $reception, $worker]);
         Permission::firstOrCreate(['name' => 'create room services requests'])->assignRole([$owner, $manager, $reception]);

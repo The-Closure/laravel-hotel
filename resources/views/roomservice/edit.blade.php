@@ -5,10 +5,10 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <form method="post" action="{{ route('admin.roomservice.store') }}" autocomplete="off"
-                        class="form-horizontal">
+                    <form    action="{{ route('admin.roomservice.update',$service) }}" autocomplete="off"
+                        class="form-horizontal" method="POST">
                         @csrf
-                        @method('post')
+                        @method('put')
                         <div class="card ">
                             <div class="card-header card-header-primary">
                                 <h4 class="card-title">{{ __('Edit Room Service') }}</h4>
@@ -33,8 +33,8 @@
                                     <div class="col-sm-7">
                                         <div class="form-group{{ $errors->has('name_en') ? ' has-danger' : '' }}">
                                             <input class="form-control{{ $errors->has('name_en') ? ' is-invalid' : '' }}"
-                                                name="name_en" id="input-name" type="text" placeholder="{{ __('Name_en') }}"
-                                                value="{{ old('name_en', auth()->user()->name) }}" required="true"
+                                                name="name_en" id="input-name" type="text"
+                                                value="{{ $service->getTranslation('name','en') }} "required="true"
                                                 aria-required="true" />
                                             @if ($errors->has('name_en'))
                                                 <span id="name-error" class="error text-danger"
@@ -48,8 +48,8 @@
                                     <div class="col-sm-7">
                                         <div class="form-group{{ $errors->has('name_ar') ? ' has-danger' : '' }}">
                                             <input class="form-control{{ $errors->has('name_ar') ? ' is-invalid' : '' }}"
-                                                name="name_ar" id="input-name" type="text" placeholder="{{ __('Name_ar') }}"
-                                                value="{{ old('name_ar', auth()->user()->name) }}" required="true"
+                                                name="name_ar" id="input-name" type="text"
+                                                value="{{ $service->getTranslation('name','ar') }}" required="true"
                                                 aria-required="true" />
                                             @if ($errors->has('name_ar'))
                                                 <span id="name-error" class="error text-danger"
@@ -64,8 +64,7 @@
                                         <div class="form-group{{ $errors->has('description_en') ? ' has-danger' : '' }}">
                                             <input class="form-control{{ $errors->has('description_en') ? ' is-invalid' : '' }}"
                                                 name="description_en" id="input-description" type="text"
-                                                placeholder="{{ __('description_en') }}"
-                                                value="{{ old('description_en', auth()->user()->description) }}" required />
+                                                 value="{{  $service->getTranslation('description','en')  }}" required />
                                             @if ($errors->has('description_en'))
                                                 <span id="description-error" class="error text-danger"
                                                     for="input-description">{{ $errors->first('description_en') }}</span>
@@ -78,8 +77,7 @@
                                         <div class="form-group{{ $errors->has('description_ar') ? ' has-danger' : '' }}">
                                             <input class="form-control{{ $errors->has('description_ar') ? ' is-invalid' : '' }}"
                                                 name="description_ar" id="input-description" type="text"
-                                                placeholder="{{ __('description_ar') }}"
-                                                value="{{ old('description_ar', auth()->user()->description) }}" required />
+                                                value="{{  $service->getTranslation('description','ar') }}" required />
                                             @if ($errors->has('description_ar'))
                                                 <span id="description-error" class="error text-danger"
                                                     for="input-description">{{ $errors->first('description_ar') }}</span>
@@ -93,8 +91,7 @@
                                         <div class="form-group{{ $errors->has('price') ? ' has-danger' : '' }}">
                                             <input class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}"
                                                 name="price" id="input-price" type="number"
-                                                placeholder="{{ __('price') }}"
-                                                value="{{ old('price', auth()->user()->price) }}" required />
+                                                value="{{ $service->price}}" required />
                                             @if ($errors->has('price'))
                                                 <span id="price-error" class="error text-danger"
                                                     for="input-price">{{ $errors->first('price') }}</span>
@@ -108,8 +105,7 @@
                                         <div class="form-group{{ $errors->has('status') ? ' has-danger' : '' }}">
                                             <input class="form-control{{ $errors->has('status') ? ' is-invalid' : '' }}"
                                                 name="status" id="input-status" type="text"
-                                                placeholder="{{ __('status') }}"
-                                                value="{{ old('status', auth()->user()->status) }}" required />
+                                                value="{{ $service->status }}" required />
                                             @if ($errors->has('status'))
                                                 <span id="status-error" class="error text-danger"
                                                     for="input-status">{{ $errors->first('status') }}</span>
