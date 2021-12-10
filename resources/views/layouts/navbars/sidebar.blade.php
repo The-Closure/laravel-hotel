@@ -82,6 +82,12 @@
                     </ul>
                 </div>
             </li>
+            <li class="nav-item{{ $activePage == 'offers' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.offers.index') }}">
+                    <i class="material-icons">percent</i>
+                    <p>{{ __('offers') }}</p>
+                </a>
+            </li>
             <li class="nav-item{{ $activePage == 'setting' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.settings.index') }}">
                     <i class="material-icons">settings</i>
