@@ -16,7 +16,9 @@ class OfferController extends Controller
      */
     public function index()
     {
+
         $offers =Offer::latest();
+        $offers->where('started_at', '=<' , 'ended_at');
         $offers = $offers->paginate(10);
 
         return OfferResource::collection(['offers'=>$offers]);

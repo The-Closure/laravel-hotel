@@ -1,4 +1,4 @@
-@@ -0,0 +1,144 @@
+
 @extends('layouts.app', ['activePage' => 'offers', 'titlePage' => __('Offer Information')])
 
 
@@ -19,40 +19,16 @@
                                 <table class="table">
                                     <thead class=" text-primary">
                                         <tr>
-                                      @if (app()->getLocale() == 'en')
-
-
-                                        <th>
-                                            Name En
-                                        </th>
-                                        <th>
-                                            Discount En
-                                        </th>
-                                        <th>
-                                            Type En
-                                        </th>
-                                        <th>
-                                            Start date
-                                        </th>
-                                        <th>
-                                            End date
-                                        </th>
-                                        <th>
-                                            delete date
-                                        </th>
-
-
-                                      @elseif (app()->getLocale() == 'ar')
 
                                       <th>
-                                        Name Ar
+                                        Name
                                     </th>
 
                                     <th>
-                                        Discount Ar
+                                        Discount
                                     </th>
                                     <th>
-                                        Type ar
+                                        Type
                                     </th>
                                     <th>
                                         Start date
@@ -60,11 +36,7 @@
                                     <th>
                                         End date
                                     </th>
-                                    <th>
-                                        delete date
-                                    </th>
 
-                                      @endif
                                             <th class="text-right">
                                                 Actions
                                             </th>
@@ -88,9 +60,7 @@
                                             <td>
                                                 {{ $offer->ended_at }}
                                             </td>
-                                            <td>
-                                                {{ $offer->deleted_at }}
-                                            </td>
+
 
                                             <td class="td-actions text-right">
                                                 <form action="{{ route('admin.offers.destroy', $offer) }}" method="post">

@@ -16,8 +16,8 @@ class CreateOffersTable extends Migration
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
             $table->json('name');
-            $table->json('discount');
-            $table->boolean('type')->default(false);
+            $table->integer('discount');
+            $table->string('type');
             $table->date('started_at');
             $table->date('ended_at');
             $table->softDeletes();

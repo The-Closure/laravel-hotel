@@ -2,7 +2,7 @@
 
 return [
 
-    'Available' => 'Available',
-    'UnAvailable' => 'UnAvailable',
+    'Const' => 'Const',
+    'Percentage' => 'Percentage',
 
 ];
