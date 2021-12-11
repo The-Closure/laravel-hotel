@@ -7,7 +7,7 @@
         <div class="card">
           <div class="card-header card-header-primary">
             <h4 class="card-title ">All Reservations</h4>
-            <p class="card-category"> This is the Page that Show you all of you Reservations</p>
+            <p class="card-category"> This is the Page that Shows you all of your Reservations</p>
           </div>
           <div class="card-body">
 
