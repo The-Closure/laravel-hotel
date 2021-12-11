@@ -20,6 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::prefix('v1')->group(function () {
-    Route::apiResource('reviews', ReviewController::class)->only('store');
+    Route::apiResource('reviews', ReviewController::class)->only(['index', 'show']);
+    Route::apiResource('reviews', ReviewController::class)->only()->middleware('auth:sanctum');
     Route::resource('offers', OfferController::class)->only(['index', 'show'])->middleware('auth:sanctum');
 });
