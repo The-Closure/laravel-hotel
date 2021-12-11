@@ -28,7 +28,7 @@
                     Customer
                   </th>
                   <th>
-                    Price
+                    Due Price
                   </th>
                   <th>
                     Room Number

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Offer;
 use App\Models\Reservation;
+use App\Models\Room;
 use App\Models\User;
 use DB;
 use Illuminate\Http\Request;
@@ -52,7 +53,7 @@ class ReservationController extends Controller
             'national_id' => 'required|numeric',
             'country' => 'required',
             'phone_number' => 'required',
-            'price' => 'required|numeric',
+            // 'price' => 'required|numeric',
             // 'user_id' => 'required',
             'room_id' => 'required',
             'offer_id',
@@ -71,7 +72,7 @@ class ReservationController extends Controller
         $user->save();
 
         $reservation = new Reservation();
-        $reservation->price = $request->price;
+        // $reservation->price = $request->price;
         $reservation->room_id = $request->room_id;
         $reservation->paid = $request->paid;
         $reservation->started_at = $request->started_at;
@@ -81,6 +82,14 @@ class ReservationController extends Controller
         $reservation->canceled_at = $request->canceled_at;
         $reservation->user_id = $user->id;
         // $reservation->room->status = 'Busy';
+        if ($reservation->offer->type = 'percentage') {
+
+            $dis = (1 - (0.01 * $reservation->offer->discount));
+            $reservation->price = $reservation->room->price * $dis - $reservation->paid;
+        } elseif ($reservation->offer->type = 'const') {
+            $dis = $reservation->offer->discount;
+            $reservation->price = $reservation->room->price - $dis - $reservation->paid;
+        }
         $reservation->save();
 
         DB::table('rooms')
