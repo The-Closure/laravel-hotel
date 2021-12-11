@@ -80,7 +80,13 @@ class ReservationController extends Controller
         $reservation->paid_at = $request->paid_at;
         $reservation->canceled_at = $request->canceled_at;
         $reservation->user_id = $user->id;
+        // $reservation->room->status = 'Busy';
         $reservation->save();
+
+        DB::table('rooms')
+            ->where('id', $request->room_id)
+            ->update(['status' => 'busy']);
+
         return redirect()->route('admin.reservations.index');
 
         // $reservation = Reservation::create($validated);
