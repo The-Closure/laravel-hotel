@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\OfferController;
 use App\Http\Controllers\Admin\RoomServicesController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\ReviewController;
@@ -41,4 +42,5 @@ Route::group(['middleware' => 'auth', 'prefix' => '/admin', 'as' => 'admin.'], f
     Route::resource('settings', SettingController::class);
     Route::resource('room-services', RoomServicesController::class);
     Route::resource('reviews', ReviewController::class);
+    Route::resource('offers', OfferController::class);
 });

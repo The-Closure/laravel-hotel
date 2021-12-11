@@ -12,6 +12,47 @@
 
 namespace App\Models{
 /**
+ * App\Models\Offer
+ *
+ * @property-read array $translations
+ * @method static \Illuminate\Database\Eloquent\Builder|Offer newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Offer newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Offer query()
+ */
+	class Offer extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Review
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $job_title
+ * @property int $customer_id
+ * @property int $rate
+ * @property string $message
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\User $user
+ * @method static \Database\Factories\ReviewFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Review newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Review newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Review query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Review whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Review whereCustomerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Review whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Review whereJobTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Review whereMessage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Review whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Review whereRate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Review whereUpdatedAt($value)
+ */
+	class Review extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\RoomService
  *
  * @property int $id
@@ -56,15 +97,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereValue($value)
  */
 	class Setting extends \Eloquent {}
- * App\Models\Review
- *
- * @property-read \App\Models\User $user
- * @method static \Database\Factories\ReviewFactory factory(...$parameters)
- * @method static \Illuminate\Database\Eloquent\Builder|Review newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Review newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Review query()
- */
-	class Review extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -107,6 +139,5 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  */
 	class User extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
-	class User extends \Eloquent {}
 }
 

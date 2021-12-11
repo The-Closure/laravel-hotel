@@ -18,31 +18,34 @@
                     <p>{{ __('Dashboard') }}</p>
                 </a>
             </li>
-            <li class="nav-item active {{ $activePage == 'users' ? ' active' : '' }}">
-                <a class="nav-link collapsed" data-toggle="collapse" href="#users" aria-expanded="false">
-                    <i class="material-icons">persons</i>
-                    <p>Staffs
+
+            <li class="nav-item {{ $activePage == 'my-profile' || $activePage == 'All-staffs' ? ' active' : '' }}">
+                <a class="nav-link" data-toggle="collapse" href="#staffs"
+                    aria-expanded="{{ $activePage == 'my-profile' || $activePage == 'All-staffs' ? 'true' : 'false' }}">
+                    <i><i class="material-icons">persons</i></i>
+                    <p>{{ __('Staffs') }}
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse" id="users">
+                <div class="collapse {{ $activePage == 'my-profile' || $activePage == 'All-staffs' ? 'show' : '' }}"
+                    id="staffs">
                     <ul class="nav">
-                        <li class="nav-item {{ $activePage == 'my-profile' ? ' active' : '' }} ">
+                        <li class="nav-item{{ $activePage == 'my-profile' ? ' active' : '' }} ">
                             <a class="nav-link" href="{{ route('admin.profile.edit') }}">
-                                <i class="material-icons"> account_circle</i>
-                                <span class="sidebar-normal">my profile </span>
+                                <i class="material-icons">account_circle</i>
+                                <p>{{ __('my profile ') }}</p>
                             </a>
                         </li>
-                        <li class="nav-item {{ $activePage == 'All-staffs' ? ' active' : '' }}">
+                        <li class="nav-item{{ $activePage == 'All-staffs' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('admin.users.index') }}">
-                                <i class="material-icons"> manage_accounts </i>
-                                <span class="sidebar-normal"> Staffs Management </span>
+                                <i class="material-icons">manage_accounts</i>
+                                <p>{{ __('Staffs Management ') }}</p>
                             </a>
                         </li>
                     </ul>
                 </div>
             </li>
-            <li class="nav-item{{ $activePage == 'Review' ? ' active' : '' }}">
+            <li class="nav-item{{ $activePage == 'review' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.reviews.index') }}">
                     <i class="material-icons">stars</i>
                     <p>{{ __('Review') }}</p>
@@ -54,14 +57,15 @@
                     <p>{{ __('RTL Support') }}</p>
                 </a>
             </li>
-            <li class="nav-item active {{ $activePage == 'room-services' ? ' active' : '' }}">
-                <a class="nav-link collapsed" data-toggle="collapse" href="#room-services" aria-expanded="false">
+            <li class="nav-item {{ $activePage == 'room-services' || $activePage == 'create-room-service' ? ' active' : '' }}">
+                <a class="nav-link " data-toggle="collapse" href="#room-services"
+                aria-expanded="{{ $activePage == 'room-services' || $activePage == 'create-room-service' ? 'true' : 'false' }}">
                     <i class="material-icons">live_help</i>
                     <p>Room Services
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse" id="room-services">
+                <div class="collapse {{ $activePage == 'room-services' || $activePage == 'create-room-service' ? 'show' : '' }}" id="room-services">
                     <ul class="nav">
                         <li class="nav-item {{ $activePage == 'room-services' ? ' active' : '' }} ">
                             <a class="nav-link" href="{{ route('admin.room-services.index') }}">
@@ -77,6 +81,12 @@
                         </li>
                     </ul>
                 </div>
+            </li>
+            <li class="nav-item{{ $activePage == 'offers' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.offers.index') }}">
+                    <i class="material-icons">percent</i>
+                    <p>{{ __('offers') }}</p>
+                </a>
             </li>
             <li class="nav-item{{ $activePage == 'setting' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.settings.index') }}">
