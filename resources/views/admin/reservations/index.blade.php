@@ -10,6 +10,14 @@
             <p class="card-category"> This is the Page that Show you all of you Reservations</p>
           </div>
           <div class="card-body">
+
+            <div class="row">
+                <div class="col-12 text-right">
+                    <a href="{{ route('admin.reservations.create') }}" class="btn btn-sm btn-primary">Add
+                        Reservation</a>
+                </div>
+            </div>
+
             <div class="table-responsive">
               <table class="table">
                 <thead class=" text-primary">
