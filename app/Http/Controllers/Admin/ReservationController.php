@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Offer;
 use App\Models\Reservation;
-use App\Models\Room;
 use App\Models\User;
+use DB;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
@@ -30,7 +30,9 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        $rooms = Room::all();
+        $rooms = DB::table('rooms')
+            ->where('status', 'available')->get();
+        // $rooms = Room::all()->where('status', 'avilable');
         $offers = Offer::all();
         return view('admin.reservations.create', ['rooms' => $rooms, 'offers' => $offers]);
     }
