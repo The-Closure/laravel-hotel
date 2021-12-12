@@ -17,7 +17,7 @@ class MessageController extends Controller
             'type' => 'required',
         ]);
 
-        Auth::user()->message()->create($validated);
+        Auth::user()->messages()->create($validated);
 
         return response(['message' => 'message was created']);
     }
