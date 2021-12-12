@@ -7,6 +7,7 @@ use App\Models\Offer;
 use App\Models\Reservation;
 use App\Models\Room;
 use App\Models\User;
+use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
 
@@ -61,7 +62,7 @@ class ReservationController extends Controller
             'started_at' => 'required|date',
             'ended_at' => 'required|date',
             'paid_at' => 'required|date',
-            'canceled_at' => 'required|date',
+            'canceled_at' => 'date',
         ]);
 
         $user = new User();
@@ -87,7 +88,7 @@ class ReservationController extends Controller
             $dis = (1 - (0.01 * $reservation->offer->discount));
             $reservation->price = $reservation->room->price * $dis - $reservation->paid;
         } elseif ($reservation->offer->type = 'const') {
-            $dis = $reservation->offer->discount;
+            $dis = $reservation->offer->discount * 1;
             $reservation->price = $reservation->room->price - $dis - $reservation->paid;
         }
         $reservation->save();
@@ -133,7 +134,62 @@ class ReservationController extends Controller
      */
     public function update(Request $request, Reservation $reservation)
     {
-        //
+        $validated = $request->validate([
+            // 'name' => 'required',
+            // 'national_id' => 'required|numeric',
+            // 'country' => 'required',
+            // 'phone_number' => 'required',
+            // 'price' => 'required|numeric',
+            // 'user_id' => 'required',
+            // 'room_id' => 'required',
+            // 'offer_id',
+            // 'paid' => 'required|numeric',
+            // 'started_at' => 'required|date',
+            // 'ended_at' => 'required|date',
+            // 'paid_at' => 'required|date',
+            // 'canceled_at' => 'date',
+        ]);
+
+        $current = Carbon::now();
+        $reservation->canceled_at = $current;
+        $reservation->save();
+
+        DB::table('rooms')
+            ->where('id', $reservation->room->id)
+            ->update(['status' => 'available']);
+        // $user = new User();
+        // $user->name = $request->name;
+        // $user->national_id = $request->national_id;
+        // $user->country = $request->country;
+        // $user->phone_number = $request->phone_number;
+        // $user->save();
+
+        // $reservation = new Reservation();
+        // // $reservation->price = $request->price;
+        // $reservation->room_id = $request->room_id;
+        // $reservation->paid = $request->paid;
+        // $reservation->started_at = $request->started_at;
+        // $reservation->offer_id = $request->offer_id;
+        // $reservation->ended_at = $request->ended_at;
+        // $reservation->paid_at = $request->paid_at;
+        // $reservation->canceled_at = $request->canceled_at;
+        // $reservation->user_id = $user->id;
+        // // $reservation->room->status = 'Busy';
+        // if ($reservation->offer->type = 'percentage') {
+
+        //     $dis = (1 - (0.01 * $reservation->offer->discount));
+        //     $reservation->price = $reservation->room->price * $dis - $reservation->paid;
+        // } elseif ($reservation->offer->type = 'const') {
+        //     $dis = $reservation->offer->discount;
+        //     $reservation->price = $reservation->room->price - $dis - $reservation->paid;
+        // }
+        // $reservation->save();
+
+        // DB::table('rooms')
+        //     ->where('id', $request->room_id)
+        //     ->update(['status' => 'busy']);
+
+        return redirect()->route('admin.reservations.index');
     }
 
     /**

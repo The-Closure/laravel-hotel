@@ -176,7 +176,7 @@
                     </div>
                   </div>
 
-                  <div class="row">
+                  {{-- <div class="row">
                     <label class="col-sm-2 col-form-label">{{ __('Canceled At') }}</label>
                     <div class="col-sm-7">
                       <div class="form-group{{ $errors->has('canceled_at') ? ' has-danger' : '' }}">
@@ -188,7 +188,7 @@
                         @endif
                       </div>
                     </div>
-                  </div>
+                  </div> --}}
 
               </div>
               <div class="card-footer ml-auto mr-auto">

@@ -51,6 +51,9 @@
                   <th>
                     Cancelled_at
                   </th>
+                  <th>
+                    Cancellation
+                  </th>
                 </thead>
                 <tbody>
                     <tr>
@@ -66,8 +69,24 @@
                             <td>{{$reservation->ended_at}}</td>
                             <td>{{$reservation->paid_at}}</td>
                             <td>{{$reservation->canceled_at}}</td>
+                            @if (empty($reservation->canceled_at))
+                            <td class="td-actions text-right">
+                                <form action="{{ route('admin.reservations.update', $reservation) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="submit" name="submit">
+                                    {{-- <a rel="tooltip" class="btn btn-success btn-link"
+                                        href="{{ route('admin.reservations.update', $reservation) }}">
+                                        <i class="material-icons">edit</i>{{ $reservation->id }}
+                                        <div class="ripple-container"></div>
+                                    </a> --}}
+                                </form>
+                            @endif
+
+                            @endforeach
+
+
                             </tr>
-                        @endforeach
                     </tr>
                 </tbody>
               </table>
