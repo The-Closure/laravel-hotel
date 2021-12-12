@@ -81,9 +81,9 @@ class RoomController extends Controller
             'price'   => 'required|numeric',
             'story'    => 'required',
             'description'   => 'required',
-            'description*'   => 'required',
+            'description.*'   => 'required',
             'status'    => 'required',
-            'status*'    => 'required',
+            'status.*'    => 'required',
             'room_type_id'    => 'required|numeric|exists:room_types,id',
             'NumRooms' => 'required|numeric'
         ]);
@@ -94,9 +94,17 @@ class RoomController extends Controller
         foreach ($validation['status'] as $status) {
             $status = Purify::clean($request->$status);
         }
+
         for ($i=1; $i<=$request['NumRooms']; $i++){
             $room = Room::create($validation);
+            if ($request->hasFile('images')) {
+                $fileAdders = $room->addMultipleMediaFromRequest(['images'])
+                ->each(function ($fileAdder) {
+                    $fileAdder->preservingOriginal()->toMediaCollection('images');
+                });
+            }
         }
+        // $request->dd();
         return redirect()->route('admin.rooms.index');
     }
 
@@ -109,7 +117,8 @@ class RoomController extends Controller
     public function show(Room $room)
     {
         // $this->authorize('show room', Room::class);
-        return view('admin.rooms.show', ['room' => $room]);
+        $mediaItems = $room->getMedia('images');
+        return view('admin.rooms.show', ['room' => $room, 'mediaItems' => $mediaItems]);
 
     }
 
@@ -124,9 +133,10 @@ class RoomController extends Controller
         // $this->authorize('edit room', $room);
         // $this->authorize('edit status room', $room);
         // $this->authorize('edit price room', $room);
+        $mediaItems = $room->getMedia('images');
         $roomTypes = RoomType::all();
 
-        return view('admin.rooms.edit', ['room' => $room,'roomTypes' => $roomTypes]);
+        return view('admin.rooms.edit', ['room' => $room,'roomTypes' => $roomTypes, 'mediaItems' => $mediaItems]);
     }
 
     /**
@@ -144,23 +154,37 @@ class RoomController extends Controller
             'price'   => 'required|numeric',
             'story'    => 'required',
             'description'   => 'required',
-            'description*'   => 'required',
+            'description.*'   => 'required',
             'status'    => 'required',
-            'status*'    => 'required',
+            'status.*'    => 'required',
             'room_type_id'    => 'required|numeric|exists:room_types,id',
         ]);
 
-        $room->number = $request->number;
-        $room->beds = $request->beds;
-        $room->price = $request->price;
-        $room->story = $request->story;
+        $room->number = $validation['number'];
+        $room->beds = $validation['beds'];
+        $room->price = $validation['price'];
+        $room->story = $validation['story'];
         foreach ($validation['description'] as $lang => $description) {
             $room->setTranslation('description', $lang, Purify::clean($description));
         }
         foreach ($validation['status'] as $lang => $status) {
             $room->setTranslation('status', $lang, Purify::clean($status));        }
 
-        $room->room_type_id = $request->room_type_id;
+        $room->room_type_id = $validation['room_type_id'];
+
+        // if ($request->hasFile('images')) {
+        //     $room->clearMediaCollection('images');
+        //     foreach ($request->input('images', []) as $image) {
+        //         $room->addMediaFromRequest('image')->toMediaCollection('images');
+        //     }
+        // }
+        if ($request->hasFile('images')) {
+            $room->clearMediaCollection('images');
+            $fileAdders = $room->addMultipleMediaFromRequest(['images'])
+                ->each(function ($fileAdder) {
+                    $fileAdder->toMediaCollection('images');
+                });
+        }
 
         $room->save();
 

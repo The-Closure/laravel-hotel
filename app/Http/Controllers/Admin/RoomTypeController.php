@@ -60,21 +60,28 @@ class RoomTypeController extends Controller
     public function store(Request $request)
     {
 
-        // $request->dd();
         // $this->authorize('create roomType', RoomType::class);
+        // $request->dd();
         $validation = $request->validate([
             'name'     => 'required',
-            'name*'     => 'required|min:3',
+            'name.*'     => 'required|min:3',
             'price'   => 'required|numeric',
             'description'    => 'required',
-            'description*'    => 'required',
+            'description.*'    => 'required',
         ]);
 
         foreach ($validation['description'] as $description) {
             $description = Purify::clean($request->$description);
         }
         $roomType = RoomType::create($validation);
-        return redirect()->route('admin.roomTypes.index');
+        if ($request->hasFile('images')) {
+            $fileAdders = $roomType->addMultipleMediaFromRequest(['images'])
+                ->each(function ($fileAdder) {
+                        $fileAdder->toMediaCollection('images');
+                    });
+        }
+
+        return redirect()->route('admin.room-types.index');
     }
 
     /**
@@ -86,7 +93,8 @@ class RoomTypeController extends Controller
     public function show(RoomType $roomType)
     {
         // $this->authorize('show roomType', RoomType::class);
-        return view('admin.roomTypes.show', ['roomType' => $roomType]);
+        $mediaItems = $roomType->getMedia('images');
+        return view('admin.roomTypes.show', ['roomType' => $roomType, 'mediaItems' => $mediaItems]);
     }
 
     /**
@@ -98,7 +106,9 @@ class RoomTypeController extends Controller
     public function edit(RoomType $roomType)
     {
         // $this->authorize('edit roomType', $roomType);
-        return view('admin.roomTypes.edit', ['roomType' => $roomType]);
+        $mediaItems = $roomType->getMedia('images');
+
+        return view('admin.roomTypes.edit', ['roomType' => $roomType, 'mediaItems' => $mediaItems]);
 
     }
 
@@ -113,20 +123,39 @@ class RoomTypeController extends Controller
     {
         $validation = $request->validate([
             'name'     => 'required',
-            'name*'     => 'required|min:3',
+            'name.*'     => 'required|min:3',
             'price'   => 'required|numeric',
             'description'   => 'required',
-            'description*'   => 'required',
+            'description.*'   => 'required',
         ]);
 
-        $roomType->name = $request->name;
-        $roomType->price = $request->price;
+
+        foreach ($validation['name'] as $lang => $name) {
+            $roomType->setTranslation('name', $lang, Purify::clean($name));
+        }
+        $roomType->price = $validation['price'];
         foreach ($validation['description'] as $lang => $description) {
             $roomType->setTranslation('description', $lang, Purify::clean($description));
         }
-        $roomType->save();
 
-        return redirect()->route('admin.roomTypes.index');
+        // if ($request->hasFile('images')) {
+        //     $roomType->clearMediaCollection('images');
+        //     foreach ($request->input('images', []) as $image) {
+        //         $roomType->addMediaFromRequest('image')->toMediaCollection('images');
+        //     }
+        //  }
+        $roomType->save();
+        // $request->dd();
+        if ($request->hasFile('images')) {
+            // dd('test');
+            $roomType->clearMediaCollection('images');
+            $fileAdders = $roomType->addMultipleMediaFromRequest(['images'])
+                ->each(function ($fileAdder) {
+                    $fileAdder->toMediaCollection('images');
+                });
+        }
+
+        return redirect()->route('admin.room-types.index');
     }
 
     /**
@@ -139,6 +168,6 @@ class RoomTypeController extends Controller
     {
         // $this->authorize('delete roomType', $roomType);
         $roomType->delete();
-        return redirect()->route('admin.roomTypes.index');
+        return redirect()->route('admin.room-types.index');
     }
 }

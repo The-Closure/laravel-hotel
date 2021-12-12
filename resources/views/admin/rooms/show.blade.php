@@ -106,6 +106,19 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="alert alert-info">
+                                        <span><strong>Images</strong> : <br>
+                                            <div class="row">
+                                                @foreach ($mediaItems as $mediaItem)
+                                                    <div class="col-md-4">
+                                                        <img src="{{ $mediaItem->getUrl() }}" / width="240px">
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="alert alert-info">
                                         <span><strong>Created at</strong> : <br>
                                             {{ $room->created_at }}</span>
                                     </div>

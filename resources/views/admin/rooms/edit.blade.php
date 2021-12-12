@@ -1,5 +1,8 @@
 @extends('layouts.app', ['activePage' => 'rooms', 'titlePage' => __('Edit Room')])
 
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.6.0/dist/alpine.min.js" defer></script>
+
+
 {{-- @push('css')
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 @endpush
@@ -19,7 +22,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <form method="POST" action="{{ route('admin.rooms.update', $room) }}" autocomplete="off"
-                        class="form-horizontal">
+                        class="form-horizontal" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="card ">
@@ -109,7 +112,7 @@
                                                 @foreach ($roomTypes as $roomType)
                                                     <option
                                                         value="{{ $roomType->id }}
-                                                                                             {{ $roomType->id == old('roomType_id') ? 'selected' : '' }}">
+                                                                    {{ $roomType->id == old('roomType_id') ? 'selected' : '' }}">
                                                         {{ $roomType->name }}/{{ $roomType->getTranslation('name', 'ar') }}
                                                     </option>
                                                 @endforeach
@@ -197,6 +200,31 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label">{{ __('Images') }}</label>
+                                    <div class="col-sm-7">
+                                        <div class="custom-file {{ $errors->has('images') ? ' has-danger' : '' }}">
+                                            <input
+                                                class="form-control file{{ $errors->has('images') ? ' is-invalid' : '' }}"
+                                                name="images[]" id="input-images" type="file" multiple="multiple"
+                                                placeholder="{{ __('Upload Images') }}" value="{{ $mediaItems }}"
+                                                required="true" aria-required="true" />
+                                            @if ($errors->has('images'))
+                                                <span id="images-error" class="error text-danger"
+                                                    for="input-images">{{ $errors->first('images') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <span><strong>Images</strong> : <br>
+                                    <div class="row">
+                                        @foreach ($mediaItems as $mediaItem)
+                                            <div class="col-md-4">
+                                                <img src="{{ $mediaItem->getUrl() }}" / width="240px">
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </span>
                             </div>
                             <div class="card-footer ml-auto mr-auto">
                                 <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>

@@ -1,5 +1,35 @@
 @extends('layouts.app', ['activePage' => 'room-create', 'titlePage' => __('New Room')]);
 
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.6.0/dist/alpine.min.js" defer></script>
+{{-- <!-- jQuery --> --}}
+{{-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script>
+    $(function() {
+        // Multiple images preview with JavaScript
+        var multiImgPreview = function(input, imgPreviewPlaceholder) {
+
+            if (input.files) {
+                var filesAmount = input.files.length;
+
+                for (i = 0; i < filesAmount; i++) {
+                    var reader = new FileReader();
+                    reader.onload = function(event) {
+                        $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(
+                            imgPreviewPlaceholder);
+                    }
+                    reader.readAsDataURL(input.files[i]);
+                }
+            }
+
+        };
+
+        $('#images').on('change', function() {
+            multiImgPreview(this, 'div.imgPreview');
+        });
+    });
+</script> --}}
+
+
 {{-- @push('css')
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 @endpush --}}
@@ -204,6 +234,32 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label">{{ __('Images') }}</label>
+                                    <div class="col-sm-7">
+                                        <div class="custom-file {{ $errors->has('images') ? ' has-danger' : '' }}">
+                                            <input
+                                                class="form-control file{{ $errors->has('images') ? ' is-invalid' : '' }}"
+                                                name="images[]" id="input-images" type="file" multiple="multiple"
+                                                placeholder="{{ __('Upload Images') }}" value="{{ old('images') }}"
+                                                required="true" aria-required="true" />
+                                            @if ($errors->has('images'))
+                                                <span id="images-error" class="error text-danger"
+                                                    for="input-images">{{ $errors->first('images') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- <div class="user-image mb-3 text-center">
+                                    <div class="imgPreview"> </div>
+                                </div>
+
+                                <div class="custom-file">
+                                    <input type="file" name="imageFile[]" class="custom-file-input" id="images"
+                                        multiple="multiple">
+                                    <label class="custom-file-label" for="images">Choose image</label>
+                                </div> --}}
+
                             </div>
                             <div class="card-footer ml-auto mr-auto">
                                 <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
@@ -214,4 +270,5 @@
             </div>
         </div>
     </div>
+
 @endsection

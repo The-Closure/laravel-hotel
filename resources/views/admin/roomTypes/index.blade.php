@@ -13,13 +13,13 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12 text-right">
-                                    <a href="{{ route('admin.roomTypes.create') }}" class="btn btn-sm btn-primary">Add
+                                    <a href="{{ route('admin.room-types.create') }}" class="btn btn-sm btn-primary">Add
                                         room types</a>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <form action="{{ route('admin.roomTypes.index') }}">
+                                    <form action="{{ route('admin.room-types.index') }}">
                                         <div class="field">
                                             <label class="label">{{ __('Search') }}</label>
                                             <div class="control is-expanded has-icons-left">
@@ -77,11 +77,11 @@
                                                 <tr>
                                                     <td>
                                                         <a
-                                                            href="{{ route('admin.roomTypes.show', $roomType) }}">{{ $roomType->name }}</a>
+                                                            href="{{ route('admin.room-types.show', $roomType) }}">{{ $roomType->name }}</a>
                                                     </td>
                                                     <td>
                                                         <a
-                                                            href="{{ route('admin.roomTypes.show', $roomType) }}">{{ $roomType->getTranslation('name', 'ar') }}</a>
+                                                            href="{{ route('admin.room-types.show', $roomType) }}">{{ $roomType->getTranslation('name', 'ar') }}</a>
                                                     </td>
                                                     <td>
                                                         {{ $roomType->price }}$ </td>
@@ -89,12 +89,12 @@
                                                         {{ $roomType->created_at }}
                                                     </td>
                                                     <td class="td-actions text-right">
-                                                        <form action="{{ route('admin.roomTypes.destroy', $roomType) }}"
+                                                        <form action="{{ route('admin.room-types.destroy', $roomType) }}"
                                                             method="post">
                                                             @csrf
                                                             @method('delete')
                                                             <a rel="tooltip" class="btn btn-success btn-link"
-                                                                href="{{ route('admin.roomTypes.edit', $roomType) }}"
+                                                                href="{{ route('admin.room-types.edit', $roomType) }}"
                                                                 data-original-title="" title="">
                                                                 <i class="material-icons">edit</i>
                                                                 <div class="ripple-container"></div>

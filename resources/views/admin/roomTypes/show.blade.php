@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <form method="post" action="{{ route('admin.roomTypes.store') }}" autocomplete="off"
+                    <form method="post" action="{{ route('admin.room-types.store') }}" autocomplete="off"
                         class="form-horizontal" enctype="multipart/form-data">
                         @csrf
 
@@ -29,7 +29,7 @@
                                 @endif
                                 <div class="row">
                                     <div class="col-12 text-right">
-                                        <a href="{{ route('admin.roomTypes.edit', $roomType) }}"
+                                        <a href="{{ route('admin.room-types.edit', $roomType) }}"
                                             class="btn btn-sm btn-primary">Edit
                                             room type</a>
                                     </div>
@@ -72,6 +72,19 @@
                                         <div class="alert alert-info">
                                             <span><strong>English description</strong> : <br>
                                                 {{ $roomType->getTranslation('description', 'ar') }} <br>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="alert alert-info">
+                                            <span><strong>Images</strong> : <br>
+                                                <div class="row">
+                                                    @foreach ($mediaItems as $mediaItem)
+                                                        <div class="col-md-4">
+                                                            <img src="{{ $mediaItem->getUrl() }}" / width="240px">
+                                                        </div>
+                                                    @endforeach
+                                                </div>
                                             </span>
                                         </div>
                                     </div>

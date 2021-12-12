@@ -42,7 +42,7 @@ Route::group(['middleware' => 'auth', 'prefix' => '/admin', 'as' => 'admin.'], f
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('profile/password', [ProfileController::class, 'password'])->name('profile.password');
-    Route::resource('roomTypes', RoomTypeController::class);
+    Route::resource('room-types', RoomTypeController::class);
     Route::resource('rooms', RoomController::class);
 
     Route::resource('reviews', ReviewController::class);

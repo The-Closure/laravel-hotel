@@ -1,5 +1,7 @@
 @extends('layouts.app', ['activePage' => 'roomType-create', 'titlePage' => __('New Room Type')])
 
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.6.0/dist/alpine.min.js" defer></script>
+
 {{-- @push('css')
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 @endpush --}}
@@ -18,7 +20,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <form method="post" action="{{ route('admin.roomTypes.store') }}" autocomplete="off"
+                    <form method="post" action="{{ route('admin.room-types.store') }}" autocomplete="off"
                         class="form-horizontal" enctype="multipart/form-data">
                         @csrf
                         <div class="card ">
@@ -120,6 +122,22 @@
                                             @if ($errors->has(" description['en']"))
                                                 <span id="description_en-error" class="error text-danger"
                                                     for="input-description_en">{{ $errors->first("description['en']") }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label">{{ __('Images') }}</label>
+                                    <div class="col-sm-7">
+                                        <div class="custom-file {{ $errors->has('images') ? ' has-danger' : '' }}">
+                                            <input
+                                                class="form-control file{{ $errors->has('images') ? ' is-invalid' : '' }}"
+                                                name="images[]" id="input-images" type="file" multiple="multiple"
+                                                placeholder="{{ __('Upload Images') }}" value="{{ old('images') }}"
+                                                required="true" aria-required="true" />
+                                            @if ($errors->has('images'))
+                                                <span id="images-error" class="error text-danger"
+                                                    for="input-images">{{ $errors->first('images') }}</span>
                                             @endif
                                         </div>
                                     </div>

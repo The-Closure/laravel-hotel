@@ -43,7 +43,7 @@
                 </div>
             </li>
             <li class="nav-item{{ $activePage == 'roomType' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.roomTypes.index') }}">
+                <a class="nav-link" href="{{ route('admin.room-types.index') }}">
                     <i class="material-icons">maps_home_work</i>
                     <p>{{ __('Room Types') }}</p>
                 </a>
