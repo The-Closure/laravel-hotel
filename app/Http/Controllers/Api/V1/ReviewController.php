@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ReviewResource;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,9 +17,14 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        // $this->authorize('view all', Review::class);
-        $reviews = Review::latest()->paginate(6);
-        return view('admin.reviews.index', ['reviews' => $reviews, 'stats' => $this->claculateRatings()]);
+        $this->authorize('view all', Review::class);
+
+
+        return ReviewResource::collection(
+            [
+                Review::latest()->paginate(6)
+            ]
+        );
     }
     /**
      * Store a newly created resource in storage.
