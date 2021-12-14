@@ -30,12 +30,6 @@
                 <div class="collapse {{ $activePage == 'my-profile' || $activePage == 'All-staffs' ? 'show' : '' }}"
                     id="staffs">
                     <ul class="nav">
-                        <li class="nav-item{{ $activePage == 'Employees' ? ' active' : '' }}">
-                            <a class="nav-link" href="{{ route('admin.employees.index') }}">
-                                <span class="sidebar-mini"> E </span>
-                                <span class="sidebar-normal">{{ __('Employees') }} </span>
-                            </a>
-                        </li>
                         <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
                         <li class="nav-item{{ $activePage == 'my-profile' ? ' active' : '' }} ">
                             <a class="nav-link" href="{{ route('admin.profile.edit') }}">
@@ -51,6 +45,12 @@
                         </li>
                     </ul>
                 </div>
+            </li>
+            <li class="nav-item{{ $activePage == 'Employees' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.employees.index') }}">
+                    <i class="material-icons">persons</i>
+                    <p>{{ __('Employees') }} </p>
+                </a>
             </li>
             <li class="nav-item{{ $activePage == 'review' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.reviews.index') }}">
