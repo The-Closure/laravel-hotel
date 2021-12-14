@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'profile', 'titlePage' => __('User Profile')])
+@extends('layouts.app', ['activePage' => 'my-profile', 'titlePage' => __('my Profile')])
 
 @section('content')
     <div class="content">
@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <form method="post" action="{{ route('admin.profile.update') }}" autocomplete="off"
-                        class="form-horizontal">
+                        class="form-horizontal" enctype="multipart/form-data">
                         @csrf
                         @method('put')
 
@@ -14,6 +14,13 @@
                             <div class="card-header card-header-primary">
                                 <h4 class="card-title">{{ __('Edit Profile') }}</h4>
                                 <p class="card-category">{{ __('User information') }}</p>
+                            </div>
+                            <div class="image m-auto pt-3">
+                                <img    src="{{ Auth::user()->getFirstMediaUrl('profile') }}"
+                                        class="img-thumbnail is-marginless"
+                                        width="100%"
+                                        height="100%"
+                                        alt="">
                             </div>
                             <div class="card-body ">
                                 @if (session('status'))
@@ -55,6 +62,23 @@
                                             @if ($errors->has('email'))
                                                 <span id="email-error" class="error text-danger"
                                                     for="input-email">{{ $errors->first('email') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <label class="col-sm-2 col-form-label">{{ __('Upload image') }}</label>
+                                    <div class="col-sm-7">
+                                        <div class="{{ $errors->has('image') ? ' has-danger' : '' }}">
+                                            <input  class="custom-file-input {{ $errors->has('image') ? ' is-invalid' : '' }}"
+                                                    name="image"
+                                                    id="exampleInputFile"
+                                                    accept="images/*"
+                                                    type="file" />
+                                            <label class="custom-file-label choose-image" for="exampleInputFile">Choose image</label>
+                                            @if ($errors->has('image'))
+                                                <span id="image-error" class="error text-danger"
+                                                    for="input-image">{{ $errors->first('image') }}</span>
                                             @endif
                                         </div>
                                     </div>
