@@ -19,20 +19,12 @@ class EmployeesController extends Controller
     {
         $employee = User::latest();
 
-        // $search = $request['search'] ?? "";
-        // if ($search != "") {
-        //     $employees = User::where('name', 'like',"%$search%" )
-        //                         ->orWhere('job_title', 'like',"%$search%")
-        //                         ->orWhere('country', 'like',"%$search%")->get();
-        // }else {
-        //     $employees = User::paginate(5);
-        // }
         if ($request->filled('q')) {
             $employee->where('name', 'like', "%$request->q%");
             $employee->orWhere('country', 'like', "%$request->q%");
-            $employee->orWhere('job_title', 'like', "%$request->q%")->get();
+            $employee->orWhere('job_title', 'like', "%$request->q%");
         }
-        $employees = User::paginate(5);
+        $employees = $employee->paginate(5);
 
         return view('employees.index', ['employees' => $employees]);
     }

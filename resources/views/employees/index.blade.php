@@ -15,7 +15,7 @@
                             <div class="row float-right">
                                 <form action="{{ route('admin.employees.index') }}">
                                     <div class="input-group no-border">
-                                        <input class="form-control" type="search" name="search" placeholder="Search..."
+                                        <input class="form-control" type="text" name="q" placeholder="Search..."
                                         value="{{ request()->query('q', '') }}">
                                         <button type="submit" class="btn btn-white btn-round btn-just-icon">
                                             <i class="material-icons">search</i>
@@ -42,15 +42,31 @@
                                             </th>
                                             <th>
                                                 Job Title
+                                                <span wire:click="sortBy('name')" class="float-right text-sm" style="cursor: pointer">
+                                                    <i class="fa fa-arrow-up"></i>
+                                                    <i class="fa fa-arrow-down text-muted"></i>
+                                            </span>
                                             </th>
                                             <th>
                                                 Phone
+                                                <span wire:click="sortBy('name')" class="float-right text-sm" style="cursor: pointer">
+                                                    <i class="fa fa-arrow-up"></i>
+                                                    <i class="fa fa-arrow-down text-muted"></i>
+                                            </span>
                                             </th>
                                             <th>
                                                 Country
+                                                <span wire:click="sortBy('name')" class="float-right text-sm" style="cursor: pointer">
+                                                    <i class="fa fa-arrow-up"></i>
+                                                    <i class="fa fa-arrow-down text-muted"></i>
+                                            </span>
                                             </th>
                                             <th>
                                                 National ID
+                                                <span wire:click="sortBy('name')" class="float-right text-sm" style="cursor: pointer">
+                                                    <i class="fa fa-arrow-up"></i>
+                                                    <i class="fa fa-arrow-down text-muted"></i>
+                                            </span>
                                             </th>
                                             <th>
                                                 Salary
