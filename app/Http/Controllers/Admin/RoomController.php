@@ -25,7 +25,72 @@ class RoomController extends Controller
 
         $rooms = Room::latest();
         $items = Room::all();
+        $roomTypes = RoomType::all();
 
+        if ($request->filled('sort')) {
+            if ($request->filled('order')) {
+                if ($request->order == 'ascending') {
+                    if ($request->sort == 'number') {
+                        $rooms = Room::orderBy('number', 'asc');
+                    }
+                    if ($request->sort == 'beds') {
+                        $rooms = Room::orderBy('beds', 'asc');
+                    }
+                    if ($request->sort == 'price') {
+                        $rooms = Room::orderBy('price', 'asc');
+                    }
+                    if ($request->sort == 'story') {
+                        $rooms = Room::orderBy('story', 'asc');
+                    }
+                    if ($request->sort == 'roomType') {
+                        $rooms = Room::orderBy('room_type_id', 'asc');
+                    }
+                    if ($request->sort == 'creation_date') {
+                        $rooms = Room::orderBy('created_at', 'asc');
+                    }
+                }
+                if ($request->order == 'descending') {
+                    if ($request->sort == 'number') {
+                        $rooms = Room::orderBy('number', 'desc');
+                    }
+                    if ($request->sort == 'beds') {
+                        $rooms = Room::orderBy('beds', 'desc');
+                    }
+                    if ($request->sort == 'price') {
+                        $rooms = Room::orderBy('price', 'desc');
+                    }
+                    if ($request->sort == 'story') {
+                        $rooms = Room::orderBy('story', 'desc');
+                    }
+                    if ($request->sort == 'roomType') {
+                        $rooms = Room::orderBy('room_type_id', 'desc');
+                    }
+                    if ($request->sort == 'creation_date') {
+                        $rooms = Room::orderBy('created_at', 'desc');
+                    }
+                }
+            }
+            else {
+                if ($request->sort == 'number') {
+                    $rooms = Room::orderBy('number', 'asc');
+                }
+                if ($request->sort == 'beds') {
+                    $rooms = Room::orderBy('beds', 'asc');
+                }
+                if ($request->sort == 'price') {
+                    $rooms = Room::orderBy('price', 'asc');
+                }
+                if ($request->sort == 'story') {
+                    $rooms = Room::orderBy('story', 'asc');
+                }
+                if ($request->sort == 'roomType') {
+                    $rooms = Room::orderBy('room_type_id', 'asc');
+                }
+                if ($request->sort == 'creation_date') {
+                    $rooms = Room::orderBy('created_at', 'asc');
+                }
+            }
+        }
 
         if ($request->filled('q')) {
             $rooms->where('number', 'like', "%$request->q%");
@@ -49,7 +114,6 @@ class RoomController extends Controller
         }
 
         $rooms = $rooms->paginate(10);
-        $roomTypes = RoomType::all();
 
         return view('admin.rooms.index', ['rooms' => $rooms,'roomTypes' => $roomTypes, 'items' => $items]);
     }
@@ -99,7 +163,7 @@ class RoomController extends Controller
 
         for ($i=1; $i<=$validation['NumRooms']; $i++){
             $room = Room::create($validation);
-            if ($validation->hasFile('images')) {
+            if ($request->hasFile('images')) {
                 $fileAdders = $room->addMultipleMediaFromRequest(['images'])
                 ->each(function ($fileAdder) {
                     $fileAdder->preservingOriginal()->toMediaCollection('images');
@@ -176,7 +240,7 @@ class RoomController extends Controller
 
         $room->room_type_id = $validation['room_type_id'];
 
-        if ($validation->hasFile('images')) {
+        if ($request->hasFile('images')) {
             $room->clearMediaCollection('images');
             $fileAdders = $room->addMultipleMediaFromRequest(['images'])
             ->each(function ($fileAdder) {
