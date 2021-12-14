@@ -8,11 +8,11 @@ use Spatie\Translatable\HasTranslations;
 
 class Offer extends Model
 {
-    use HasFactory , HasTranslations;
+    use HasFactory, HasTranslations;
 
     public $translatable = [
-         'name',
-        ];
+        'name',
+    ];
 
     protected $fillable = [
 
@@ -23,5 +23,8 @@ class Offer extends Model
         'ended_at',
     ];
 
-    
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 }
