@@ -1,4 +1,6 @@
+@extends('layouts.app', ['activePage' => 'Show a Customer', 'titlePage' => __('Show a Customer')])
 
+@section('content')
 
     <div class="content">
         <div class="container-fluid">
@@ -43,3 +45,4 @@
         </div>
     </div>
 
+@endsection

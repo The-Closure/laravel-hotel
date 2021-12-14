@@ -24,7 +24,7 @@ class PermissionSeeder extends Seeder
         $manager = Role::firstOrCreate(['name' => 'manager']);
         $reception = Role::firstOrCreate(['name' => 'reception']);
         $worker = Role::firstOrCreate(['name' => 'worker']);
-
+        $customer = Role::firstOrCreate(['name' => 'customer']);
 
         Permission::firstOrCreate(['name' => 'view booked rooms count'])->assignRole([$owner, $manager]);
         Permission::firstOrCreate(['name' => 'view income'])->assignRole($owner);
@@ -53,23 +53,31 @@ class PermissionSeeder extends Seeder
         Permission::firstOrCreate(['name' => 'edit room services requests'])->assignRole([$owner, $manager, $reception]);
         Permission::firstOrCreate(['name' => 'delete room services requests'])->assignRole([$owner, $manager, $reception]);
         Permission::firstOrCreate(['name' => 'view all employee'])->assignRole([$owner, $manager]);
-        Permission::firstOrCreate(['name' => 'create employee'])->assignRole($owner);
-        Permission::firstOrCreate(['name' => 'edit employee'])->assignRole($owner);
-        Permission::firstOrCreate(['name' => 'delete employee'])->assignRole($owner);
-        Permission::firstOrCreate(['name' => 'show employee'])->assignRole($owner);
-        Permission::firstOrCreate(['name' => 'view all customer'])->assignRole([$owner, $manager, $reception]);
-        Permission::firstOrCreate(['name' => 'create customer'])->assignRole([$owner, $manager, $reception]);
-        Permission::firstOrCreate(['name' => 'edit customer'])->assignRole([$owner, $manager, $reception]);
-        Permission::firstOrCreate(['name' => 'show customer'])->assignRole([$owner, $manager, $reception]);
+        Permission::firstOrCreate(['name' => 'create employee'])->assignRole([$owner, $manager]);
+        Permission::firstOrCreate(['name' => 'edit employee'])->assignRole([$owner, $manager]);
+        Permission::firstOrCreate(['name' => 'delete employee'])->assignRole([$owner, $manager]);
+        Permission::firstOrCreate(['name' => 'show employee'])->assignRole([$owner, $manager]);
         Permission::firstOrCreate(['name' => 'view all offers'])->assignRole([$owner, $manager, $reception]);
         Permission::firstOrCreate(['name' => 'create offers'])->assignRole($owner);
         Permission::firstOrCreate(['name' => 'edit offers'])->assignRole($owner);
         Permission::firstOrCreate(['name' => 'delete offers'])->assignRole($owner);
         Permission::firstOrCreate(['name' => 'show offers'])->assignRole([$owner, $manager, $reception]);
-        Permission::firstOrCreate(['name' => 'view message'])->assignRole([$owner, $manager]);
-        Permission::firstOrCreate(['name' => 'show message'])->assignRole([$owner, $manager]);
-        Permission::firstOrCreate(['name' => 'replay message'])->assignRole([$owner, $manager]);
-        Permission::firstOrCreate(['name' => 'delete message'])->assignRole([$owner]);
+        Permission::firstOrCreate(['name' => 'view message'])->assignRole([$owner, $manager, $reception]);
+        Permission::firstOrCreate(['name' => 'show message'])->assignRole([$owner, $manager, $reception]);
+        Permission::firstOrCreate(['name' => 'replay message'])->assignRole([$owner, $manager, $reception]);
+        Permission::firstOrCreate(['name' => 'view all transactions'])->assignRole([$owner, $manager, $reception]);
+        Permission::firstOrCreate(['name' => 'create transaction'])->assignRole([$owner, $manager, $reception]);
+        Permission::firstOrCreate(['name' => 'edit transaction'])->assignRole([$owner, $manager, $reception]);
+        Permission::firstOrCreate(['name' => 'ubdate transaction'])->assignRole([$owner, $manager, $reception]);
+        Permission::firstOrCreate(['name' => 'view all reviews'])->assignRole([$owner, $manager]);
+        Permission::firstOrCreate(['name' => 'view  reviews'])->assignRole([$owner, $manager]);
+        Permission::firstOrCreate(['name' => 'view all newsletters'])->assignRole([$owner, $manager, $reception]);
+        Permission::firstOrCreate(['name' => 'view newsletter info'])->assignRole([$owner, $manager, $reception]);
+        Permission::firstOrCreate(['name' => 'create newsletter'])->assignRole([$owner, $manager, $reception]);
+        Permission::firstOrCreate(['name' => 'send newsletter'])->assignRole([$owner, $manager, $reception]);
+
+
+
 
 
         User::firstOrCreate([
