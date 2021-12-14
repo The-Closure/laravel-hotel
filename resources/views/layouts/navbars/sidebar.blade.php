@@ -59,6 +59,12 @@
                     </ul>
                 </div>
             </li>
+            <li class="nav-item{{ $activePage == 'Room Service' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.roomservice.index') }}">
+                    <i class="material-icons">library_books</i>
+                    <p>{{ __('Room Service') }}</p>
+                </a>
+            </li>
             <li class="nav-item{{ $activePage == 'review' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.reviews.index') }}">
                     <i class="material-icons">stars</i>
