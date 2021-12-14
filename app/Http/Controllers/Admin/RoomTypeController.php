@@ -68,13 +68,15 @@ class RoomTypeController extends Controller
             'price'   => 'required|numeric',
             'description'    => 'required',
             'description.*'    => 'required',
+            'images'    => 'required|array',
+            'images.*'    => 'required|file|image',
         ]);
 
         foreach ($validation['description'] as $description) {
             $description = Purify::clean($request->$description);
         }
         $roomType = RoomType::create($validation);
-        if ($request->hasFile('images')) {
+        if ($validation->hasFile('images')) {
             $fileAdders = $roomType->addMultipleMediaFromRequest(['images'])
                 ->each(function ($fileAdder) {
                         $fileAdder->toMediaCollection('images');
@@ -127,6 +129,8 @@ class RoomTypeController extends Controller
             'price'   => 'required|numeric',
             'description'   => 'required',
             'description.*'   => 'required',
+            'images'    => 'required|array',
+            'images.*'    => 'required|file|image',
         ]);
 
 
@@ -146,8 +150,7 @@ class RoomTypeController extends Controller
         //  }
         $roomType->save();
         // $request->dd();
-        if ($request->hasFile('images')) {
-            // dd('test');
+        if ($validation->hasFile('images')) {
             $roomType->clearMediaCollection('images');
             $fileAdders = $roomType->addMultipleMediaFromRequest(['images'])
                 ->each(function ($fileAdder) {
