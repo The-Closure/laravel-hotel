@@ -3,11 +3,23 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        // $this->authorize('view all', Review::class);
+        $reviews = Review::latest()->paginate(6);
+        return view('admin.reviews.index', ['reviews' => $reviews, 'stats' => $this->claculateRatings()]);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -18,7 +30,7 @@ class ReviewController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required',
-            'job-title' => 'required',
+            'job_title' => 'required',
             'rate' => 'required',
             'message' => 'required',
         ]);
@@ -26,5 +38,25 @@ class ReviewController extends Controller
         Auth::user()->reviews()->create($validated);
 
         return response(['message' => 'review was created'], 201);
+    }
+    public function claculateRatings()
+    {
+        $reviews = Review::all();
+        $stars_5 = Review::where('rate', 5)->count();
+        $stars_4 = Review::where('rate', 4)->count();
+        $stars_3 = Review::where('rate', 3)->count();
+        $stars_2 = Review::where('rate', 2)->count();
+        $stars_1 = Review::where('rate', 1)->count();
+        $avg = number_format((float)$reviews->avg('rate'), 2, '.', '');
+        $rates_count = $reviews->count();
+        return [
+            'One Star' => $stars_1,
+            'Tow Stars' => $stars_2,
+            'Three Stars' => $stars_3,
+            'Four Stars' => $stars_4,
+            'Five Stars' => $stars_5,
+            'average' => $avg,
+            'Rates count' => $rates_count
+        ];
     }
 }

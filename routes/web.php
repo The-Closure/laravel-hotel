@@ -2,11 +2,14 @@
 
 use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\Admin\RoomTypeController;
+use App\Http\Controllers\Admin\OfferController;
+use App\Http\Controllers\Admin\RoomServicesController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,21 +22,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('auth');
 
 Auth::routes();
 
 // to be deleted
 Route::group(['middleware' => 'auth'], function () {
-    Route::view('table-list', 'pages.table_list')->name('table');
-    Route::view('typography', 'pages.typography')->name('typography');
-    Route::view('icons', 'pages.icons')->name('icons');
-    Route::view('map', 'pages.map')->name('map');
-    Route::view('notifications', 'pages.notifications')->name('notifications');
     Route::view('rtl-support', 'pages.language')->name('language');
-    Route::view('upgrade', 'pages.upgrade')->name('upgrade');
 });
 
 Route::group(['middleware' => 'auth', 'prefix' => '/admin', 'as' => 'admin.'], function () {
@@ -46,4 +41,12 @@ Route::group(['middleware' => 'auth', 'prefix' => '/admin', 'as' => 'admin.'], f
     Route::resource('rooms', RoomController::class);
 
     Route::resource('reviews', ReviewController::class);
+
+    Route::get('users/{user}/password', [UserController::class, 'password'])->name('users.password');
+    Route::put('users/{user}/password', [UserController::class, 'password'])->name('users.password');
+    Route::resource('users', UserController::class);
+    Route::resource('settings', SettingController::class);
+    Route::resource('room-services', RoomServicesController::class);
+    Route::resource('reviews', ReviewController::class);
+    Route::resource('offers', OfferController::class);
 });
