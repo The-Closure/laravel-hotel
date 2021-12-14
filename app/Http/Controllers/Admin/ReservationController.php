@@ -94,12 +94,12 @@ class ReservationController extends Controller
         $reservation->save();
 
         $reservation->room->update(['status' => 'busy']);
-        if($reservation->paid != '0'){    
-        $reservation->transactions()->create([
-            'type' => 'In',
-            'amount' => $reservation->paid,
-            'description'=>'paid at Booking'
-        ]);
+        if ($reservation->paid != '0') {
+            $reservation->transactions()->create([
+                'type' => 'In',
+                'amount' => $reservation->paid,
+                'description' => 'paid at Booking',
+            ]);
         }
 
         return redirect()->route('admin.reservations.index');
