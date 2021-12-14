@@ -44,6 +44,45 @@
                                         </label>
                                     @endforeach
                                 </div>
+                                <div class="col-md-3">
+                                    <div class="subtitle is-4">
+                                        Sort By :
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-prepend">
+                                            <div class="input-text">
+                                                {{-- <label> <input type="radio" name="sort" value="name_ar"
+                                                        {{ 'name_ar' == request()->query('sort') ? 'checked' : '' }}>
+                                                    {{ __('Arabic name') }}</label>
+                                                <label> <input type="radio" name="sort" value="name_en"
+                                                        {{ 'name_en' == request()->query('sort') ? 'checked' : '' }}>
+                                                    {{ __('English name') }}</label>
+                                                <br> --}}
+                                                <label> <input type="radio" name="sort" value="price"
+                                                        {{ 'price' == request()->query('sort') ? 'checked' : '' }}>
+                                                    {{ __('Price') }}</label>
+                                                <label> <input type="radio" name="sort" value="creation_date"
+                                                        {{ 'creation_date' == request()->query('sort') ? 'checked' : '' }}>
+                                                    {{ __('Creation Date') }}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="subtitle is-4">
+                                        Order By :
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-prepend">
+                                            <div class="input-text">
+                                                <label> <input type="radio" name="order" value="ascending"
+                                                        {{ 'ascending' == request()->query('order') ? 'checked' : '' }}>
+                                                    {{ __('Ascending') }}</label>
+                                                <label> <input type="radio" name="order" value="descending"
+                                                        {{ 'descending' == request()->query('order') ? 'checked' : '' }}>
+                                                    {{ __('Descending') }}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="field col-md-12">
                                     <button type="submit" class="btn btn-sm btn-primary">search <span
                                             class="material-icons">

@@ -57,13 +57,13 @@
                     <p>{{ __('Rooms') }}</p>
                 </a>
             </li>
-            <li class="nav-item{{ $activePage == 'icons' ? ' active' : '' }}">
+            {{-- <li class="nav-item{{ $activePage == 'icons' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('icons') }}">
                     <i class="material-icons">bubble_chart</i>
                     <p>{{ __('Icons') }}</p>
                 </a>
-            </li>
-            <li class="nav-item{{ $activePage == 'map' ? ' active' : '' }}">
+            </li> --}}
+            {{-- <li class="nav-item{{ $activePage == 'map' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('map') }}">
                     <i class="material-icons">location_ons</i>
                     <p>{{ __('Maps') }}</p>
@@ -72,7 +72,7 @@
             <li class="nav-item{{ $activePage == 'notifications' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('notifications') }}">
                     <i class="material-icons">notifications</i>
-                    <p>{{ __('Notifications') }}</p>
+                    <p>{{ __('Notifications') }}</p> --}}
             <li class="nav-item{{ $activePage == 'review' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.reviews.index') }}">
                     <i class="material-icons">stars</i>
@@ -92,10 +92,10 @@
                 </a>
             </li>
 
-            <li class="nav-item active-pro{{ $activePage == 'upgrade' ? ' active' : '' }}">
+            {{-- <li class="nav-item active-pro{{ $activePage == 'upgrade' ? ' active' : '' }}">
                 <a class="nav-link text-white bg-danger" href="{{ route('upgrade') }}">
                     <i class="material-icons text-white">unarchive</i>
-                    <p>{{ __('Upgrade to PRO') }}</p>
+                    <p>{{ __('Upgrade to PRO') }}</p> --}}
             <li
                 class="nav-item {{ $activePage == 'room-services' || $activePage == 'create-room-service' ? ' active' : '' }}">
                 <a class="nav-link " data-toggle="collapse" href="#room-services"

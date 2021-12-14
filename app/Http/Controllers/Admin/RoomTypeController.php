@@ -18,12 +18,60 @@ class RoomTypeController extends Controller
     public function index(Request $request)
     {
         // $this->authorize('view all roomType', RoomType::class);
+        // dd('test');
 
         $request->validate([
             'price'    => 'numeric',
         ]);
         $roomTypes = RoomType::latest();
         $items = RoomType::all();
+
+        if ($request->filled('sort')) {
+            if ($request->filled('order')) {
+                if ($request->order == 'ascending') {
+                    // if ($request->sort == 'name_ar') {
+                    //     $roomTypes = RoomType::orderBy('name', 'asc');
+                    // }
+                    // if ($request->sort == 'name_en') {
+                    //     $roomTypes = RoomType::orderBy('name', 'asc');
+                    // }
+                    if ($request->sort == 'price') {
+                        $roomTypes = RoomType::orderBy('price', 'asc');
+                    }
+                    if ($request->sort == 'creation_date') {
+                        $roomTypes = RoomType::orderBy('created_at', 'asc');
+                    }
+                }
+                if ($request->order == 'descending') {
+                    // if ($request->sort == 'name_ar') {
+                    //     $roomTypes = RoomType::orderBy('name->ar', 'desc');
+                    // }
+                    // if ($request->sort == 'name_en') {
+                    //     $roomTypes = RoomType::orderBy('name', 'desc');
+                    // }
+                    if ($request->sort == 'price') {
+                        $roomTypes = RoomType::orderBy('price', 'desc');
+                    }
+                    if ($request->sort == 'creation_date') {
+                        $roomTypes = RoomType::orderBy('created_at', 'desc');
+                    }
+                }
+            }
+            else {
+                // if ($request->sort == 'name_ar') {
+                //     $roomTypes = RoomType::orderBy('name->ar', 'asc');
+                // }
+                // if ($request->sort == 'name_en') {
+                //     $roomTypes = RoomType::orderBy('name', 'asc');
+                // }
+                if ($request->sort == 'price') {
+                    $roomTypes = RoomType::orderBy('price', 'asc');
+                }
+                if ($request->sort == 'creation_date') {
+                    $roomTypes = RoomType::orderBy('created_at', 'asc');
+                }
+            }
+        }
 
         if ($request->filled('price_filter')) {
             $roomTypes->whereIn('price', $request->price_filter);
@@ -33,7 +81,6 @@ class RoomTypeController extends Controller
             $roomTypes->orWhere('price', 'like', "%$request->q%");
             $roomTypes->orWhere('description', 'like', "%$request->q%");
         }
-
 
         $roomTypes  = $roomTypes->paginate(10);
         return view('admin.roomTypes.index', ['roomTypes' => $roomTypes, 'items' => $items]);
@@ -76,7 +123,7 @@ class RoomTypeController extends Controller
             $description = Purify::clean($request->$description);
         }
         $roomType = RoomType::create($validation);
-        if ($validation->hasFile('images')) {
+        if ($request->hasFile('images')) {
             $fileAdders = $roomType->addMultipleMediaFromRequest(['images'])
                 ->each(function ($fileAdder) {
                         $fileAdder->toMediaCollection('images');
@@ -150,7 +197,7 @@ class RoomTypeController extends Controller
         //  }
         $roomType->save();
         // $request->dd();
-        if ($validation->hasFile('images')) {
+        if ($request->hasFile('images')) {
             $roomType->clearMediaCollection('images');
             $fileAdders = $roomType->addMultipleMediaFromRequest(['images'])
                 ->each(function ($fileAdder) {
