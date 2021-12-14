@@ -31,4 +31,10 @@ class Room extends Model implements HasMedia
     {
         return $this->hasMany(RoomServiceRequests::class);
     }
+
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 }

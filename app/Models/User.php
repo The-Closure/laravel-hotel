@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -45,9 +44,19 @@ class User extends Authenticatable implements HasMedia
         'email_verified_at' => 'datetime',
     ];
 
-    public function reviews()
+    /**
+     * Get all of the messages for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function messages()
     {
-        return $this->hasMany(Review::class, 'customer_id');
+        return $this->hasMany(Message::class);
+    }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
     }
 
     public function registerMediaCollections(): void
@@ -56,5 +65,9 @@ class User extends Authenticatable implements HasMedia
             ->addMediaCollection('profile')
             ->useFallbackUrl('https://ui-avatars.com/api/?background=random&size=128&color=fff&name=' . $this->name)
             ->singleFile();
+    }
+    public function transactions()
+    {
+        return $this->morphMany(Transaction::class, 'billable');
     }
 }
