@@ -19,6 +19,20 @@
                 </a>
             </li>
 
+            <li class="nav-item{{ $activePage == 'Reservations' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.reservations.index') }}">
+                    <i class="material-icons">stars</i>
+                    <p>{{ __('Reservations') }}</p>
+                </a>
+            </li>
+            <li class="nav-item{{ $activePage == 'Transactions' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.transactions.index') }}">
+                    <i class="material-icons">stars</i>
+                    <p>{{ __('Transactions') }}</p>
+                </a>
+            </li>
+
+
             <li class="nav-item {{ $activePage == 'my-profile' || $activePage == 'All-staffs' ? ' active' : '' }}">
                 <a class="nav-link" data-toggle="collapse" href="#staffs"
                     aria-expanded="{{ $activePage == 'my-profile' || $activePage == 'All-staffs' ? 'true' : 'false' }}">
