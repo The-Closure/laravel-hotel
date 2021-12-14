@@ -97,6 +97,12 @@ class ReservationController extends Controller
             ->where('id', $request->room_id)
             ->update(['status' => 'busy']);
 
+        DB::table('transactions')
+            ->update([
+                'type' => 'In',
+                'amount' => $reservation->price,
+            ]);
+
         return redirect()->route('admin.reservations.index');
 
         // $reservation = Reservation::create($validated);

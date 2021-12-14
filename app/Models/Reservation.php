@@ -23,4 +23,8 @@ class Reservation extends Model
     {
         return $this->belongsTo(Offer::class);
     }
+    public function transactions()
+    {
+        return $this->morphMany(Transaction::class, 'billable');
+    }
 }

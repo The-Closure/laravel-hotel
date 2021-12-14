@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\RoomServicesController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -37,6 +38,7 @@ Route::group(['middleware' => 'auth', 'prefix' => '/admin', 'as' => 'admin.'], f
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('profile/password', [ProfileController::class, 'password'])->name('profile.password');
     Route::resource('reservations', ReservationController::class)->except('show');
+    Route::resource('transactions', TransactionController::class)->except('show');
     Route::get('users/{user}/password', [UserController::class, 'password'])->name('users.password');
     Route::put('users/{user}/password', [UserController::class, 'password'])->name('users.password');
     Route::resource('users', UserController::class);
