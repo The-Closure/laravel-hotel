@@ -93,19 +93,14 @@ class ReservationController extends Controller
         }
         $reservation->save();
 
-        DB::table('rooms')
-            ->where('id', $request->room_id)
-            ->update(['status' => 'busy']);
+        $reservation->room->update(['status' => 'busy']);
         if($reservation->paid != '0'){    
-        DB::table('transactions')
-            ->insert([
-                'type' => 'In',
-                'billable_id'=>$reservation->id,
-                'billable_type'=>'reservation',
-                'amount' => $reservation->paid,
-                'description'=>'paid at Booking'
-            
-            ]);}
+        $reservation->transactions()->create([
+            'type' => 'In',
+            'amount' => $reservation->paid,
+            'description'=>'paid at Booking'
+        ]);
+        }
 
         return redirect()->route('admin.reservations.index');
 
