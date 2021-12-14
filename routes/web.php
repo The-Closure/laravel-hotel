@@ -9,8 +9,6 @@ use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\RoomserviceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,8 +33,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['middleware' => 'auth', 'prefix' => '/admin', 'as' => 'admin.'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
-    Route::get('roomservice/search',[RoomserviceController::class,'search'])->name('roomservice.search');
-    Route::resource('roomservice', RoomserviceController::class);
     Route::resource('users', UserController::class)->except('show');
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
