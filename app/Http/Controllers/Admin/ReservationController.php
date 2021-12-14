@@ -32,10 +32,9 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        $rooms = DB::table('rooms')
-            ->where('status', 'available')->get();
-        // $rooms = Room::all()->where('status', 'avilable');
+        $rooms = Room::where('status', 'avilable')->get();
         $offers = Offer::all();
+
         return view('admin.reservations.create', ['rooms' => $rooms, 'offers' => $offers]);
     }
 
@@ -47,15 +46,11 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-        // $validated = $request->validate([
         $request->validate([
             'name' => 'required',
             'national_id' => 'required|numeric',
             'country' => 'required',
             'phone_number' => 'required',
-            // 'price' => 'required|numeric',
-            // 'user_id' => 'required',
             'room_id' => 'required',
             'offer_id',
             'paid' => 'required|numeric',
@@ -84,7 +79,6 @@ class ReservationController extends Controller
         $reservation->user_id = $user->id;
         // $reservation->room->status = 'Busy';
         if ($reservation->offer->type = 'percentage') {
-
             $dis = (1 - (0.01 * $reservation->offer->discount));
             $reservation->price = $reservation->room->price * $dis - $reservation->paid;
         } elseif ($reservation->offer->type = 'const') {
