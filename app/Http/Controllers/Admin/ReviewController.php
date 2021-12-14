@@ -16,7 +16,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $this->authorize('view all', Review::class);
+        // $this->authorize('view any', Review::class);
         $reviews = Review::latest()->paginate(6);
         // $reviews = $reviews->paginate(6);
         return view('admin.reviews.index', ['reviews' => $reviews, 'stats' => $this->claculateRatings()]);

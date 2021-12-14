@@ -17,14 +17,26 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $this->authorize('view all', Review::class);
 
+        $reviews = Review::all();
+        $stars_5 = Review::where('rate', 5)->count();
+        $stars_4 = Review::where('rate', 4)->count();
+        $stars_3 = Review::where('rate', 3)->count();
+        $stars_2 = Review::where('rate', 2)->count();
+        $stars_1 = Review::where('rate', 1)->count();
 
-        return ReviewResource::collection(
-            [
-                Review::latest()->paginate(6)
-            ]
-        );
+        $avg = number_format((float)$reviews->avg('rate'), 2, '.', '');
+        $rates_count = $reviews->count();
+
+        return [
+            Review::latest()->paginate(6), 'One Star' => $stars_1,
+            'Tow Stars' => $stars_2,
+            'Three Stars' => $stars_3,
+            'Four Stars' => $stars_4,
+            'Five Stars' => $stars_5,
+            'average' => $avg,
+            'Rates count' => $rates_count
+        ];
     }
     /**
      * Store a newly created resource in storage.
@@ -45,24 +57,6 @@ class ReviewController extends Controller
 
         return response(['message' => 'review was created'], 201);
     }
-    public function claculateRatings()
-    {
-        $reviews = Review::all();
-        $stars_5 = Review::where('rate', 5)->count();
-        $stars_4 = Review::where('rate', 4)->count();
-        $stars_3 = Review::where('rate', 3)->count();
-        $stars_2 = Review::where('rate', 2)->count();
-        $stars_1 = Review::where('rate', 1)->count();
-        $avg = number_format((float)$reviews->avg('rate'), 2, '.', '');
-        $rates_count = $reviews->count();
-        return [
-            'One Star' => $stars_1,
-            'Tow Stars' => $stars_2,
-            'Three Stars' => $stars_3,
-            'Four Stars' => $stars_4,
-            'Five Stars' => $stars_5,
-            'average' => $avg,
-            'Rates count' => $rates_count
-        ];
+
     }
 }
