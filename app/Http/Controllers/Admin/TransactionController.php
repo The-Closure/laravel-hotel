@@ -26,7 +26,7 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.transactions.create');
     }
 
     /**
@@ -37,7 +37,14 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $transaction = new Transaction();
+        $transaction->billable_id = $request->billable_id;
+        $transaction->billable_type = $request->billable_type;
+        $transaction->type = $request->type;
+        $transaction->description = $request->description;
+        $transaction->amount = $request->amount;
+        $transaction->save();
+        return redirect()->route('admin.transactions.index');
     }
 
     /**

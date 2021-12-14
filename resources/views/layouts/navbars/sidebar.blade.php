@@ -25,6 +25,12 @@
                     <p>{{ __('Reservations') }}</p>
                 </a>
             </li>
+            <li class="nav-item{{ $activePage == 'Transactions' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.transactions.index') }}">
+                    <i class="material-icons">stars</i>
+                    <p>{{ __('Transactions') }}</p>
+                </a>
+            </li>
 
 
             <li class="nav-item {{ $activePage == 'my-profile' || $activePage == 'All-staffs' ? ' active' : '' }}">
