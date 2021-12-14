@@ -19,5 +19,6 @@ class RoomTypeSeeder extends Seeder
             ->has(Room::factory()->count(3))
             ->count(4)
             ->create();
+            // aa;
     }
 }

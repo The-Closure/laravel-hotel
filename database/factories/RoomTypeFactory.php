@@ -19,7 +19,7 @@ class RoomTypeFactory extends Factory
             'description->en' => $this->faker->sentence(),
             'description->ar' => $this->faker->sentence(),
             'created_at' => $this->faker->dateTimeThisMonth(),
-
+//..
         ];
     }
 }

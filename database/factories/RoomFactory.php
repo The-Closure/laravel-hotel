@@ -23,7 +23,7 @@ class RoomFactory extends Factory
             'status->en' => $this->faker->word(),
             'status->ar' => $this->faker->word(),
             'created_at' => $this->faker->dateTimeThisMonth(),
-
+            //zz
         ];
     }
 }
