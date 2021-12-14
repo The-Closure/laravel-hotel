@@ -17,7 +17,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        // $this->authorize('view all', Review::class);
+
         $reviews = Review::all();
         $stars_5 = Review::where('rate', 5)->count();
         $stars_4 = Review::where('rate', 4)->count();

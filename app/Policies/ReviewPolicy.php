@@ -18,7 +18,7 @@ class ReviewPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->role == '$owner, manager, reception';
+        // return $user->role == '$owner, manager, reception';
     }
 
     /**
@@ -30,7 +30,7 @@ class ReviewPolicy
      */
     public function view(User $user, Review $review)
     {
-        return $user->role == '$owner, manager, reception';
+        // return $user->role == '$owner, manager, reception';
     }
 
     /**
