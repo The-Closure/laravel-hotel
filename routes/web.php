@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\OfferController;
+//use App\Http\Controllers\Admin\OfferController;
 use App\Http\Controllers\Admin\RoomServicesController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\ReviewController;
@@ -8,6 +8,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\RoomSeviceRequestController;
+use App\Models\RoomSeviceRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,5 +44,6 @@ Route::group(['middleware' => 'auth', 'prefix' => '/admin', 'as' => 'admin.'], f
     Route::resource('settings', SettingController::class);
     Route::resource('room-services', RoomServicesController::class);
     Route::resource('reviews', ReviewController::class);
-    Route::resource('offers', OfferController::class);
+    Route::resource('room-service-requests', RoomSeviceRequestController::class);
+    // Route::resource('offers', OfferController::class);
 });

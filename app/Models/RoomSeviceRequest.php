@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class RoomSeviceRequest extends Model
 {
-    use HasFactory ;
-    protected $fillable=['room_service_id','room_id','reservation_id','notes','employee_id'];
+    use HasFactory ,SoftDeletes;
+    protected $fillable=['room_service_id','notes','employee_id'];
 
     public function RoomService()
     {

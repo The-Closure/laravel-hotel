@@ -82,12 +82,39 @@
                     </ul>
                 </div>
             </li>
-            <li class="nav-item{{ $activePage == 'offers' ? ' active' : '' }}">
+            <li class="nav-item {{ $activePage == 'room-service-requests' || $activePage == 'create-room-service-requests' ? ' active' : '' }}">
+                <a class="nav-link " data-toggle="collapse" href="#room-service-requests"
+                aria-expanded="{{ $activePage == 'room-service-requests' || $activePage == 'create-room-service-requests' ? 'true' : 'false' }}">
+                    <i class="material-icons">live_help</i>
+                    <p>Room Service Requests
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse {{ $activePage == 'room-service-requests' || $activePage == 'create-room-service-requests' ? 'show' : '' }}" id="room-service-requests">
+                    <ul class="nav">
+                        <li class="nav-item {{ $activePage == 'room-service-requests' ? ' active' : '' }} ">
+                            <a class="nav-link" href="{{ route('admin.room-service-requests.index') }}">
+                                <i class="material-icons"> live_help</i>
+                                <span class="sidebar-normal">all requests</span>
+                            </a>
+                        </li>
+                        @can('create room services requests')
+                        <li class="nav-item {{ $activePage == 'create-room-service-requests' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('admin.room-service-requests.create') }}">
+                                <i class="material-icons"> add </i>
+                                <span class="sidebar-normal"> new request </span>
+                            </a>
+                        </li>
+                        @endcan
+                    </ul>
+                </div>
+            </li>
+            {{-- <li class="nav-item{{ $activePage == 'offers' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.offers.index') }}">
                     <i class="material-icons">percent</i>
                     <p>{{ __('offers') }}</p>
                 </a>
-            </li>
+            </li> --}}
             <li class="nav-item{{ $activePage == 'setting' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.settings.index') }}">
                     <i class="material-icons">settings</i>

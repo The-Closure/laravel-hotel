@@ -16,12 +16,13 @@ class CreateRoomSeviceRequestsTable extends Migration
         Schema::create('room_sevice_requests', function (Blueprint $table) {
             $table->id();
             $table->foreignId('room_service_id');
-            $table->bigInteger('room_id');
-            $table->bigInteger('reservation_id');
+            $table->bigInteger('room_id')->nullable();
+            $table->bigInteger('reservation_id')->nullable();
             $table->string('notes');
             $table->bigInteger('employee_id');
             $table->timestamp('done_at')->nullable();
             $table->timestamp('canceled_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

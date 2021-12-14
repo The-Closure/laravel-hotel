@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RoomService;
 use App\Models\RoomSeviceRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RoomSeviceRequestController extends Controller
@@ -10,11 +12,43 @@ class RoomSeviceRequestController extends Controller
     /**
      * Display a listing of the resource.
      *
+  * @param  \Illuminate\Http\Request  $request
+
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if($request->undone_requests!=NULL || $request==[])
+
+            $requests=RoomSeviceRequest::where('deleted_at','=',NULL)->where('done_at','=',NULL)->paginate(10);
+
+        elseif($request->done_requests!=NULL)
+
+            $requests=RoomSeviceRequest::where('deleted_at','=',NULL)->where('done_at','!=',NULL)->paginate(10);
+
+            else
+
+            $requests=RoomSeviceRequest::where('deleted_at','=',NULL)->paginate(10);
+
+        $roomServicesRequests=[];
+        foreach($requests as $req)
+        {
+            $rname=RoomService::find($req->room_service_id);
+            $ename=User::find($req->employee_id);
+            if($rname && $ename != NULL)
+            {
+            $roomServicesRequests []= [
+                'Roomservicename' => $rname->name,
+                'Employeename'    => $ename->name,
+                'Notes'           => $req->notes,
+                'created_at'      => $req->created_at,
+                'done_at'         => $req->done_at
+            ];
+        }
+        }
+        $roomSeviceRequest=RoomSeviceRequest::paginate(10);
+        return view('room_service-requests.index',['roomServicesRequests' => $roomServicesRequests,
+        'roomSeviceRequests' => $roomSeviceRequest ]);
     }
 
     /**
@@ -24,7 +58,16 @@ class RoomSeviceRequestController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('create room services requests',RoomSeviceRequestController::class);
+        $customers=User::role('customer')->get();
+        $employees=User::role(['owner','manager','reception'])->get();
+        $roomservices=RoomService::all();
+
+        return view('room_service-requests.create',
+        ['customers' => $customers,
+        'employees' => $employees,
+        'roomservices' => $roomservices
+    ]);
     }
 
     /**
@@ -35,7 +78,22 @@ class RoomSeviceRequestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+      $r=  $request->validate(
+            [
+                'room_service_id' => 'required',
+                'employee_id' => 'required',
+                'customer_id'    =>'required',
+                'notes'          =>'required'
+            ]
+            );
+
+           $state= RoomSeviceRequest::create($r);
+
+            if($state)
+                 return redirect()->route('admin.room-service-requests.index')->withStatus(__('Request is successfully added.'));
+            else
+                 return redirect()->route('admin.room-service-requests.index')->withError(__('a mistake in the creating process'));
     }
 
     /**
@@ -55,9 +113,27 @@ class RoomSeviceRequestController extends Controller
      * @param  \App\Models\RoomSeviceRequest  $roomSeviceRequest
      * @return \Illuminate\Http\Response
      */
-    public function edit(RoomSeviceRequest $roomSeviceRequest)
+    public function edit(RoomSeviceRequest $room_service_request)
     {
-        //
+        $this->authorize('edit room services requests',RoomSeviceRequest::class);
+        $customers=User::role('customer')->get();
+        $employees=User::role(['owner','manager','reception'])->get();
+        $roomservices=RoomService::all();
+
+        $custname=User::find($room_service_request->reservation_id);
+        $employeename=User::find($room_service_request->employee_id);
+        $roomservicename=RoomService::find($room_service_request->room_service_id);
+        $notes=$room_service_request->notes;
+        return view('room_service-requests.edit',[
+        'roomSeviceRequest' => $room_service_request,
+        'customers' => $customers,
+        'employees' => $employees,
+        'roomservices' => $roomservices,
+        'custname'     =>$custname->name,
+        'employeename' =>$employeename->name,
+        'roomservicename'=>$roomservicename->name,
+        'notes'          =>$notes
+    ]);
     }
 
     /**
@@ -67,9 +143,15 @@ class RoomSeviceRequestController extends Controller
      * @param  \App\Models\RoomSeviceRequest  $roomSeviceRequest
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RoomSeviceRequest $roomSeviceRequest)
+    public function update(Request $request,RoomSeviceRequest $room_service_request)
     {
-        //
+        $room_service_request->room_service_id = $request->room_service_id;
+        $room_service_request->reservation_id=$request->customer_id;
+        $room_service_request->employee_id=$request->employee_id;
+        $room_service_request->notes=$request->notes;
+        $room_service_request->save();
+
+        return redirect()->route('admin.room-service-requests.index');
     }
 
     /**
@@ -78,8 +160,9 @@ class RoomSeviceRequestController extends Controller
      * @param  \App\Models\RoomSeviceRequest  $roomSeviceRequest
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RoomSeviceRequest $roomSeviceRequest)
+    public function destroy(RoomSeviceRequest $room_service_request)
     {
-        //
+        $room_service_request->delete();
+        return redirect()->route('admin.room-service-requests.index')->withSuccess('room service deleted successfully');
     }
 }
