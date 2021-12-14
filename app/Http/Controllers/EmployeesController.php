@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use DB;
 
 
 class EmployeesController extends Controller
@@ -14,11 +15,28 @@ class EmployeesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $employee = User::latest();
+
+        // $search = $request['search'] ?? "";
+        // if ($search != "") {
+        //     $employees = User::where('name', 'like',"%$search%" )
+        //                         ->orWhere('job_title', 'like',"%$search%")
+        //                         ->orWhere('country', 'like',"%$search%")->get();
+        // }else {
+        //     $employees = User::paginate(5);
+        // }
+        if ($request->filled('q')) {
+            $employee->where('name', 'like', "%$request->q%");
+            $employee->orWhere('country', 'like', "%$request->q%");
+            $employee->orWhere('job_title', 'like', "%$request->q%")->get();
+        }
         $employees = User::paginate(5);
+
         return view('employees.index', ['employees' => $employees]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -45,6 +63,7 @@ class EmployeesController extends Controller
             'phone'    => 'required',
             'password'    => 'required',
             'salary'   => 'required',
+            'job_title'  =>  'required',
             'featured_image'    => 'required|file|image',
         ]);
         $validation['featured_image'] = $request->featured_image->store('public/images');

@@ -9,13 +9,25 @@
                         <div class="card-header card-header-primary">
                             <h4 class="card-title ">{{ __('Employees') }}</h4>
                             <p class="card-category"> Here you can manage employees</p>
+
                         </div>
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-12 text-right">
+                            <div class="row float-right">
+                                <form action="{{ route('admin.employees.index') }}">
+                                    <div class="input-group no-border">
+                                        <input class="form-control" type="search" name="search" placeholder="Search..."
+                                        value="{{ request()->query('q', '') }}">
+                                        <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                            <i class="material-icons">search</i>
+                                            <div class="ripple-container"></div>
+                                        </button>
+                                    </div>
+                                </form>
+                                <div class="text-right">
                                     <a href="{{ route('admin.employees.create') }}" class="btn btn-sm btn-primary">New
                                         employee</a>
                                 </div>
+
                             </div>
                             <div class="table-responsive">
                                 <table class="table">
@@ -23,6 +35,13 @@
                                         <tr>
                                             <th>
                                                 Name
+                                                <span wire:click="sortBy('name')" class="float-right text-sm" style="cursor: pointer">
+                                                        <i class="fa fa-arrow-up"></i>
+                                                        <i class="fa fa-arrow-down text-muted"></i>
+                                                </span>
+                                            </th>
+                                            <th>
+                                                Job Title
                                             </th>
                                             <th>
                                                 Phone
@@ -35,6 +54,10 @@
                                             </th>
                                             <th>
                                                 Salary
+                                                <span wire:click="sortBy('name')" class="float-right text-sm" style="cursor: pointer">
+                                                    <i class="fa fa-arrow-up"></i>
+                                                    <i class="fa fa-arrow-down text-muted"></i>
+                                            </span>
                                             </th>
                                             <th class="text-right">
                                                 Actions
@@ -47,6 +70,9 @@
                                                 <td>
                                                     <a
                                                     href="{{ route('admin.employees.show', $employee) }}">{{ $employee->name }}</a>
+                                                </td>
+                                                <td>
+                                                    {{ $employee->job_title}}
                                                 </td>
                                                 <td>
                                                     {{ $employee->phone }}

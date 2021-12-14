@@ -39,6 +39,17 @@
                                 </div>
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">
+                                        {{ __('Job Title') }}</label>
+                                    <div class="col-sm-7">
+                                        <div class="form-group">
+                                            <input class="form-control" name="job_title" id="input-name" type="text"
+                                                value="{{ $employee->job_title }}" required="true" aria-required="true"
+                                                disabled />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label">
                                         {{ __('Phone') }}</label>
                                     <div class="col-sm-7">
                                         <div class="form-group">

@@ -55,6 +55,21 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <label class="col-sm-2 col-form-label">{{ __('Job Ttle') }}</label>
+                                    <div class="col-sm-7">
+                                        <div class="form-group{{ $errors->has('job_title') ? ' has-danger' : '' }}">
+                                            <input class="form-control{{ $errors->has('job_title') ? ' is-invalid' : '' }}"
+                                                name="job_title" id="input-job_title" type="text"
+                                                placeholder="{{ __('job_title') }}" value="{{ old('job_title') }}"
+                                                required="true" aria-required="true" />
+                                            @if ($errors->has('job_title'))
+                                                <span id="title-ar-error" class="error text-danger"
+                                                    for="input-job_title">{{ $errors->first('job_title') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <label class="col-sm-2 col-form-label">{{ __('Phone') }}</label>
                                     <div class="col-sm-7">
                                         <div class="form-group{{ $errors->has('phone') ? ' has-danger' : '' }}">

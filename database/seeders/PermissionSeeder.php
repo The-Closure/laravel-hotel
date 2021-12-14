@@ -92,6 +92,7 @@ class PermissionSeeder extends Seeder
             'national_id' => '0308004032',
             'phone' => '+963 974527482',
             'salary' => '1000000',
+            'job_title' => 'Owner',
         ])->assignRole($owner);
 
 
@@ -107,6 +108,8 @@ class PermissionSeeder extends Seeder
             'national_id' => '0308002030',
             'phone' => '+963 98462174',
             'salary' => '80000',
+            'job_title' => 'Manager',
+
         ])->assignRole($manager);
 
         User::firstOrCreate([
@@ -121,6 +124,8 @@ class PermissionSeeder extends Seeder
             'national_id' => '0308002044',
             'phone' => '+963 9336548264',
             'salary' => '50000',
+            'job_title' => 'Reception',
+
         ])->assignRole($reception);
 
 
@@ -136,6 +141,8 @@ class PermissionSeeder extends Seeder
             'national_id' => '0307022334',
             'phone' => '+963 9876473644',
             'salary' => '30000',
+            'job_title' => 'Worker',
+
         ])->assignRole($worker);
     }
 }

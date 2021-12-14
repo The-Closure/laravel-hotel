@@ -26,6 +26,7 @@ class User extends Authenticatable
         'national_id',
         'phone',
         'salary',
+        'job_title',
     ];
 
     /**
@@ -51,4 +52,6 @@ class User extends Authenticatable
     {
         return $this->hasMany(Review::class, 'customer_id');
     }
+
+
 }
