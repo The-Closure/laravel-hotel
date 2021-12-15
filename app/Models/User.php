@@ -44,14 +44,9 @@ class User extends Authenticatable implements HasMedia
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * Get all of the messages for the User
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function messages()
+    public function reviews()
     {
-        return $this->hasMany(Message::class);
+        return $this->hasMany(Review::class, 'customer_id');
     }
 
     public function reviews()
