@@ -54,6 +54,11 @@ class User extends Authenticatable implements HasMedia
         return $this->hasMany(Message::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'customer_id');
+    }
+
     public function reservations()
     {
         return $this->hasMany(Reservation::class);
