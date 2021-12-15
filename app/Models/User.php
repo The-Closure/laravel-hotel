@@ -61,6 +61,7 @@ class User extends Authenticatable implements HasMedia
             ->useFallbackUrl('https://ui-avatars.com/api/?background=random&size=128&color=fff&name=' . $this->name)
             ->singleFile();
     }
+
     public function transactions()
     {
         return $this->morphMany(Transaction::class, 'billable');
