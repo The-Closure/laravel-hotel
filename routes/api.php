@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Api\V1\MessageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,5 +22,4 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('reviews', ReviewController::class)->only(['index', 'show']);
     Route::apiResource('reviews', ReviewController::class)->only('store')->middleware('auth:sanctum');
     Route::resource('offers', OfferController::class)->only(['index', 'show'])->middleware('auth:sanctum');
-    Route::apiResource('messages', MessageController::class)->only('store')->middleware('auth:sanctum');
 });
