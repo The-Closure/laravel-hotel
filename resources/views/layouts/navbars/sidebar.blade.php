@@ -21,23 +21,21 @@
 
             <li class="nav-item{{ $activePage == 'Reservations' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.reservations.index') }}">
-                    <i class="material-icons">stars</i>
+                    <i class="material-icons">book</i>
                     <p>{{ __('Reservations') }}</p>
                 </a>
             </li>
             <li class="nav-item{{ $activePage == 'Transactions' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.transactions.index') }}">
-                    <i class="material-icons">stars</i>
+                    <i class="material-icons">money</i>
                     <p>{{ __('Transactions') }}</p>
                 </a>
             </li>
-
-
             <li class="nav-item {{ $activePage == 'my-profile' || $activePage == 'All-staffs' ? ' active' : '' }}">
                 <a class="nav-link" data-toggle="collapse" href="#staffs"
                     aria-expanded="{{ $activePage == 'my-profile' || $activePage == 'All-staffs' ? 'true' : 'false' }}">
                     <i><i class="material-icons">persons</i></i>
-                    <p>{{ __('Staffs') }}
+                    <p>{{ __('Staff') }}
                         <b class="caret"></b>
                     </p>
                 </a>
@@ -65,21 +63,17 @@
                     <p>{{ __('Review') }}</p>
                 </a>
             </li>
-            <li class="nav-item{{ $activePage == 'language' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('language') }}">
-                    <i class="material-icons">language</i>
-                    <p>{{ __('RTL Support') }}</p>
-                </a>
-            </li>
-            <li class="nav-item {{ $activePage == 'room-services' || $activePage == 'create-room-service' ? ' active' : '' }}">
+            <li
+                class="nav-item {{ $activePage == 'room-services' || $activePage == 'create-room-service' ? ' active' : '' }}">
                 <a class="nav-link " data-toggle="collapse" href="#room-services"
-                aria-expanded="{{ $activePage == 'room-services' || $activePage == 'create-room-service' ? 'true' : 'false' }}">
+                    aria-expanded="{{ $activePage == 'room-services' || $activePage == 'create-room-service' ? 'true' : 'false' }}">
                     <i class="material-icons">live_help</i>
                     <p>Room Services
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse {{ $activePage == 'room-services' || $activePage == 'create-room-service' ? 'show' : '' }}" id="room-services">
+                <div class="collapse {{ $activePage == 'room-services' || $activePage == 'create-room-service' ? 'show' : '' }}"
+                    id="room-services">
                     <ul class="nav">
                         <li class="nav-item {{ $activePage == 'room-services' ? ' active' : '' }} ">
                             <a class="nav-link" href="{{ route('admin.room-services.index') }}">
@@ -100,6 +94,12 @@
                 <a class="nav-link" href="{{ route('admin.offers.index') }}">
                     <i class="material-icons">percent</i>
                     <p>{{ __('offers') }}</p>
+                </a>
+            </li>
+            <li class="nav-item{{ $activePage == 'messages' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.messages.index') }}">
+                    <i class="material-icons">message</i>
+                    <p>{{ __('messages') }}</p>
                 </a>
             </li>
             <li class="nav-item{{ $activePage == 'setting' ? ' active' : '' }}">

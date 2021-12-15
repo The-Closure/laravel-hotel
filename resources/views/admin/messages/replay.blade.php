@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'Messages', 'titlePage' => __('')])
+@extends('layouts.app', ['activePage' => 'messages', 'titlePage' => __('')])
 
 @section('content')
     <div class="content">
@@ -45,13 +45,13 @@
                                     <div class="col-sm-7">
                                         <div class="input-group">
                                             <textarea name="content" class="form-control" aria-label="With textarea">
-                                                            </textarea>
+                                                                    </textarea>
                                             @error('content')
                                                 <p class="help is-danger">{{ $message }} </p>
                                             @enderror
                                         </div>
                                         <div class="card-footer ml-auto mr-auto">
-                                            <button type="submit" class="btn btn-primary">{{ __('Replay') }}</button>
+                                            <button type="submit" class="btn btn-primary">{{ __('Reply') }}</button>
                                         </div>
                                     </div>
                                 </div>
@@ -63,4 +63,3 @@
         </div>
     </div>
 @endsection
-

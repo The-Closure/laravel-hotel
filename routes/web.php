@@ -32,7 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::view('rtl-support', 'pages.language')->name('language');
 });
 
-Route::group(['middleware' => 'auth', 'perfix' => '/admin', 'as' => 'admin.'], function () {
+Route::group(['middleware' => 'auth', 'prefix' => '/admin', 'as' => 'admin.'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::resource('users', UserController::class)->except('show');
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -48,5 +48,4 @@ Route::group(['middleware' => 'auth', 'perfix' => '/admin', 'as' => 'admin.'], f
     Route::resource('room-services', RoomServicesController::class);
     Route::resource('reviews', ReviewController::class);
     Route::resource('offers', OfferController::class);
-
 });

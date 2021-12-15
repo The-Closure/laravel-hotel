@@ -32,7 +32,7 @@
                                     <div class="col-sm-7">
                                         <div class="form-group">
                                             <input class="form-control" name="title" id="input-name" type="text"
-                                                value="{{ $message->title}}" required="true" aria-required="true"
+                                                value="{{ $message->title }}" required="true" aria-required="true"
                                                 disabled />
                                         </div>
                                     </div>
@@ -54,8 +54,8 @@
                                         <div class="input-group">
                                             <textarea disabled name="content" class="form-control"
                                                 aria-label="With textarea">
-                                                                    {{ $message->content }}
-                                                                </textarea>
+                                                                            {{ $message->content }}
+                                                                        </textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -76,7 +76,7 @@
                     </form>
                     <div class="card-footer ml-auto mr-auto">
                         <a href="{{ route('admin.messages.create') }}"><button type="submit"
-                                class="btn btn-primary">{{ __('Replay') }}</button></a>
+                                class="btn btn-primary">{{ __('Reply') }}</button></a>
                     </div>
                 </div>
             </div>
