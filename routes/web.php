@@ -4,10 +4,10 @@ use App\Http\Controllers\Admin\OfferController;
 use App\Http\Controllers\Admin\RoomServicesController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EmployeesController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
