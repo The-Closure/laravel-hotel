@@ -21,7 +21,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id', 'DESC')->paginate(10, ['name', 'id', 'email',]);
+        $users = User::orderBy('id', 'DESC')->paginate(10, ['name', 'id', 'email']);
         return view('users.index', ['users' => $users]);
     }
 
@@ -44,10 +44,12 @@ class UserController extends Controller
     public function store(StaffRequest $request)
     {
         $user = User::create($request->all());
-        if($user)
+        if ($user) {
             return redirect()->route('admin.users.index')->withStatus(__('Staff is successfully added.'));
-        else
+        } else {
             return redirect()->route('admin.users.index')->withError(__('a mistake in the deletion process'));
+        }
+
     }
 
     /**
@@ -86,7 +88,6 @@ class UserController extends Controller
         return back()->withStatus(__('Staff Info successfully updated.'));
     }
 
-
     public function password(StaffPasswordRequest $request, User $user)
     {
         $user->update(['password' => Hash::make($request->get('password'))]);
@@ -102,9 +103,11 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        if ($user->delete())
+        if ($user->delete()) {
             return redirect()->route('admin.users.index')->withStatus(__('User is successfully deleted.'));
-        else
+        } else {
             return redirect()->route('admin.users.index')->withError(__('a mistake in the deletion process'));
+        }
+
     }
 }

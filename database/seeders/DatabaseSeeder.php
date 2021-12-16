@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Database\Factories\UserFactory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 
@@ -17,8 +16,12 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             PermissionSeeder::class,
+            RoomTypeSeeder::class,
             UserSeeder::class,
             SettingSeeder::class,
+            RoomTypeSeeder::class,
+            ReservationSeeder::class,
+            RoomSeviceRequestSeeder::class,
         ]);
     }
 }

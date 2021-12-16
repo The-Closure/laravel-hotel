@@ -23,7 +23,6 @@
 *::before,
 *::after {
     box-sizing: border-box;
-    text-transform: capitalize;
 }
 
 html {
@@ -19832,11 +19831,12 @@ Copyright (c) 2015 Daniel Eden
     background: #4caf50
 }
 
-@media (min-width: 576px){
+@media (min-width: 576px) {
     .modal-dialog {
         max-width: 700px;
     }
 }
-.bmd-form-group .form-control{
-    padding-left:1rem
+
+.bmd-form-group .form-control {
+    padding-left: 1rem
 }

@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
-    protected $fillable = ['message', 'name', 'job_title', 'customer_id', 'message'];
     use HasFactory;
+
+    protected $fillable = ['message', 'name', 'job_title', 'customer_id', 'message'];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'customer_id');

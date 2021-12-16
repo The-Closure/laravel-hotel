@@ -18,7 +18,7 @@ class ReviewFactory extends Factory
             'name' => $this->faker->name(),
             'job_title' => $this->faker->name(),
             'customer_id' => $this->faker->randomElement([1, 2, 3]),
-            'rate' => $this->faker->randomDigit(),
+            'rate' => $this->faker->randomElement([1, 2, 3, 4, 5]),
             'message' => $this->faker->sentence(),
             'created_at' => $this->faker->dateTimeThisMonth(),
         ];
