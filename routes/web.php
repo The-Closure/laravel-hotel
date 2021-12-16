@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\OfferController;
 use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\Admin\ReviewController;
@@ -36,6 +37,7 @@ Route::group(['middleware' => 'auth', 'prefix' => '/admin', 'as' => 'admin.'], f
     Route::resource('users', UserController::class)->except('show');
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::resource('messages', MessageController::class);
     Route::put('profile/password', [ProfileController::class, 'password'])->name('profile.password');
     Route::resource('reservations', ReservationController::class)->except('show');
     Route::resource('transactions', TransactionController::class)->except('show');
@@ -46,5 +48,4 @@ Route::group(['middleware' => 'auth', 'prefix' => '/admin', 'as' => 'admin.'], f
     Route::resource('room-services', RoomServicesController::class);
     Route::resource('reviews', ReviewController::class);
     Route::resource('offers', OfferController::class);
-
 });

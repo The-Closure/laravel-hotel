@@ -49,6 +49,16 @@ class User extends Authenticatable implements HasMedia
         return $this->hasMany(Review::class, 'customer_id');
     }
 
+    /**
+     * Get all of the messages for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+
     public function reservations()
     {
         return $this->hasMany(Reservation::class);
