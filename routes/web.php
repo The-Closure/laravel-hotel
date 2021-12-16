@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoomSeviceRequestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,6 +54,7 @@ Route::group(['middleware' => 'auth', 'prefix' => '/admin', 'as' => 'admin.'], f
     Route::resource('users', UserController::class);
     Route::resource('settings', SettingController::class);
     Route::resource('room-services', RoomServicesController::class);
+    Route::resource('room-service-requests', RoomSeviceRequestController::class);
     Route::resource('reviews', ReviewController::class);
     Route::resource('offers', OfferController::class);
 });

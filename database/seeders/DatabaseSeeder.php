@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\RoomSeviceRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 
@@ -15,12 +16,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            RoomSeviceRequestSeeder::class,
             PermissionSeeder::class,
-            // ReviewSeeder::class,
-            // UserSeeder::class,
             RoomTypeSeeder::class,
             UserSeeder::class,
             SettingSeeder::class,
+            RoomSeviceRequestSeeder::class,
             RoomTypeSeeder::class,
         ]);
     }

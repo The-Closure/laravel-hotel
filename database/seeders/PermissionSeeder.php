@@ -117,5 +117,15 @@ class PermissionSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ])->assignRole($worker);
+
+          User::firstOrCreate([
+            'email' => 'customer@hotel.com',
+        ], [
+            'name' => 'Customer',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ])->assignRole($customer);
     }
 }

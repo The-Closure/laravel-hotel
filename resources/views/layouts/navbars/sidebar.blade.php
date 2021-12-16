@@ -58,7 +58,7 @@
                 </div>
             </li>
             <li class="nav-item{{ $activePage == 'roomTypes' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.roomTypes.index') }}">
+                <a class="nav-link" href="{{ route('admin.room-types.index') }}">
                     <i class="material-icons">maps_home_work</i>
                     <p>{{ __('Room Types') }}</p>
                 </a>
@@ -69,22 +69,6 @@
                     <p>{{ __('Rooms') }}</p>
                 </a>
             </li>
-            {{-- <li class="nav-item{{ $activePage == 'icons' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('icons') }}">
-                    <i class="material-icons">bubble_chart</i>
-                    <p>{{ __('Icons') }}</p>
-                </a>
-            </li> --}}
-            {{-- <li class="nav-item{{ $activePage == 'map' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('map') }}">
-                    <i class="material-icons">location_ons</i>
-                    <p>{{ __('Maps') }}</p>
-                </a>
-            </li>
-            <li class="nav-item{{ $activePage == 'notifications' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('notifications') }}">
-                    <i class="material-icons">notifications</i>
-                    <p>{{ __('Notifications') }}</p> --}}
             <li class="nav-item{{ $activePage == 'review' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.reviews.index') }}">
                     <i class="material-icons">stars</i>
@@ -115,6 +99,35 @@
                                 <span class="sidebar-normal"> new service </span>
                             </a>
                         </li>
+                    </ul>
+                </div>
+            </li>
+            <li
+                class="nav-item {{ $activePage == 'room-service-requests' || $activePage == 'create-room-service-requests' ? ' active' : '' }}">
+                <a class="nav-link " data-toggle="collapse" href="#room-service-requests"
+                    aria-expanded="{{ $activePage == 'room-service-requests' || $activePage == 'create-room-service-requests' ? 'true' : 'false' }}">
+                    <i class="material-icons">live_help</i>
+                    <p>Room Service Requests
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse {{ $activePage == 'room-service-requests' || $activePage == 'create-room-service-requests' ? 'show' : '' }}"
+                    id="room-service-requests">
+                    <ul class="nav">
+                        <li class="nav-item {{ $activePage == 'room-service-requests' ? ' active' : '' }} ">
+                            <a class="nav-link" href="{{ route('admin.room-service-requests.index') }}">
+                                <i class="material-icons"> live_help</i>
+                                <span class="sidebar-normal">all requests</span>
+                            </a>
+                        </li>
+                        @can('create room services requests')
+                            <li class="nav-item {{ $activePage == 'create-room-service-requests' ? ' active' : '' }}">
+                                <a class="nav-link" href="{{ route('admin.room-service-requests.create') }}">
+                                    <i class="material-icons"> add </i>
+                                    <span class="sidebar-normal"> new request </span>
+                                </a>
+                            </li>
+                        @endcan
                     </ul>
                 </div>
             </li>
