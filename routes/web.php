@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\RoomController;
+use App\Http\Controllers\Admin\RoomTypeController;
+use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\OfferController;
 use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\Admin\ReviewController;
@@ -37,7 +40,13 @@ Route::group(['middleware' => 'auth', 'prefix' => '/admin', 'as' => 'admin.'], f
     Route::resource('users', UserController::class)->except('show');
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::resource('messages', MessageController::class);
     Route::put('profile/password', [ProfileController::class, 'password'])->name('profile.password');
+    Route::resource('room-types', RoomTypeController::class);
+    Route::resource('rooms', RoomController::class);
+
+    Route::resource('reviews', ReviewController::class);
+
     Route::resource('reservations', ReservationController::class)->except('show');
     Route::resource('transactions', TransactionController::class)->except('show');
     Route::get('users/{user}/password', [UserController::class, 'password'])->name('users.password');
@@ -48,5 +57,4 @@ Route::group(['middleware' => 'auth', 'prefix' => '/admin', 'as' => 'admin.'], f
     Route::resource('room-service-requests', RoomSeviceRequestController::class);
     Route::resource('reviews', ReviewController::class);
     Route::resource('offers', OfferController::class);
-
 });

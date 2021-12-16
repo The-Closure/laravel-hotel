@@ -76,10 +76,6 @@ class PermissionSeeder extends Seeder
         Permission::firstOrCreate(['name' => 'create newsletters'])->assignRole([$owner, $manager, $reception]);
         Permission::firstOrCreate(['name' => 'send newsletters'])->assignRole([$owner, $manager, $reception]);
 
-
-
-
-
         User::firstOrCreate([
             'email' => 'admin@hotel.com',
         ], [

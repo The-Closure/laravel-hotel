@@ -18,9 +18,13 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoomSeviceRequestSeeder::class,
             PermissionSeeder::class,
+            // ReviewSeeder::class,
+            // UserSeeder::class,
+            RoomTypeSeeder::class,
             UserSeeder::class,
             SettingSeeder::class,
-            RoomSeviceRequestSeeder::class
+            RoomSeviceRequestSeeder::class,
+            RoomTypeSeeder::class,
         ]);
     }
 }
