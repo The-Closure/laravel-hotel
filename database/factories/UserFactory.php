@@ -23,7 +23,7 @@ class UserFactory extends Factory
             'salary' => $this->faker->numerify(),
             'national_id' => $this->faker->numerify(),
             'job_title' => $this->faker->jobTitle($max = 1),
-            'phone' => $this->faker->phoneNumber(),
+            'phone_number' => $this->faker->phoneNumber(),
             'remember_token' => Str::random(10),
         ];
     }
