@@ -57,6 +57,34 @@
                     </ul>
                 </div>
             </li>
+            <li class="nav-item{{ $activePage == 'roomTypes' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.roomTypes.index') }}">
+                    <i class="material-icons">maps_home_work</i>
+                    <p>{{ __('Room Types') }}</p>
+                </a>
+            </li>
+            <li class="nav-item{{ $activePage == 'rooms' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.rooms.index') }}">
+                    <i class="material-icons">bedroom_parent</i>
+                    <p>{{ __('Rooms') }}</p>
+                </a>
+            </li>
+            {{-- <li class="nav-item{{ $activePage == 'icons' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('icons') }}">
+                    <i class="material-icons">bubble_chart</i>
+                    <p>{{ __('Icons') }}</p>
+                </a>
+            </li> --}}
+            {{-- <li class="nav-item{{ $activePage == 'map' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('map') }}">
+                    <i class="material-icons">location_ons</i>
+                    <p>{{ __('Maps') }}</p>
+                </a>
+            </li>
+            <li class="nav-item{{ $activePage == 'notifications' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('notifications') }}">
+                    <i class="material-icons">notifications</i>
+                    <p>{{ __('Notifications') }}</p> --}}
             <li class="nav-item{{ $activePage == 'review' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.reviews.index') }}">
                     <i class="material-icons">stars</i>
