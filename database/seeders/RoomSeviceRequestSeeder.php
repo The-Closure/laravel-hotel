@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\RoomService;
 use App\Models\RoomSeviceRequest;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +15,7 @@ class RoomSeviceRequestSeeder extends Seeder
      */
     public function run()
     {
+        RoomService::create(['name' => 'Taxi', 'price' => 10, 'status' => 'available', 'description' => 'order a taxi right now']);
         RoomSeviceRequest::firstOrCreate([
             'room_service_id' => 1,
             'room_id'         => 1,

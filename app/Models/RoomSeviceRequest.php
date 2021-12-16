@@ -8,26 +8,26 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class RoomSeviceRequest extends Model
 {
-    use HasFactory ,SoftDeletes;
-    protected $fillable=['room_service_id','room_id','reservation_id','employee_id','notes'];
+    use HasFactory, SoftDeletes;
+    protected $fillable = ['room_service_id', 'room_id', 'reservation_id', 'employee_id', 'notes'];
 
-    public function RoomService()
+    public function roomService()
     {
-       return $this->belongsTo(Roomservice::class);
+        return $this->belongsTo(Roomservice::class);
     }
 
-    public function Room()
+    public function room()
     {
         return $this->belongsTo(Room::class);
     }
 
-    public function User()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function Reservation()
+    public function reservation()
     {
         return $this->belongsTo(Reservation::class);
+    }
+
+    public function employee()
+    {
+        return $this->belongsTo(User::class, 'employee_id');
     }
 }

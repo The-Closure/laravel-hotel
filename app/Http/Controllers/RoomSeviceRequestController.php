@@ -20,40 +20,16 @@ class RoomSeviceRequestController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->undone_requests != NULL || $request == []) {
-            $requests = RoomSeviceRequest::where('deleted_at', '=', NULL)->where('done_at', '=', NULL)->get();
-            $roomSeviceRequest = RoomSeviceRequest::where('deleted_at', '=', NULL)->where('done_at', '=', NULL)->get();
-        } elseif ($request->done_requests != NULL) {
-            $requests = RoomSeviceRequest::where('deleted_at', '=', NULL)->where('done_at', '!=', NULL)->get();
-            $roomSeviceRequest = RoomSeviceRequest::where('deleted_at', '=', NULL)->where('done_at', '!=', NULL)->get();
+        if ($request->filled('undone_requests') || $request == []) {
+            $requests = RoomSeviceRequest::whereNull('done_at')->get();
+        } elseif ($request->filled('done_requests')) {
+            $requests = RoomSeviceRequest::whereNotNull('done_at')->get();
         } else {
-            $requests = RoomSeviceRequest::where('deleted_at', '=', NULL)->get();
-            $roomSeviceRequest = RoomSeviceRequest::where('deleted_at', '=', NULL)->get();
-        }
-        $roomServicesRequests = [];
-        foreach ($requests as $req) {
-            $rname = RoomService::find($req->room_service_id);
-            $ename = User::find($req->employee_id);
-            $reservation = Reservation::find($req->reservation_id);
-            $cname = User::find($reservation->user_id);
-            $roomnum = Room::find($reservation->room_id);
-
-            if ($rname && $ename != NULL) {
-                $roomServicesRequests[] = [
-                    'Roomservicename' => $rname->name,
-                    'Employeename'    => $ename->name,
-                    'Customername'    => $cname->name,
-                    'Roomnumber'      => $roomnum->number,
-                    'Notes'           => $req->notes,
-                    'created_at'      => $req->created_at,
-                    'done_at'         => $req->done_at
-                ];
-            }
+            $requests = RoomSeviceRequest::all();
         }
 
         return view('room_service-requests.index', [
-            'roomServicesRequests' => $roomServicesRequests,
-            'roomSeviceRequests' => $roomSeviceRequest
+            'roomServicesRequests' => $requests,
         ]);
     }
 

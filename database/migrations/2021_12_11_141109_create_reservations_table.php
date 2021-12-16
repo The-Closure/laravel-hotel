@@ -22,7 +22,7 @@ class CreateReservationsTable extends Migration
             $table->double("paid");
             $table->timestamp("started_at");
             $table->timestamp("ended_at");
-            $table->timestamp("paid_at");
+            $table->timestamp("paid_at")->nullable();
             $table->timestamp("canceled_at")->nullable();
             $table->timestamps();
         });

@@ -3,27 +3,27 @@
 @section('content')
     <div class="content">
         <div class="container-fluid">
-                <div class="row">
-                     <div class="col-md-12">
-                         <form action="{{ route('admin.room-service-requests.index') }}" >
-                           <div class="form-check">
-                                 <label class="form-check-label">
-                                  <input class="form-check-input" type="checkbox" name="done_requests"> Done Requests
-                                   <span class="form-check-sign" >
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="{{ route('admin.room-service-requests.index') }}">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="done_requests"> Done Requests
+                                <span class="form-check-sign">
                                     <span class="check"></span>
-                                        </span>
-                                      </label>
-                                    <label class="form-check-label">
-                                     <input class="form-check-input" type="checkbox" name="undone_requests" > Undone Requests
-                                      <span class="form-check-sign" >
-                                           <span class="check"></span>
-                                           </span>
-                                     </label>
-                                <button type="submit" class="btn btn-primary" >submit</button>
-                                            </div>
-                                        </form>
-                     </div>
-                                </div>
+                                </span>
+                            </label>
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="undone_requests"> Undone Requests
+                                <span class="form-check-sign">
+                                    <span class="check"></span>
+                                </span>
+                            </label>
+                            <button type="submit" class="btn btn-primary">submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="card ">
@@ -46,13 +46,12 @@
                                 </div>
                             @endif
 
-
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead class=" text-primary">
                                         <tr>
                                             <th>
-                                               Room Service Name
+                                                Room Service Name
                                             </th>
                                             <th>
                                                 Employee Name
@@ -72,44 +71,44 @@
                                             <th>
                                                 Done_at
                                             </th>
-
                                             <th class="text-center">
                                                 Action
-                                             </th>
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($roomServicesRequests as $key => $roomServiceRequest )
-                                        <tr>
+                                        @foreach ($roomServicesRequests as $roomServiceRequest)
+                                            <tr>
                                                 <td>
-                                                    {{ $roomServiceRequest['Roomservicename'] }}
-                                                </td>
-                                                <td>
-                                                    {{ $roomServiceRequest['Employeename'] }}
+                                                    {{ $roomServiceRequest->roomService->name }}
                                                 </td>
                                                 <td>
-                                                    {{ $roomServiceRequest['Customername'] }}
+                                                    {{ $roomServiceRequest->employee->name }}
                                                 </td>
                                                 <td>
-                                                    {{ $roomServiceRequest['Roomnumber'] }}
-                                                </td>
-                                                <td >
-                                                    {{ $roomServiceRequest['Notes'] }}
+                                                    {{ $roomServiceRequest->reservation->user->name }}
                                                 </td>
                                                 <td>
-                                                    {{ $roomServiceRequest['created_at'] }}
+                                                    {{ $roomServiceRequest->room->number }}
                                                 </td>
-                                                 <td>
-                                                    {{ $roomServiceRequest['done_at']}}
+                                                <td>
+                                                    {{ $roomServiceRequest->notes }}
                                                 </td>
-
+                                                <td>
+                                                    {{ $roomServiceRequest->created_at }}
+                                                </td>
+                                                <td>
+                                                    {{ $roomServiceRequest->done_at }}
+                                                </td>
                                                 <td class="td-actions text-right">
-                                                    <form action="{{ route('admin.room-service-requests.destroy', $roomSeviceRequests[$key] )}}" method="post" >
+                                                    <form
+                                                        action="{{ route('admin.room-service-requests.destroy', $roomServiceRequest) }}"
+                                                        method="post">
                                                         @method('delete')
                                                         @csrf
                                                         <a rel="tooltip" class="btn btn-success btn-link"
-                                                            href="{{ route('admin.room-service-requests.edit', $roomSeviceRequests[$key]) }}"
-                                                            data-original-title="" title="" >
+                                                            href="{{ route('admin.room-service-requests.edit', $roomServiceRequest) }}"
+                                                            data-original-title="" title="">
                                                             <i class="material-icons">edit</i>
                                                             <div class="ripple-container"></div>
                                                         </a>
@@ -119,8 +118,7 @@
                                                     </form>
                                                 </td>
                                                 {{-- {{ $roomSeviceRequest->links() }} --}}
-                                            @endforeach
-
+                                        @endforeach
                                         </tr>
                                     </tbody>
                                 </table>
