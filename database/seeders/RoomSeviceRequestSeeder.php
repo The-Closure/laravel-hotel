@@ -14,15 +14,14 @@ class RoomSeviceRequestSeeder extends Seeder
      */
     public function run()
     {
-
         RoomSeviceRequest::firstOrCreate([
             'room_service_id' => 1,
             'room_id'         => 1,
             'reservation_id'  => 1,
             'employee_id'     => 1,
-            'notes'           =>'no notes',
-            'done_at'         =>NULL,
-            'canceled_at'      =>NULL
+            'notes'           => 'no notes',
+            'done_at'         => NULL,
+            'canceled_at'     => NULL
         ]);
     }
 }
