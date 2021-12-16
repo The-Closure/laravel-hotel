@@ -71,11 +71,21 @@
                                                 <span id="title-ar-error" class="error text-danger"
                                                     for="input-title-ar">{{ $errors->first('Reservation') }}</span>
                                             @endif --}}
-                                            <select name="customer_id" id="customer_id" class="custom-select" data-live-search="true" data-default="{{ old('customer_id') }}">
+                                             <select name="customer_id" id="customer_id" class="custom-select" data-live-search="true" data-default="{{ old('customer_id') }}">
                                                 @foreach ($customers as $customer)
-                                                       <option value="{{ $customer->id }}" selected="selected">{{ $customer->name }}</option>
+                                                <option value="{{ $customer->id }}" selected="selected">{{ $customer->name }}</option>f
+
                                                @endforeach
-                                               <option value="{{$roomSeviceRequest->reservation_id}}" selected="selected">{{$custname}}</option>
+                                               <option value="{{$customer_id}}" selected="selected">{{$custname}}</option>
+                                            </select>
+
+                                            <select  name="room_id" id="room_id" class="custom-select" data-live-search="true" data-default="{{ old('room_id') }}">
+
+                                               @foreach ($rooms as $room)
+                                                <option value="{{ $room->id }}" selected="selected">{{ $room->number }}</option>f
+
+                                               @endforeach
+                                               <option value="{{$roomSeviceRequest->room_id}}" selected="selected">{{$roomnumber}}</option>
                                            </select>
                                         </div>
 

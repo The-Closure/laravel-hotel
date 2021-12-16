@@ -57,13 +57,12 @@
                                             <th>
                                                 Employee Name
                                             </th>
-                                            {{-- reservation info ..to be worked on --}}
-                                            {{-- <th>
+                                            <th>
                                                 Customer Name
                                             </th>
                                             <th>
                                                 Room Number
-                                            </th> --}}
+                                            </th>
                                             <th>
                                                 Notes
                                             </th>
@@ -88,7 +87,12 @@
                                                 <td>
                                                     {{ $roomServiceRequest['Employeename'] }}
                                                 </td>
-
+                                                <td>
+                                                    {{ $roomServiceRequest['Customername'] }}
+                                                </td>
+                                                <td>
+                                                    {{ $roomServiceRequest['Roomnumber'] }}
+                                                </td>
                                                 <td >
                                                     {{ $roomServiceRequest['Notes'] }}
                                                 </td>

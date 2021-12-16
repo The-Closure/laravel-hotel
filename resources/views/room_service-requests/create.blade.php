@@ -13,7 +13,7 @@
                                 <h4 class="card-title">{{ __('Add New Service Request') }}</h4>
                             </div>
                             <div class="card-body ">
-                                {{-- @if ($errors->any())
+                                @if ($errors->any())
                                     <div class="callout callout-danger">
                                         <h5>
                                             <i class="icon fas fa-ban " style="margin-right: 10px;color: #dd1616;"></i>Form Error
@@ -24,16 +24,16 @@
                                             @endforeach
                                         </ul>
                                     </div>
-                                @endif --}}
+                                @endif
 
                                 <div class="row">
                                     <label class="col-sm-2 col-form-label">{{ __('room service name') }}</label>
                                     <div class="col-sm-7">
                                         <div class="form-group{{ $errors->has('room-service-name') ? ' has-danger' : '' }}">
-                                            {{-- @if ($errors->has('room-service-name'))
+                                            @if ($errors->has('room-service-name'))
                                                 <span id="title-ar-error" class="error text-danger"
                                                     for="input-title-ar">{{ $errors->first('room-service-name') }}</span>
-                                            @endif --}}
+                                            @endif
                                             <select name="room_service_id" id="roomservice_id" class="custom-select" data-live-search="true" data-default="{{ old('roomservice_id') }}">
                                                 @foreach ($roomservices as $roomservice)
                                                        <option value="{{ $roomservice->id }}" selected="selected">{{ $roomservice->name }}</option>
@@ -48,10 +48,10 @@
                                     <div class="col-sm-7">
                                         <div class="form-group{{ $errors->has('Employee-name') ? ' has-danger' : '' }}">
 
-                                            {{-- @if ($errors->has('Employee-name'))
+                                            @if ($errors->has('Employee-name'))
                                                 <span id="title-ar-error" class="error text-danger"
                                                     for="input-title-ar">{{ $errors->first('Employee-name') }}</span>
-                                            @endif --}}
+                                            @endif
                                             <select name="employee_id" id="employee_id" class="custom-select" data-live-search="true" data-default="{{ old('employee_id') }}">
                                                      @foreach ($employees as $employee)
                                                             <option value="{{ $employee->id }}" selected="selected">{{ $employee->name }}</option>
@@ -67,15 +67,26 @@
                                     <div class="col-sm-7">
                                         <div class="form-group{{ $errors->has('Reservation') ? ' has-danger' : '' }}">
 
-                                            {{-- @if ($errors->has('Reservation'))
+                                            @if ($errors->has('Reservation'))
                                                 <span id="title-ar-error" class="error text-danger"
                                                     for="input-title-ar">{{ $errors->first('Reservation') }}</span>
-                                            @endif --}}
+                                            @endif
+
                                             <select name="customer_id" id="customer_id" class="custom-select" data-live-search="true" data-default="{{ old('customer_id') }}">
                                                 @foreach ($customers as $customer)
-                                                       <option value="{{ $customer->id }}" selected="selected">{{ $customer->name }}</option>
+                                                <option value="{{ $customer->id }}" selected="selected">{{ $customer->name }}</option>f
+
                                                @endforeach
                                                <option value="null" selected="selected">Select Customer</option>
+                                            </select>
+
+                                            <select name="room_id" id="room_id" class="custom-select" data-live-search="true" data-default="{{ old('room_id') }}">
+
+                                               @foreach ($rooms as $room)
+                                                <option value="{{ $room->id }}" selected="selected">{{ $room->number }}</option>f
+
+                                               @endforeach
+                                               <option value="null" selected="selected">Select Room</option>
                                            </select>
                                         </div>
 
@@ -91,10 +102,10 @@
                                                     class="form-control @error('notes') is-invalid @enderror"
                                                     placeholder="Enter notes"
                                                     value="{{ old('notes') }}">
-                                            {{-- @if ($errors->has('notes'))
+                                            @if ($errors->has('notes'))
                                                 <span id="title-ar-error" class="error text-danger"
                                                     for="input-title-ar">{{ $errors->first('notes') }}</span>
-                                            @endif --}}
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

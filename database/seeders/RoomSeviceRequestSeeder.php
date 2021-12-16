@@ -19,8 +19,8 @@ class RoomSeviceRequestSeeder extends Seeder
             'room_service_id' => 1,
             'room_id'         => 1,
             'reservation_id'  => 1,
-            'notes'           =>'no notes',
             'employee_id'     => 1,
+            'notes'           =>'no notes',
             'done_at'         =>NULL,
             'canceled_at'      =>NULL
         ]);
