@@ -44,6 +44,11 @@ class User extends Authenticatable implements HasMedia
         'email_verified_at' => 'datetime',
     ];
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'customer_id');
+    }
+
     /**
      * Get all of the messages for the User
      *
@@ -66,6 +71,7 @@ class User extends Authenticatable implements HasMedia
             ->useFallbackUrl('https://ui-avatars.com/api/?background=random&size=128&color=fff&name=' . $this->name)
             ->singleFile();
     }
+
     public function transactions()
     {
         return $this->morphMany(Transaction::class, 'billable');

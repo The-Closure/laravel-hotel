@@ -21,23 +21,21 @@
 
             <li class="nav-item{{ $activePage == 'Reservations' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.reservations.index') }}">
-                    <i class="material-icons">stars</i>
+                    <i class="material-icons">book</i>
                     <p>{{ __('Reservations') }}</p>
                 </a>
             </li>
             <li class="nav-item{{ $activePage == 'Transactions' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.transactions.index') }}">
-                    <i class="material-icons">stars</i>
+                    <i class="material-icons">money</i>
                     <p>{{ __('Transactions') }}</p>
                 </a>
             </li>
-
-
             <li class="nav-item {{ $activePage == 'my-profile' || $activePage == 'All-staffs' ? ' active' : '' }}">
                 <a class="nav-link" data-toggle="collapse" href="#staffs"
                     aria-expanded="{{ $activePage == 'my-profile' || $activePage == 'All-staffs' ? 'true' : 'false' }}">
                     <i><i class="material-icons">persons</i></i>
-                    <p>{{ __('Staffs') }}
+                    <p>{{ __('Staff') }}
                         <b class="caret"></b>
                     </p>
                 </a>
@@ -93,23 +91,6 @@
                     <p>{{ __('Review') }}</p>
                 </a>
             </li>
-            <li class="nav-item{{ $activePage == 'language' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('language') }}">
-                    <i class="material-icons">language</i>
-                    <p>{{ __('RTL Support') }}</p>
-                </a>
-            </li>
-            <li class="nav-item{{ $activePage == 'Review' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.reviews.index') }}">
-                    <i class="material-icons">stars</i>
-                    <p>{{ __('Review') }}</p>
-                </a>
-            </li>
-
-            {{-- <li class="nav-item active-pro{{ $activePage == 'upgrade' ? ' active' : '' }}">
-                <a class="nav-link text-white bg-danger" href="{{ route('upgrade') }}">
-                    <i class="material-icons text-white">unarchive</i>
-                    <p>{{ __('Upgrade to PRO') }}</p> --}}
             <li
                 class="nav-item {{ $activePage == 'room-services' || $activePage == 'create-room-service' ? ' active' : '' }}">
                 <a class="nav-link " data-toggle="collapse" href="#room-services"
@@ -141,6 +122,12 @@
                 <a class="nav-link" href="{{ route('admin.offers.index') }}">
                     <i class="material-icons">percent</i>
                     <p>{{ __('offers') }}</p>
+                </a>
+            </li>
+            <li class="nav-item{{ $activePage == 'messages' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.messages.index') }}">
+                    <i class="material-icons">message</i>
+                    <p>{{ __('messages') }}</p>
                 </a>
             </li>
             <li class="nav-item{{ $activePage == 'setting' ? ' active' : '' }}">

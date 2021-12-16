@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'Messages', 'titlePage' => 'Messages'])
+@extends('layouts.app', ['activePage' => 'messages', 'titlePage' => 'Messages'])
 
 @section('content')
     <div class="content">
@@ -42,8 +42,7 @@
                                         @foreach ($messages as $message)
 
                                             <td>
-                                                <a
-                                                    href="{{ route('admin.messages.show', $message) }}">
+                                                <a href="{{ route('admin.messages.show', $message) }}">
                                                 </a>
                                             </td>
                                             <td>
@@ -66,7 +65,7 @@
                                             </td>
                                             <td>
                                                 <a href="{{ route('admin.messages.create') }}"><button
-                                                        class="btn btn-info">Replay</button></a></a>
+                                                        class="btn btn-info">Reply</button></a></a>
                                             </td>
                                             </tr>
                                         @endforeach

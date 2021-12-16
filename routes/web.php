@@ -55,5 +55,4 @@ Route::group(['middleware' => 'auth', 'prefix' => '/admin', 'as' => 'admin.'], f
     Route::resource('room-services', RoomServicesController::class);
     Route::resource('reviews', ReviewController::class);
     Route::resource('offers', OfferController::class);
-
 });

@@ -14,11 +14,12 @@ class Message extends Model
         'email',
         'content',
         'type',
-        'user_id'] ;
-    public $translatable = [
-            'title',
-            'content',
-            'type'
-            ] ;
+        'user_id'
+    ];
 
+    public $translatable = [
+        'title',
+        'content',
+        'type'
+    ];
 }

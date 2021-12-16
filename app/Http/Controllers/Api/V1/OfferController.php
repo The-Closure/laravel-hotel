@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\OfferResource;
@@ -17,11 +17,11 @@ class OfferController extends Controller
     public function index()
     {
 
-        $offers =Offer::latest();
-        $offers->where('started_at', '=<' , 'ended_at');
+        $offers = Offer::latest();
+        $offers->where('started_at', '=<', 'ended_at');
         $offers = $offers->paginate(10);
 
-        return OfferResource::collection(['offers'=>$offers]);
+        return OfferResource::collection(['offers' => $offers]);
     }
 
     /**
@@ -34,5 +34,4 @@ class OfferController extends Controller
     {
         return new OfferResource($offer);
     }
-
 }
