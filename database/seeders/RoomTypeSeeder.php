@@ -15,10 +15,9 @@ class RoomTypeSeeder extends Seeder
      */
     public function run()
     {
-            $roomTypes = RoomType::factory()
+        $roomTypes = RoomType::factory()
             ->has(Room::factory()->count(3))
             ->count(4)
             ->create();
-            // aa;
     }
 }

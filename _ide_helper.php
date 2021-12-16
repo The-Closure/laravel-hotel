@@ -16280,54 +16280,6 @@
      
 }
 
-    namespace Stevebauman\Purify\Facades { 
-            /**
-     * Class Purify
-     *
-     * @static array|string clean($input, array $config = null)
-     */ 
-        class Purify {
-                    /**
-         * Sanitize the given input.
-         *
-         * @param array|string $input
-         * @param array|null $config
-         * @return array|string 
-         * @static 
-         */ 
-        public static function clean($input, $config = null)
-        {
-                        /** @var \Stevebauman\Purify\Purify $instance */
-                        return $instance->clean($input, $config);
-        }
-                    /**
-         * Set the underlying purifier instance.
-         *
-         * @param \HTMLPurifier $purifier
-         * @return \Stevebauman\Purify\Purify 
-         * @static 
-         */ 
-        public static function setPurifier($purifier)
-        {
-                        /** @var \Stevebauman\Purify\Purify $instance */
-                        return $instance->setPurifier($purifier);
-        }
-                    /**
-         * Get the underlying purifier instance.
-         *
-         * @return \HTMLPurifier 
-         * @static 
-         */ 
-        public static function getPurifier()
-        {
-                        /** @var \Stevebauman\Purify\Purify $instance */
-                        return $instance->getPurifier();
-        }
-         
-    }
-     
-}
-
     namespace Illuminate\Http { 
             /**
      * 
@@ -19940,7 +19892,6 @@ namespace  {
             class View extends \Illuminate\Support\Facades\View {}
             class Flare extends \Facade\Ignition\Facades\Flare {}
             class Image extends \Intervention\Image\Facades\Image {}
-            class Purify extends \Stevebauman\Purify\Facades\Purify {}
      
 }
 

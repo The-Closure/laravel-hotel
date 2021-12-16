@@ -59,13 +59,13 @@
                     </ul>
                 </div>
             </li>
-            <li class="nav-item{{ $activePage == 'roomType' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.room-types.index') }}">
+            <li class="nav-item{{ $activePage == 'roomTypes' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.roomTypes.index') }}">
                     <i class="material-icons">maps_home_work</i>
                     <p>{{ __('Room Types') }}</p>
                 </a>
             </li>
-            <li class="nav-item{{ $activePage == 'room' ? ' active' : '' }}">
+            <li class="nav-item{{ $activePage == 'rooms' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.rooms.index') }}">
                     <i class="material-icons">bedroom_parent</i>
                     <p>{{ __('Rooms') }}</p>
