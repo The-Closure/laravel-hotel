@@ -12,12 +12,14 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique()->nullable();
-            $table->string('national_id')->unique()->nullable();;
-            $table->string('country')->nullable();;
+            $table->string('national_id')->unique()->nullable();
+            $table->string('country')->nullable();
             $table->string('phone_number')->unique()->nullable();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->integer('salary')->nullable();
             $table->string('password')->nullable();
             $table->rememberToken();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp('resigned_at')->nullable();
             $table->timestamps();
         });
     }
