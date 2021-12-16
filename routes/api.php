@@ -25,9 +25,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('v1')->group(function () {
     Route::apiResource('reviews', ReviewController::class)->only(['index', 'show']);
     Route::apiResource('reviews', ReviewController::class)->only('store')->middleware('auth:sanctum');
-    Route::resource('offers', OfferController::class)->only(['index', 'show'])->middleware('auth:sanctum');
+    Route::apiResource('offers', OfferController::class)->only(['index', 'show'])->middleware('auth:sanctum');
     Route::apiResource('rooms', RoomController::class)->only(['index', 'show']);
     Route::apiResource('room-types', RoomTypeController::class)->only(['index', 'show']);
     Route::apiResource('messages', MessageController::class)->only('store')->middleware('auth:sanctum');
-    Route::resource('customers', CustomerController::class);
+    // Route::apiResource('customers', CustomerController::class);
 });

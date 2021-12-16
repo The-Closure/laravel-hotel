@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -15,8 +16,8 @@ class CustomerController extends Controller
     public function index()
     {
 
-        $customers=User::paginate(10);
-        return view ('admin.customers.index',['customers'=>$customers]);
+        $customers = User::paginate(10);
+        return view('admin.customers.index', ['customers' => $customers]);
     }
 
     /**
@@ -26,7 +27,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-    return view('admin.customers.create');
+        return view('admin.customers.create');
     }
 
     /**
@@ -38,21 +39,18 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'fname' => 'required |min:3',
-            'lname' => 'required |min:3',
-            'national_id' => 'required |min:5' ,
-            'country'=> 'required|min:3',
-            'phone' =>'required'
+            'name' => 'required|min:3',
+            'national_id' => 'required|min:5',
+            'country' => 'required|min:3',
+            'phone' => 'required'
         ]);
         $customer = new User();
-        $customer->fname = $request->fname;
-        $customer->lname = $request->lname;
+        $customer->name = $request->name;
         $customer->national_id = $request->national_id;
         $customer->country = $request->country;
         $customer->phone = $request->phone;
         $customer->save();
         return redirect()->route('admin.customers.index');
-
     }
 
     /**
@@ -75,7 +73,7 @@ class CustomerController extends Controller
      */
     public function edit(User $customer)
     {
-        return view('admin.customers.edit' ,['customer' => $customer]);
+        return view('admin.customers.edit', ['customer' => $customer]);
     }
 
     /**
@@ -85,24 +83,21 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request , $id)
+    public function update(Request $request, $id)
     {
-        $customer= User::find($id);
+        $customer = User::find($id);
         $this->validate($request, [
-            'fname' => 'required |min:3',
-            'lname' => 'required |min:3',
-            'national_id' => 'required |min:5' ,
-            'country'=> 'required|min:3',
-            'phone' =>'required'
+            'name' => 'required |min:3',
+            'national_id' => 'required |min:5',
+            'country' => 'required|min:3',
+            'phone' => 'required'
         ]);
-        $customer->fname = $request->fname;
-        $customer->lname = $request->lname;
+        $customer->name = $request->name;
         $customer->national_id = $request->national_id;
         $customer->country = $request->country;
         $customer->phone = $request->phone;
         $customer->save();
         return redirect()->route('admin.customers.index');
-
     }
 
     /**

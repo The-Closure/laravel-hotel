@@ -38,16 +38,14 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'fname' => 'required|min:3',
-            'lname' => 'required|min:3',
+            'name' => 'required|min:3',
             'national_id' => 'required|min:5',
             'country' => 'required|min:3',
             'phone' => 'required'
         ]);
 
         $customer = new User();
-        $customer->fname = $request->fname;
-        $customer->lname = $request->lname;
+        $customer->name = $request->name;
         $customer->national_id = $request->national_id;
         $customer->country = $request->country;
         $customer->phone = $request->phone;
@@ -90,14 +88,12 @@ class CustomerController extends Controller
     {
         $customer = User::find($id);
         $this->validate($request, [
-            'fname' => 'required|min:3',
-            'lname' => 'required|min:3',
+            'name' => 'required|min:3',
             'national_id' => 'required|min:5',
             'country' => 'required|min:3',
             'phone' => 'required'
         ]);
-        $customer->fname = $request->fname;
-        $customer->lname = $request->lname;
+        $customer->name = $request->name;
         $customer->national_id = $request->national_id;
         $customer->country = $request->country;
         $customer->phone = $request->phone;

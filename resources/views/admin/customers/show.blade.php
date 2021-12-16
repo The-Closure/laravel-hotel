@@ -17,7 +17,6 @@
                                     <thead class=" text-primary">
                                         <tr>
                                             <th>First Name</th>
-                                            <th>LastName</th>
                                             <th>National ID</th>
                                             <th>Country</th>
                                             <th>Phone</th>
@@ -28,8 +27,7 @@
                                         @foreach ($customers as $customer)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $customer->fname }}</td>
-                                                <td>{{ $customer->lname }}</td>
+                                                <td>{{ $customer->name }}</td>
                                                 <td>{{ $customer->national_id }}</td>
                                                 <td>{{ $customer->country }}</td>
                                                 <td>{{ $customer->phone }}</td>

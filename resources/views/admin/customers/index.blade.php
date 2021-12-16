@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'All Customers', 'titlePage' => __('All Customers')])
+@extends('layouts.app', ['activePage' => 'customers', 'titlePage' => __('All Customers')])
 @section('content')
 
     <div class="content">
@@ -21,8 +21,8 @@
                                 <table class="table">
                                     <thead class=" text-primary">
                                         <tr>
+                                            <th>id</th>
                                             <th>First Name</th>
-                                            <th>LastName</th>
                                             <th>National ID</th>
                                             <th>Country</th>
                                             <th class="text-right">Actions</th>
@@ -31,18 +31,17 @@
                                     <tbody>
                                         @foreach ($customers as $customer)
                                             <tr>
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $customer->fname }}</td>
-                                                <td>{{ $customer->lname }}</td>
+                                                <td>{{ $customer->id }}</td>
+                                                <td>{{ $customer->name }}</td>
                                                 <td>{{ $customer->national_id }}</td>
                                                 <td>{{ $customer->country }}</td>
                                                 <td class="td-actions text-right">
-                                                    <form action="{{ route('admin.customers.destroy',$customer) }}"
+                                                    <form action="{{ route('admin.customers.destroy', $customer) }}"
                                                         method="post">
                                                         @csrf
                                                         @method('delete')
                                                         <a rel="tooltip" class="btn btn-success btn-link"
-                                                            href="{{ route('admin.customers.edit',$customer) }}"
+                                                            href="{{ route('admin.customers.edit', $customer) }}"
                                                             data-original-title="" title="">
                                                             <i class="material-icons">edit</i>
                                                             <div class="ripple-container"></div>
