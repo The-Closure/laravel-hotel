@@ -150,6 +150,12 @@
                     <p>{{ __('messages') }}</p>
                 </a>
             </li>
+            <li class="nav-item{{ $activePage == 'customers' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.customers.index') }}">
+                    <i class="material-icons">persons</i>
+                    <p>{{ __('Customers') }}</p>
+                </a>
+            </li>
             <li class="nav-item{{ $activePage == 'setting' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.settings.index') }}">
                     <i class="material-icons">settings</i>
