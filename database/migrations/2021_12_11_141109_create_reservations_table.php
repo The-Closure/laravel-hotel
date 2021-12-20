@@ -21,7 +21,7 @@ class CreateReservationsTable extends Migration
             $table->foreignId('offer_id')->nullable();
             $table->double("paid");
             $table->timestamp("started_at");
-            $table->timestamp("ended_at");
+            $table->timestamp("ended_at")->nullable();
             $table->timestamp("paid_at")->nullable();
             $table->timestamp("canceled_at")->nullable();
             $table->timestamps();
