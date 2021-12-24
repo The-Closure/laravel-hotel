@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\V1\ReviewController;
 use App\Http\Controllers\Api\V1\RoomController;
 use App\Http\Controllers\Api\V1\RoomTypeController;
 use App\Http\Controllers\Api\V1\MessageController;
+use App\Http\Controllers\Api\V1\OfferController;
 use App\Http\Controllers\Api\V1\ProfileController;
 use App\Http\Controllers\Api\V1\ReservationController;
 use Illuminate\Support\Facades\Route;
@@ -25,10 +26,10 @@ Route::prefix('v1')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('/user', [ProfileController::class, 'show']);
         Route::apiResource('reviews', ReviewController::class)->only('store');
-        Route::apiResource('offers', OfferController::class)->only(['index', 'show']);
         Route::apiResource('messages', MessageController::class)->only('store');
     });
 
+    Route::apiResource('offers', OfferController::class)->only(['index', 'show']);
     Route::apiResource('reviews', ReviewController::class)->only(['index']);
     Route::apiResource('rooms', RoomController::class)->only(['index', 'show']);
     Route::apiResource('room-types', RoomTypeController::class)->only(['index', 'show']);
