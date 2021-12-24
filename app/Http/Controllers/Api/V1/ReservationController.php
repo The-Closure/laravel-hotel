@@ -28,37 +28,32 @@ class ReservationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'national_id' => 'required|numeric',
-            'country' => 'required',
-            'phone_number' => 'required',
-            'room_id' => 'required',
-            'offer_id',
-            'paid' => 'required|numeric',
-            'started_at' => 'required|date',
-            'ended_at' => 'required|date',
-            'paid_at' => 'required|date',
-            'canceled_at' => 'date',
+            'name'          => 'required',
+            'national_id'   => 'required|numeric',
+            'country'       => 'required',
+            'phone_number'  => 'required',
+            'room_id'       => 'required',
+            'offer_id'      => 'nullable',
+            'paid'          => 'required|numeric',
+            'started_at'    => 'required|date',
+            'ended_at'      => 'required|date',
         ]);
 
-        $user = new User();
-        $user->name = $request->name;
-        $user->national_id = $request->national_id;
-        $user->country = $request->country;
-        $user->phone_number = $request->phone_number;
-        $user->save();
+        $user = User::firstOrCreate(['phone_number' => $request->phone_number], [
+            'name' => $request->name,
+            'national_id' => $request->national_id,
+            'country' => $request->country,
+        ]);
+        $user->assignRole('customer');
 
         $reservation = new Reservation();
-        // $reservation->price = $request->price;
         $reservation->room_id = $request->room_id;
         $reservation->paid = $request->paid;
         $reservation->started_at = $request->started_at;
         $reservation->offer_id = $request->offer_id;
         $reservation->ended_at = $request->ended_at;
-        $reservation->paid_at = $request->paid_at;
-        $reservation->canceled_at = $request->canceled_at;
         $reservation->user_id = $user->id;
-        // $reservation->room->status = 'Busy';
+
         if ($reservation->offer->type = 'percentage') {
             $dis = (1 - (0.01 * $reservation->offer->discount));
             $reservation->price = $reservation->room->price * $dis - $reservation->paid;
@@ -66,17 +61,19 @@ class ReservationController extends Controller
             $dis = $reservation->offer->discount * 1;
             $reservation->price = $reservation->room->price - $dis - $reservation->paid;
         }
-        $reservation->save();
-
-        $reservation->room->update(['status' => 'busy']);
-        if ($reservation->paid != '0') {
+        if ($reservation->paid != 0) {
             $reservation->transactions()->create([
                 'type' => 'In',
                 'amount' => $reservation->paid,
                 'description' => 'paid at Booking',
             ]);
+            $reservation->paid_at = now();
         }
-        return response(['message' => 'review was created'], 201);
+
+        $reservation->save();
+        $reservation->room->update(['status' => 'busy']);
+
+        return response(['message' => 'reservation was created'], 201);
     }
 
     /**
