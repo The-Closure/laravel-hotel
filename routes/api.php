@@ -33,6 +33,6 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('reviews', ReviewController::class)->only(['index']);
     Route::apiResource('rooms', RoomController::class)->only(['index', 'show']);
     Route::apiResource('room-types', RoomTypeController::class)->only(['index', 'show']);
-    // Route::get('reviews/stats', [ReviewController::class, 'stats']);
+    Route::get('reviews/stats', [ReviewController::class, 'stats']);
     Route::post('/login', [LoginController::class, 'login']);
 });

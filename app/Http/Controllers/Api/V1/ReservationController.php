@@ -28,10 +28,11 @@ class ReservationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'          => 'required',
-            'national_id'   => 'required|numeric',
-            'country'       => 'required',
+            'name'          => 'nullable',
+            'national_id'   => 'nullable|numeric',
+            'country'       => 'nullable',
             'phone_number'  => 'required',
+            'password'      => 'nullable',
             'room_id'       => 'required',
             'offer_id'      => 'nullable',
             'paid'          => 'required|numeric',
