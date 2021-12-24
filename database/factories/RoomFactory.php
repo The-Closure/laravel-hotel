@@ -20,8 +20,8 @@ class RoomFactory extends Factory
             'story' => $this->faker->randomDigit(),
             'description->en' => $this->faker->sentence(),
             'description->ar' => $this->faker->sentence(),
-            'status->en' => $this->faker->word(),
-            'status->ar' => $this->faker->word(),
+            'status->en' => $this->faker->randomElement(['available', 'busy']),
+            'status->ar' => $this->faker->randomElement(['available', 'busy']),
             'created_at' => $this->faker->dateTimeThisMonth(),
         ];
     }
