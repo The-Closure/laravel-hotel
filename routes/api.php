@@ -7,7 +7,6 @@ use App\Http\Controllers\Api\V1\RoomTypeController;
 use App\Http\Controllers\Api\V1\MessageController;
 use App\Http\Controllers\Api\V1\ProfileController;
 use App\Http\Controllers\Api\V1\ReservationController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,5 +33,6 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('reviews', ReviewController::class)->only(['index']);
     Route::apiResource('rooms', RoomController::class)->only(['index', 'show']);
     Route::apiResource('room-types', RoomTypeController::class)->only(['index', 'show']);
+    // Route::get('reviews/stats', [ReviewController::class, 'stats']);
     Route::post('/login', [LoginController::class, 'login']);
 });
