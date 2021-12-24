@@ -49,18 +49,21 @@ class ReservationController extends Controller
 
         $reservation = new Reservation();
         $reservation->room_id = $request->room_id;
+        $reservation->price = $reservation->room->price;
         $reservation->paid = $request->paid;
         $reservation->started_at = $request->started_at;
         $reservation->offer_id = $request->offer_id;
         $reservation->ended_at = $request->ended_at;
         $reservation->user_id = $user->id;
 
-        if ($reservation->offer->type = 'percentage') {
-            $dis = (1 - (0.01 * $reservation->offer->discount));
-            $reservation->price = $reservation->room->price * $dis - $reservation->paid;
-        } elseif ($reservation->offer->type = 'const') {
-            $dis = $reservation->offer->discount * 1;
-            $reservation->price = $reservation->room->price - $dis - $reservation->paid;
+        if ($reservation->offer) {
+            if ($reservation->offer->type = 'percentage') {
+                $dis = (1 - (0.01 * $reservation->offer->discount));
+                $reservation->price = $reservation->room->price * $dis - $reservation->paid;
+            } elseif ($reservation->offer->type = 'const') {
+                $dis = $reservation->offer->discount * 1;
+                $reservation->price = $reservation->room->price - $dis - $reservation->paid;
+            }
         }
         if ($reservation->paid != 0) {
             $reservation->transactions()->create([

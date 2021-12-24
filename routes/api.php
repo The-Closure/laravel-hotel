@@ -25,7 +25,6 @@ Route::prefix('v1')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('/user', [ProfileController::class, 'show']);
         Route::apiResource('reviews', ReviewController::class)->only('store');
-        Route::apiResource('reservations', ReservationController::class)->only('store');
         Route::apiResource('offers', OfferController::class)->only(['index', 'show']);
         Route::apiResource('messages', MessageController::class)->only('store');
     });
@@ -33,6 +32,7 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('reviews', ReviewController::class)->only(['index']);
     Route::apiResource('rooms', RoomController::class)->only(['index', 'show']);
     Route::apiResource('room-types', RoomTypeController::class)->only(['index', 'show']);
+    Route::apiResource('reservations', ReservationController::class)->only('store');
     Route::get('reviews/stats', [ReviewController::class, 'stats']);
     Route::post('/login', [LoginController::class, 'login']);
 });
