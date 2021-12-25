@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\V1\MessageController;
 use App\Http\Controllers\Api\V1\OfferController;
 use App\Http\Controllers\Api\V1\ProfileController;
 use App\Http\Controllers\Api\V1\ReservationController;
+use App\Http\Controllers\Api\V1\SettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,7 @@ Route::prefix('v1')->group(function () {
 
     Route::apiResource('offers', OfferController::class)->only(['index', 'show']);
     Route::apiResource('reviews', ReviewController::class)->only(['index']);
+    Route::apiResource('settings', SettingController::class)->only(['index']);
     Route::apiResource('rooms', RoomController::class)->only(['index', 'show']);
     Route::apiResource('room-types', RoomTypeController::class)->only(['index', 'show']);
     Route::apiResource('reservations', ReservationController::class)->only('store');
