@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\ChangePasswordController;
 use App\Http\Controllers\Api\V1\LoginController;
 use App\Http\Controllers\Api\V1\ReviewController;
 use App\Http\Controllers\Api\V1\RoomController;
@@ -27,6 +28,7 @@ Route::prefix('v1')->group(function () {
         Route::get('/user', [ProfileController::class, 'show']);
         Route::apiResource('reviews', ReviewController::class)->only('store');
         Route::apiResource('messages', MessageController::class)->only('store');
+        Route::post('/change-password', [ChangePasswordController::class, 'change-password']);
     });
 
     Route::apiResource('offers', OfferController::class)->only(['index', 'show']);
