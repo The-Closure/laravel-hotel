@@ -217,7 +217,7 @@ namespace App\Models {
 
 namespace App\Models {
     /**
-     * App\Models\RoomSeviceRequest
+     * App\Models\RoomServiceRequest
      *
      * @property int $id
      * @property int $room_service_id
@@ -234,25 +234,25 @@ namespace App\Models {
      * @property-read \App\Models\Reservation $reservation
      * @property-read \App\Models\Room $room
      * @property-read \App\Models\RoomService $roomService
-     * @method static \Illuminate\Database\Eloquent\Builder|RoomSeviceRequest newModelQuery()
-     * @method static \Illuminate\Database\Eloquent\Builder|RoomSeviceRequest newQuery()
-     * @method static \Illuminate\Database\Query\Builder|RoomSeviceRequest onlyTrashed()
-     * @method static \Illuminate\Database\Eloquent\Builder|RoomSeviceRequest query()
-     * @method static \Illuminate\Database\Eloquent\Builder|RoomSeviceRequest whereCanceledAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|RoomSeviceRequest whereCreatedAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|RoomSeviceRequest whereDeletedAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|RoomSeviceRequest whereDoneAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|RoomSeviceRequest whereEmployeeId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|RoomSeviceRequest whereId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|RoomSeviceRequest whereNotes($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|RoomSeviceRequest whereReservationId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|RoomSeviceRequest whereRoomId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|RoomSeviceRequest whereRoomServiceId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|RoomSeviceRequest whereUpdatedAt($value)
-     * @method static \Illuminate\Database\Query\Builder|RoomSeviceRequest withTrashed()
-     * @method static \Illuminate\Database\Query\Builder|RoomSeviceRequest withoutTrashed()
+     * @method static \Illuminate\Database\Eloquent\Builder|RoomServiceRequest newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|RoomServiceRequest newQuery()
+     * @method static \Illuminate\Database\Query\Builder|RoomServiceRequest onlyTrashed()
+     * @method static \Illuminate\Database\Eloquent\Builder|RoomServiceRequest query()
+     * @method static \Illuminate\Database\Eloquent\Builder|RoomServiceRequest whereCanceledAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|RoomServiceRequest whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|RoomServiceRequest whereDeletedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|RoomServiceRequest whereDoneAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|RoomServiceRequest whereEmployeeId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|RoomServiceRequest whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|RoomServiceRequest whereNotes($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|RoomServiceRequest whereReservationId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|RoomServiceRequest whereRoomId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|RoomServiceRequest whereRoomServiceId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|RoomServiceRequest whereUpdatedAt($value)
+     * @method static \Illuminate\Database\Query\Builder|RoomServiceRequest withTrashed()
+     * @method static \Illuminate\Database\Query\Builder|RoomServiceRequest withoutTrashed()
      */
-    class RoomSeviceRequest extends \Eloquent
+    class RoomServiceRequest extends \Eloquent
     {
     }
 }

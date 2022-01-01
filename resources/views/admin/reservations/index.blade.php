@@ -63,7 +63,7 @@
                             <td>{{$reservation->user->name}}</td>
                             <td>{{$reservation->price}}</td>
                             <td>{{$reservation->room->number}}</td>
-                            <td>{{$reservation->offer->name}}</td>
+                            <td>{{$reservation->offer?->name}}</td>
                             <td>{{$reservation->paid}}</td>
                             <td>{{$reservation->started_at}}</td>
                             <td>{{$reservation->ended_at}}</td>
