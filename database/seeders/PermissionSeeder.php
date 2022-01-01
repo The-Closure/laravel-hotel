@@ -86,7 +86,7 @@ class PermissionSeeder extends Seeder
             'updated_at' => now(),
             'country' => 'Syria',
             'national_id' => '0308004032',
-            'phone_number' => '+963 974527482',
+            'phone_number' => '+963974527482',
             'salary' => '1000000',
             'job_title' => 'Owner',
         ])->assignRole($owner);
@@ -102,7 +102,7 @@ class PermissionSeeder extends Seeder
             'updated_at' => now(),
             'country' => 'Syria',
             'national_id' => '0308002030',
-            'phone_number' => '+963 98462174',
+            'phone_number' => '+96398462174',
             'salary' => '80000',
             'job_title' => 'Manager',
 
@@ -118,7 +118,7 @@ class PermissionSeeder extends Seeder
             'updated_at' => now(),
             'country' => 'Syria',
             'national_id' => '0308002044',
-            'phone_number' => '+963 9336548264',
+            'phone_number' => '+9639336548264',
             'salary' => '50000',
             'job_title' => 'Reception',
 
@@ -135,7 +135,7 @@ class PermissionSeeder extends Seeder
             'updated_at' => now(),
             'country' => 'Syria',
             'national_id' => '0307022334',
-            'phone_number' => '+963 9876473644',
+            'phone_number' => '+9639876473644',
             'salary' => '30000',
             'job_title' => 'Worker',
 
@@ -145,6 +145,7 @@ class PermissionSeeder extends Seeder
             'email' => 'customer@hotel.com',
         ], [
             'name' => 'Customer',
+            'phone_number'  => '+963912332145',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
             'created_at' => now(),

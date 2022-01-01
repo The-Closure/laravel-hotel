@@ -21,7 +21,7 @@ class ReservationSeeder extends Seeder
             'discount'  => 0,
             'type'  => 'precent',
             'started_at' => now(),
-            'ended_at'  => now()->addDays(5),
+            'ended_at'  => now()->addYear(),
         ]);
 
         $user->reservations()->create(

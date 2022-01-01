@@ -17,10 +17,10 @@ class OfferResource extends JsonResource
         return [
             'id'    => $this->id,
             'name' => $this->name,
-            'discount'=>$this->discount,
-            'type'=>$this->type,
-            'started_at'=>$this->started_at,
-            'ende_at'=>$this->ended_at,
+            'discount' => $this->discount,
+            'type' => $this->type,
+            'started_at' => $this->started_at,
+            'ended_at' => $this->ended_at,
         ];
     }
 }

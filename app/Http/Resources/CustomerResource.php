@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class RoomResource extends JsonResource
+class CustomerResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,6 +14,11 @@ class RoomResource extends JsonResource
      */
     public function toArray($request)
     {
-        return array_merge(parent::toArray($request), ['images' => $this->getMedia('images')->pluck('original_url')]);
+        return [
+            'id'    => $this->id,
+            'name'  => $this->name,
+            'email' => $this->email,
+            'phone' => $this->phone_number,
+        ];
     }
 }
