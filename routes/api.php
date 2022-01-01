@@ -27,10 +27,10 @@ Route::prefix('v1')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('/user', [ProfileController::class, 'show']);
         Route::apiResource('reviews', ReviewController::class)->only('store');
-        Route::apiResource('messages', MessageController::class)->only('store');
-        Route::apiResource('roomservicerequest', RoomServiceRequestController::class)->only('store');
+        Route::apiResource('room-service-requests', RoomServiceRequestController::class)->only('store');
     });
 
+    Route::apiResource('messages', MessageController::class)->only('store');
     Route::apiResource('offers', OfferController::class)->only(['index', 'show']);
     Route::apiResource('reviews', ReviewController::class)->only(['index']);
     Route::apiResource('rooms', RoomController::class)->only(['index', 'show']);

@@ -12,13 +12,13 @@ class RoomServiceRequestController extends Controller
     {
         $validated = $request->validate([
             'room_service_id' => 'required',
-            'employee_id'     => 'required',
+            'room_id'         => 'required',
             'customer_id'     => 'required',
             'room_id'         => 'required',
-            'notes'           => 'required'
+            'notes'           => 'required',
         ]);
 
-        Auth::user()->messages()->create($validated);
+        Auth::user()->requests()->create($validated);
 
         return response(['Request' => 'RoomServiceRequest was created']);
     }
