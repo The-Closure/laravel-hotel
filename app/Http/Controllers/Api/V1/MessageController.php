@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +18,7 @@ class MessageController extends Controller
             'type' => 'required',
         ]);
 
-        Auth::user()->messages()->create($validated);
+        Message::create($validated);
 
         return response(['message' => 'message was created']);
     }
