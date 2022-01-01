@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Reservation;
 use App\Models\Room;
 use App\Models\RoomService;
-use App\Models\RoomSeviceRequest;
+use App\Models\RoomServiceRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class RoomSeviceRequestController extends Controller
+class RoomServiceRequestController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,11 +21,11 @@ class RoomSeviceRequestController extends Controller
     public function index(Request $request)
     {
         if ($request->filled('undone_requests') || $request == []) {
-            $requests = RoomSeviceRequest::whereNull('done_at')->get();
+            $requests = RoomServiceRequest::whereNull('done_at')->get();
         } elseif ($request->filled('done_requests')) {
-            $requests = RoomSeviceRequest::whereNotNull('done_at')->get();
+            $requests = RoomServiceRequest::whereNotNull('done_at')->get();
         } else {
-            $requests = RoomSeviceRequest::all();
+            $requests = RoomServiceRequest::all();
         }
 
         return view('room_service-requests.index', [
@@ -40,7 +40,7 @@ class RoomSeviceRequestController extends Controller
      */
     public function create()
     {
-        $this->authorize('create room services requests', RoomSeviceRequestController::class);
+        $this->authorize('create room services requests', RoomServiceRequestController::class);
         $customers = User::role('customer')->get();
         $employees = User::role(['owner', 'manager', 'reception'])->get();
         $roomservices = RoomService::all();
@@ -82,7 +82,7 @@ class RoomSeviceRequestController extends Controller
         if ($reservation->empty())
             return redirect()->route('admin.room-service-requests.create')->withStatus(__('Request is successfully added.'));
 
-        $roomservicerequest = new RoomSeviceRequest();
+        $roomservicerequest = new RoomServiceRequest();
         $roomservicerequest->room_service_id = $request->room_service_id;
         $roomservicerequest->room_id = $request->room_id;
         $roomservicerequest->reservation_id = $reservation[0]->id;
@@ -101,10 +101,10 @@ class RoomSeviceRequestController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\RoomSeviceRequest  $roomSeviceRequest
+     * @param  \App\Models\RoomServiceRequest  $roomSeviceRequest
      * @return \Illuminate\Http\Response
      */
-    public function show(RoomSeviceRequest $roomSeviceRequest)
+    public function show(RoomServiceRequest $roomSeviceRequest)
     {
         //
     }
@@ -112,12 +112,12 @@ class RoomSeviceRequestController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\RoomSeviceRequest  $roomSeviceRequest
+     * @param  \App\Models\RoomServiceRequest  $roomSeviceRequest
      * @return \Illuminate\Http\Response
      */
-    public function edit(RoomSeviceRequest $room_service_request)
+    public function edit(RoomServiceRequest $room_service_request)
     {
-        $this->authorize('edit room services requests', RoomSeviceRequest::class);
+        $this->authorize('edit room services requests', RoomServiceRequest::class);
         $customers = User::role('customer')->get();
         $employees = User::role(['owner', 'manager', 'reception'])->get();
         $roomservices = RoomService::all();
@@ -149,10 +149,10 @@ class RoomSeviceRequestController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\RoomSeviceRequest  $roomSeviceRequest
+     * @param  \App\Models\RoomServiceRequest  $roomSeviceRequest
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RoomSeviceRequest $room_service_request)
+    public function update(Request $request, RoomServiceRequest $room_service_request)
     {
         $reservation = Reservation::where("user_id", "=", $request->customer_id)->where("room_id", "=", $request->room_id)->get();
         $room_service_request->room_service_id = $request->room_service_id;
@@ -168,10 +168,10 @@ class RoomSeviceRequestController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\RoomSeviceRequest  $roomSeviceRequest
+     * @param  \App\Models\RoomServiceRequest  $roomSeviceRequest
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RoomSeviceRequest $room_service_request)
+    public function destroy(RoomServiceRequest $room_service_request)
     {
         $room_service_request->delete();
         return redirect()->route('admin.room-service-requests.index')->withSuccess('room service deleted successfully');
