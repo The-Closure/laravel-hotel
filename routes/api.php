@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\V1\MessageController;
 use App\Http\Controllers\Api\V1\OfferController;
 use App\Http\Controllers\Api\V1\ProfileController;
 use App\Http\Controllers\Api\V1\ReservationController;
+use App\Http\Controllers\Api\V1\RoomServiceRequestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,7 @@ Route::prefix('v1')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('/user', [ProfileController::class, 'show']);
         Route::apiResource('reviews', ReviewController::class)->only('store');
+        Route::apiResource('room-service-requests', RoomServiceRequestController::class)->only('store');
     });
 
     Route::apiResource('messages', MessageController::class)->only('store');

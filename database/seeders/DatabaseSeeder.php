@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             SettingSeeder::class,
             RoomTypeSeeder::class,
             ReservationSeeder::class,
-            RoomSeviceRequestSeeder::class,
+            RoomServiceRequestSeeder::class,
         ]);
     }
 }
