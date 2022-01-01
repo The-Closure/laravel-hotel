@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class RoomSeviceRequest extends Model
+class RoomServiceRequest extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = ['room_service_id', 'room_id', 'reservation_id', 'employee_id', 'notes'];

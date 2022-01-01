@@ -73,6 +73,11 @@ class User extends Authenticatable implements HasMedia
         return $this->hasMany(Reservation::class);
     }
 
+    public function requests()
+    {
+        return $this->hasMany(RoomServiceRequest::class, 'customer_id');
+    }
+
     public function registerMediaCollections(): void
     {
         $this
